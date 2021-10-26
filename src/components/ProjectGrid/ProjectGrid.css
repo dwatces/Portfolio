@@ -1,0 +1,29 @@
+.project {
+  padding: 2em;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s linear;
+}
+
+.project:hover {
+  transform: translateY(-8px);
+}
+
+.project-description {
+  margin-top: 1em;
+}
+
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1em 0;
+}
+
+.project_stack-item {
+  margin: 0.5em;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--clf-fg-alt);
+}
