@@ -34,4 +34,8 @@ a {
     align-items: flex-start;
     margin-top: 2em;
   }
+  .about__contact {
+    margin: 0 auto;
+    padding-top: 1em;
+  }
 }

@@ -121,3 +121,22 @@ main {
 .btn-plain:hover {
   transform: translateY(-4px);
 }
+
+.btn-icon {
+  padding: 0;
+}
+
+.btn-icon:hover,
+.btn-icon:focus {
+  color: var(--clr-primary);
+}
+
+.btn-icon:active {
+  transform: translateY(-5px);
+}
+
+@media (max-width: 600px) {
+  .section {
+    margin-top: 3em;
+  }
+}

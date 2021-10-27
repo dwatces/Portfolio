@@ -7,8 +7,13 @@
   margin-left: 1.5em;
 }
 
+.app .nav__hamburger {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .nav__list {
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -22,5 +27,11 @@
   .nav__link {
     margin: 0.5em 0;
     padding: 1em;
+  }
+
+  .app .nav__hamburger {
+    display: flex;
+    z-index: 2;
+    margin-left: 0.8em;
   }
 }
