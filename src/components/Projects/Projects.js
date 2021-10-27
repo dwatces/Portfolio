@@ -13,7 +13,7 @@ const projects = [
   {
     name: "Scenic",
     description:
-      "A website where users can create an account, login, and share pictures of their favourite scenes, connected to each independent user.",
+      "A website where users can create an account, login, and share pictures of their favourite scenes, connected to each independent user with Geocoding map features.",
     stack: ["HTML5", "CSS3", "React.js", "Node.js", "Express.js", "MongoDB"],
     sourceCode: "..",
     livePreview: "..",
