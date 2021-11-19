@@ -1,8 +1,6 @@
 import "./Skills.css";
 
 const skills = [
-  "HTML5",
-  "CSS3",
   "JavaScript",
   "React.js",
   "Node.js",
@@ -10,6 +8,8 @@ const skills = [
   "Visual Studio",
   "Git",
   "MongoDB",
+  "HTML5",
+  "CSS3",
 ];
 
 const Skills = () => {

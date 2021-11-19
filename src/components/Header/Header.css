@@ -4,6 +4,12 @@
   width: 95%;
   margin: 0 auto;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
+}
+
+.nav__head {
+  cursor: pointer;
 }
 
 @media (max-width: 600px) {
