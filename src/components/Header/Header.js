@@ -2,19 +2,19 @@ import "./Header.css";
 import Navbar from "../Navbar/Navbar";
 
 const Header = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <header className="header center nav__head">
       <h3>
-        <a
-          onClick={
-            (window.onbeforeunload = function () {
-              window.scrollTo(0, 0);
-            })
-          }
-          className="link"
-        >
+        <button onClick={scrollToTop} className="link">
           Daniel Olliver
-        </a>
+        </button>
       </h3>
       <Navbar />
     </header>

@@ -13,7 +13,7 @@ const About = () => {
         development; particularly focusing on the MERN stack.
       </p>
       <div className="about__contact center">
-        <a href="https://docs.google.com/document/d/1w7ajlRf6_lSHBpK6V6umYJ8LBOQR5WG4/edit?usp=sharing&ouid=113633324398271417891&rtpof=true&sd=true">
+        <a href="https://www.dropbox.com/t/C6iZPWOmh86rCnjZ">
           <span type="button" className="btn btn-outline">
             Resume
           </span>
