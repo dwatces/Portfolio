@@ -10,6 +10,7 @@ const skills = [
   "MongoDB",
   "HTML5",
   "CSS3",
+  "Bootstrap",
 ];
 
 const Skills = () => {
