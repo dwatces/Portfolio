@@ -19,20 +19,27 @@
     justify-content: center;
     align-items: center;
     position: fixed;
+    font-size: 1em;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
+    width: 10rem !important;
+    height: 15rem !important;
+    background: rgb(100, 99, 99);
+    z-index: 100;
   }
 
   .nav__link {
     margin: 0.5em 0;
-    padding: 1em;
+    padding: 0.5em;
+  }
+
+  .nav-link {
+    color: white !important;
   }
 
   .app .nav__hamburger {
     display: flex;
-    z-index: 2;
+    z-index: 100;
+    margin-top: 0rem;
     margin-left: 0.8em;
   }
 }

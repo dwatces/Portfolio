@@ -31,13 +31,25 @@ a {
 
 @media (max-width: 600px) {
   .about {
-    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 2em;
   }
+  .about__name {
+    text-align: center;
+    font-size: 3rem;
+  }
+  .about__desc {
+    text-align: center;
+  }
+
   .about__contact {
-    margin: 0 auto;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
     align-items: center;
     justify-content: center;
     padding-top: 1em;
+    z-index: 1;
   }
 }

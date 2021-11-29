@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <header className="header center nav__head">
-      <h3>
+      <h3 className="nav__header">
         <button onClick={scrollToTop} className="link">
           Daniel Olliver
         </button>
