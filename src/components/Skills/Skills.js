@@ -3,6 +3,7 @@ import "./Skills.css";
 const skills = [
   "JavaScript",
   "React.js",
+  "Next.js",
   "Node.js",
   "Express.js",
   "Visual Studio",
