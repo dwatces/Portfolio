@@ -8,7 +8,7 @@ const projects = [
     description: "Eon Candles is a website for a candle company I built for a client. It is a single page application built with React.js and Next.js.",
     stack: ["React.js", "Next.js", "HTML5", "CSS3"],
     sourceCode: "https://github.com/dwatces/Eon",
-    livePreview: "https://eoncandles.co.nz/"
+    livePreview: "https://eon-ht82.vercel.app/"
   },
   {
     key: "1",

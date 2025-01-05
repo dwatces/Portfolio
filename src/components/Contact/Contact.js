@@ -4,7 +4,7 @@ const Contact = () => {
   return (
     <section className="section contact center" id="contact">
       <h2 className="section_title">Contact</h2>
-      <a href="mailto:daniel@danielolliver.tech">
+      <a href="mailto:contact@danielolliver.tech">
         <span type="button" className="btn btn-outline">
           Email Me
         </span>
