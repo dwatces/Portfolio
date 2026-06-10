@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The equivariance law, held on real city data — Daniel Olliver</title>
+<style>
+  :root { --bg:#0b0e14; --panel:#11151f; --line:#1e2533; --text:#dde3ee;
+          --dim:#8a93a6; --gold:#ffd166; --cold:#4cc9f0; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text);
+    font:16px/1.65 -apple-system,"Segoe UI",Roboto,sans-serif; }
+  .wrap { max-width:840px; margin:0 auto; padding:40px 20px 70px; }
+  .crumb { font-size:.85rem; color:var(--dim); margin-bottom:26px; }
+  a { color:var(--cold); text-decoration:none; }
+  h1 { font-size:1.7rem; line-height:1.3; margin-bottom:8px; letter-spacing:-.3px; }
+  .dek { color:var(--dim); margin-bottom:22px; max-width:700px; }
+  img { width:100%; border:1px solid var(--line); border-radius:10px; margin:6px 0 22px;
+        background:#0d111a; }
+  h2 { font-size:1.05rem; color:var(--gold); margin:22px 0 8px; }
+  p { margin-bottom:12px; }
+  ul { margin:0 0 12px 20px; }
+  li { margin-bottom:6px; }
+  b { color:#fff; }
+  .nums { background:var(--panel); border:1px solid var(--line); border-radius:10px;
+          padding:14px 18px; margin:10px 0 18px; font-size:.92rem; }
+  .nums li { margin-bottom:7px; }
+  .limits { border-left:3px solid var(--dim); padding:4px 14px; color:var(--dim);
+            font-size:.92rem; margin:14px 0; }
+  .foot { margin-top:30px; padding-top:16px; border-top:1px solid var(--line);
+          font-size:.88rem; color:var(--dim); }
+</style></head><body><div class="wrap">
+<p class="crumb"><a href="/#research">← research</a> · <a href="/anyons/">playground</a> ·
+<a href="/essay/">the six-year story</a> · <a href="https://github.com/dwatces">code &amp; logs</a></p>
+<h1>The equivariance law, held on real city data</h1>
+<p class="dek">Equivariant models pay exactly when the symmetry is genuinely present and data is scarce — demonstrated on new-station demand forecasting across five cities and two seasons: 10 out of 10 city-seasons.</p>
+<img src="../coldstart_equivariance.png" alt="The equivariance law, held on real city data">
+<h2>What was measured</h2>
+<p>Cold-start forecasting — predicting demand at a brand-new station with zero history, from neighbours only — makes the spatial operator the whole model, which is exactly where an equivariant inductive bias should pay. On real bike-share data (point-level trips aggregated to a dense hex grid), a hex-equivariant model was compared against a directional (anisotropic) model at matched parameters across NYC, Chicago, DC, Boston and San Francisco, winter and summer.</p>
+<h2>Headline numbers</h2>
+<ul class="nums"><li>Equivariant beats directional in <b>10 of 10 city-seasons</b> at scarce data</li><li>Pooled R² gains: <b>+0.066 / +0.081 / +0.065 / +0.074 / +0.022</b> at 5/10/20/40/80% of stations known — largest exactly where history is thinnest, converging as data becomes abundant</li><li>Matched parameters (~15k per arm), 6+ seeds per dataset</li></ul>
+<h2>Method &amp; discipline</h2>
+<p>Cold-start-safe construction throughout: no centre tap, global standardisation (no per-cell leakage), held-out stations as the test. The law's other half was confirmed elsewhere with mismatch controls: when the symmetry is absent or only approximate, hard equivariance <i>hurts</i> — knowing both edges of the regime is the result.</p>
+<div class="limits"><b>Honest limits:</b> a validation of the method, not a commercial edge — simple neighbour-mean baselines remain strong until most stations are known, and demand signal is dominated by per-station temporal structure outside the cold-start regime. One excluded dataset (Columbus) had too few active stations to be meaningful.</div>
+<p class="foot">Part of a ~30-experiment program run under one hard rule: no result is
+recorded before its run completes. Methods and logs:
+<a href="https://github.com/dwatces">github.com/dwatces</a>.</p>
+</div></body></html>

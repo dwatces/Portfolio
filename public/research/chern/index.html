@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Topological-materials ML: match the symmetry, exactly — Daniel Olliver</title>
+<style>
+  :root { --bg:#0b0e14; --panel:#11151f; --line:#1e2533; --text:#dde3ee;
+          --dim:#8a93a6; --gold:#ffd166; --cold:#4cc9f0; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text);
+    font:16px/1.65 -apple-system,"Segoe UI",Roboto,sans-serif; }
+  .wrap { max-width:840px; margin:0 auto; padding:40px 20px 70px; }
+  .crumb { font-size:.85rem; color:var(--dim); margin-bottom:26px; }
+  a { color:var(--cold); text-decoration:none; }
+  h1 { font-size:1.7rem; line-height:1.3; margin-bottom:8px; letter-spacing:-.3px; }
+  .dek { color:var(--dim); margin-bottom:22px; max-width:700px; }
+  img { width:100%; border:1px solid var(--line); border-radius:10px; margin:6px 0 22px;
+        background:#0d111a; }
+  h2 { font-size:1.05rem; color:var(--gold); margin:22px 0 8px; }
+  p { margin-bottom:12px; }
+  ul { margin:0 0 12px 20px; }
+  li { margin-bottom:6px; }
+  b { color:#fff; }
+  .nums { background:var(--panel); border:1px solid var(--line); border-radius:10px;
+          padding:14px 18px; margin:10px 0 18px; font-size:.92rem; }
+  .nums li { margin-bottom:7px; }
+  .limits { border-left:3px solid var(--dim); padding:4px 14px; color:var(--dim);
+            font-size:.92rem; margin:14px 0; }
+  .foot { margin-top:30px; padding-top:16px; border-top:1px solid var(--line);
+          font-size:.88rem; color:var(--dim); }
+</style></head><body><div class="wrap">
+<p class="crumb"><a href="/#research">← research</a> · <a href="/anyons/">playground</a> ·
+<a href="/essay/">the six-year story</a> · <a href="https://github.com/dwatces">code &amp; logs</a></p>
+<h1>Topological-materials ML: match the symmetry, exactly</h1>
+<p class="dek">Classifying topological phases of the Haldane model: the physically matched C3 prior wins everywhere data is scarce — and the too-large C6 group, broken by the physics, underperforms it everywhere. The law cuts both ways.</p>
+<img src="../haldane_chern.png" alt="Topological-materials ML: match the symmetry, exactly">
+<h2>What was measured</h2>
+<p>The Haldane model's sublattice mass breaks the honeycomb's 6-fold symmetry down to 3-fold — so a C3-equivariant classifier is the physically <i>matched</i> prior, while C6 is a built-in mismatch control. Classifying Chern number from band structure on a hex k-mesh, at matched parameters (~15k), with the dataset verified exactly C3-symmetric and all architectures verified exactly equivariant (error 0).</p>
+<h2>Headline numbers</h2>
+<ul class="nums"><li>C3 − plain: <b>+0.06 / +0.11 / +0.15 / +0.08</b> at 5/10/20/40 samples per class; converged by 80 (the sample-efficiency signature)</li><li>C3 beats C6 at <b>every</b> size (+0.03–0.06): too much symmetry is a wrong prior, measurably</li><li>6 seeds; labels from the analytic Haldane phase diagram</li></ul>
+<h2>Method &amp; discipline</h2>
+<p>The point of the design is the two-sided test: the matched group must win <i>and</i> the over-large group must lose, on the same data, at the same budget. Both halves landed. Crystallographic point-group equivariance for topological-phase classification is a comparatively quiet corner of materials ML — most work uses continuous SO(3)/E(3) machinery.</p>
+<div class="limits"><b>Honest limits:</b> synthetic (model-generated) band structures with analytic labels; modest network scale; the advantage is confined to the scarce-data regime, as the law predicts.</div>
+<p class="foot">Part of a ~30-experiment program run under one hard rule: no result is
+recorded before its run completes. Methods and logs:
+<a href="https://github.com/dwatces">github.com/dwatces</a>.</p>
+</div></body></html>
