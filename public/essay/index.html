@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I spent six years believing hexagons were the key to AI. Then I tested it. — Daniel Olliver</title>
+<meta name="description" content="Six years, ~30 controlled experiments, three real quantum computers: the honest trial of one conviction.">
+<style>
+  :root { --bg:#0b0e14; --text:#dde3ee; --dim:#8a93a6; --line:#1e2533;
+          --gold:#ffd166; --cold:#4cc9f0; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text);
+    font:17px/1.75 Georgia,"Times New Roman",serif; }
+  .wrap { max-width:680px; margin:0 auto; padding:64px 22px 80px; }
+  h1 { font-size:2rem; line-height:1.25; letter-spacing:-.3px; margin-bottom:10px;
+       font-family:-apple-system,"Segoe UI",Roboto,sans-serif; }
+  .byline { color:var(--dim); font-size:.9rem; margin-bottom:38px;
+       font-family:-apple-system,"Segoe UI",Roboto,sans-serif; }
+  h2 { font-size:1.25rem; margin:34px 0 10px;
+       font-family:-apple-system,"Segoe UI",Roboto,sans-serif; }
+  p { margin:0 0 18px; }
+  b { color:var(--gold); font-weight:600; }
+  ul { margin:0 0 18px 22px; }
+  li { margin-bottom:8px; }
+  a { color:var(--cold); text-decoration:none; }
+  .pull { border-left:3px solid var(--gold); padding:6px 18px; margin:24px 0;
+          color:var(--dim); font-style:italic; }
+  .cta { margin-top:42px; padding:18px 20px; border:1px solid var(--line);
+         border-radius:12px; font-family:-apple-system,"Segoe UI",Roboto,sans-serif;
+         font-size:.95rem; }
+  hr { border:0; border-top:1px solid var(--line); margin:34px 0; }
+  .home { font-family:-apple-system,sans-serif; font-size:.85rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="home"><a href="/">← danielolliver.com</a></p>
+<h1>I spent six years believing hexagons were the key to AI. Then I tested it.</h1>
+<p class="byline">Daniel Olliver · Auckland · 2026 · every number below is from a
+completed, logged run — code public at <a href="https://github.com/dwatces">github.com/dwatces</a></p>
+
+<p>In 2020 I was staring at a hexagonal wire-mesh ceiling when an idea arrived with the
+force of certainty: a neural network built on hexagonal connectivity — six neighbours,
+knowledge spreading like waves — might be the right substrate for genuine machine
+intelligence. I carried that conviction for six years, through a computer science
+degree, a postgraduate certificate in AI, and a career building software. Last year I
+finally did the only honest thing you can do with a conviction like that.</p>
+<p><b>I tried to kill it.</b></p>
+<p>What follows is what more than two dozen controlled experiments — on a GTX 1070,
+free cloud GPUs, and three of IBM&rsquo;s quantum computers — actually established. It is
+not the story I wanted to tell. It is better.</p>
+
+<h2>The rule</h2>
+<p>One rule governed everything: <b>no result gets written down before its run
+completes.</b> Early on I caught myself once writing numbers for an experiment that was
+still running — anticipated numbers, plausible numbers. When the run finished, reality
+was backwards from what I&rsquo;d written. I corrected it, logged the incident, and treated
+it as the most important data point of the project: conviction <i>will</i> fabricate
+evidence if you let it. Everything below survived that rule.</p>
+
+<h2>Verdict one: the geometry does nothing for learning</h2>
+<p>The core belief — hexagonal connectivity helps a network learn — turned out to be
+cleanly, repeatedly false. Across every regime I could construct: backpropagation,
+frozen reservoirs, local Hebbian rules, local online prediction, grid-cell-style
+scaffolds, message-passing networks at matched parameters with degree-matched random
+controls — the honeycomb ties or loses to the square lattice. The reason is almost
+embarrassing in hindsight: a trainable network <i>routes around</i> its wiring.
+Performance tracked node degree, not geometry. The square kept winning.</p>
+<p>I could have kept tuning until a hexagon won something. That&rsquo;s not an experiment,
+that&rsquo;s p-hacking. The null is the result.</p>
+
+<h2>Verdict two: the symmetry does something — narrowly</h2>
+<p>One thing survived learning, because it isn&rsquo;t wiring — it&rsquo;s a constraint on the
+function class. The hexagon has 6-fold rotational symmetry, and weight-tying across
+that symmetry group (group-equivariant convolution, exact on the true hex lattice —
+equivariance error 0.000000) is something backpropagation <i>cannot</i> route around.
+At matched parameters the full 6-fold model beat 3-fold, 2-fold, and plain CNNs
+monotonically — but only when data was scarce and the symmetry genuinely present. On
+real bike-share demand grids it won the cold-start forecasting task in 10 out of 10
+city-seasons. On a benchmark whose symmetry is only approximate, hard equivariance
+actively <i>hurt</i>. A real gift, with sharp edges: it pays if and only if the
+symmetry is there.</p>
+
+<h2>Verdict three: the physics is special — and that&rsquo;s a category error for GPUs</h2>
+<p>Fixed-physics propagation on the honeycomb genuinely is exceptional: classical waves
+stay ~28% more isotropic than on a square grid; quantum walks 46–76% more — the
+Dirac-cone physics that makes graphene famous. For a while this looked like the
+vindication. It isn&rsquo;t, and seeing why took me the longest:</p>
+<p class="pull">Simulating a lattice&rsquo;s physics on a digital computer in order to beat
+digital deep learning is structurally impossible — the simulation costs more than the
+physics it simulates.</p>
+<p>If the hexagon&rsquo;s physics is the gift, the gift only exists where the physics is
+real.</p>
+
+<h2>Verdict four: where the physics is real, the conviction was right</h2>
+<p>So I went to real physics: IBM&rsquo;s superconducting quantum processors, free tier, ten
+minutes of hardware time per month, simulator-gated before every submission. The
+honeycomb did not disappoint there.</p>
+<ul>
+<li><b>Chiral edge transport</b> survived hardware noise at 97% of the ideal signature
+and flipped sign with the topological phase, exactly as theory says.</li>
+<li><b>Lattice symmetry</b> was preserved by the hardware to within noise (symmetry
+error 0.012 against a broken control 65× larger).</li>
+<li><b>Kitaev topological order</b> — the regime where the honeycomb isn&rsquo;t just better
+but <i>unique</i> (its construction is impossible on a square lattice — a theorem, not
+a benchmark). Across three independent machines, with error bars: conserved fluxes
+stayed conserved (+0.64) while a control destroyed them (+0.12); a single
+<b>anyon</b> was created on one plaquette (−0.905 ± 0.010) while its neighbour sat
+untouched (+0.924 ± 0.015); and <b>braiding</b> — dragging one excitation around
+another — flipped the logical observable from +0.845 ± 0.030 to −0.843 ± 0.035 while
+a control loop did nothing. That minus sign is anyon exchange statistics, the
+primitive topological quantum computing is built on, reproduced on three different
+quantum computers.</li>
+<li>Back on the classical rig, the final step: adding a field term opens the
+<b>non-Abelian phase</b>. I computed it exactly — Chern number ±1, a chiral Majorana
+edge, Majorana zero modes bound to vortices — then <b>braided them numerically</b>:
+exchanges sharing a vortex refuse to commute (deviation 2.57 from identity, matching
+Ivanov&rsquo;s prediction at 0.975) while disjoint exchanges commute to 0.005. And a
+measurement-programmed <b>magic state</b> — the resource separating quantum from
+classical computation — flowed through a hexagon cluster on real hardware at 0.999
+overlap with theory.</li>
+</ul>
+<p>None of this is new physics — it&rsquo;s textbook theory, and groups with far more qubits
+have gone further. What it is, is <i>measured, by one person, honestly, on real
+hardware and a nine-year-old GPU, with controls and error bars.</i></p>
+
+<h2>What the six years actually taught me</h2>
+<p>The conviction was wrong as stated and right in a way I couldn&rsquo;t have articulated
+in 2020. Intelligence did not live in the geometry — every learning system I built was
+supremely indifferent to it. But the hexagon really is special: it&rsquo;s why grid cells in
+your brain are hexagonal, why graphene has Dirac cones, why the only exactly-solvable
+topological spin liquid lives on a honeycomb. Its specialness belongs to <b>physics
+and topology</b>, not to gradient descent. The early note I wrote — &ldquo;perhaps it
+requires qubits&rdquo; — turned out to be the most accurate sentence in six years of
+notes.</p>
+<p>I think there&rsquo;s a general lesson, and it&rsquo;s not about hexagons. Most technical
+convictions are never given a fair trial — they&rsquo;re either abandoned untested or
+defended unfalsifiably. The trial is the valuable part. I falsified the thing I most
+wanted to be true, found the narrow places it <i>was</i> true, and can now tell you
+exactly where the line is. The discipline that drew that line — controls, matched
+parameters, sim-gating, never writing a number before reading the log — is the same
+discipline I bring to everything I build.</p>
+
+<div class="cta">
+<b>Touch the physics yourself:</b> <a href="/anyons/">braid anyons in your browser</a> —
+a true stabilizer simulation, with the real-hardware job IDs beside every claim.<br>
+Code, logs, and figures for every number: <a href="https://github.com/dwatces">github.com/dwatces</a>.
+The quantum runs are reproducible on IBM&rsquo;s free tier.
+</div>
+<hr>
+<p class="home"><a href="/">← danielolliver.com</a> · <a href="/anyons/">the playground</a></p>
+</div>
+</body>
+</html>

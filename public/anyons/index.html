@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hex — play with real quantum matter</title>
+<meta name="description" content="Braid anyons in your browser. Real stabilizer mechanics, verified on three real quantum computers.">
+<style>
+  :root {
+    --bg:#0b0e14; --panel:#11151f; --line:#1e2533; --text:#dde3ee; --dim:#8a93a6;
+    --hot:#ff8c42; --cold:#4cc9f0; --good:#7ae582; --bad:#ff5d73; --gold:#ffd166;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text);
+    font:16px/1.6 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  .wrap { max-width:980px; margin:0 auto; padding:0 20px; }
+  header { padding:64px 0 28px; }
+  h1 { font-size:2.3rem; letter-spacing:-.5px; }
+  h1 .hex { color:var(--gold); }
+  .sub { color:var(--dim); margin-top:8px; max-width:640px; }
+  .badge { display:inline-block; margin-top:14px; padding:4px 12px; border:1px solid var(--line);
+    border-radius:999px; color:var(--good); font-size:.82rem; }
+  section { margin:36px 0; padding:26px; background:var(--panel);
+    border:1px solid var(--line); border-radius:14px; }
+  h2 { font-size:1.25rem; margin-bottom:6px; }
+  .lead { color:var(--dim); font-size:.95rem; margin-bottom:18px; max-width:720px; }
+  .boardrow { display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; }
+  canvas { background:#0d111a; border:1px solid var(--line); border-radius:10px;
+    touch-action:none; cursor:crosshair; }
+  .meters { min-width:230px; flex:1; }
+  .meter { margin-bottom:14px; padding:12px 14px; border:1px solid var(--line); border-radius:10px; }
+  .meter .lab { color:var(--dim); font-size:.8rem; letter-spacing:.4px; }
+  .meter .val { font-size:1.7rem; font-weight:700; font-variant-numeric:tabular-nums; }
+  .val.plus { color:var(--good); } .val.minus { color:var(--bad); } .val.zero { color:var(--dim); }
+  .hint { color:var(--dim); font-size:.86rem; margin-top:10px; }
+  button { background:#1b2230; color:var(--text); border:1px solid var(--line);
+    padding:8px 14px; border-radius:8px; font-size:.9rem; cursor:pointer; }
+  button:hover { border-color:var(--dim); }
+  button:disabled { opacity:.45; cursor:default; }
+  .dialrow { display:flex; gap:28px; flex-wrap:wrap; align-items:center; }
+  input[type=range] { width:280px; accent-color:var(--gold); }
+  .mono { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.85rem; }
+  table { border-collapse:collapse; width:100%; font-size:.9rem; }
+  th,td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); }
+  th { color:var(--dim); font-weight:600; }
+  .jobid { color:var(--cold); }
+  footer { padding:34px 0 60px; color:var(--dim); font-size:.85rem; }
+  a { color:var(--cold); text-decoration:none; }
+  .roll { margin-top:12px; }
+  #branchout { margin-top:10px; min-height:44px; color:var(--dim); font-size:.85rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Hex <span class="hex">⬡</span> play with real quantum matter</h1>
+  <p class="sub">Everything on this page runs a <b>true stabilizer simulation</b> in your
+  browser — the same mechanics as a topological quantum computer. No animations
+  pretending to be physics. And every headline interaction below was
+  <b>verified on real IBM quantum processors</b> — job IDs included.</p>
+  <span class="badge">✓ verified on 3 quantum computers</span>
+</header>
+
+<section id="braid">
+  <h2>1 · Braid anyons</h2>
+  <p class="lead"><b>Click a tile</b> to tear a pair of anyons out of the vacuum.
+  <b>Drag one</b> around. Bring it back to its partner and they annihilate.
+  The two meters watch the logical quantum bits stored in the surface’s topology.
+  Try: a small loop around nothing (nothing happens — that’s the protection),
+  then a loop <i>all the way around the torus</i> — the grid wraps — and watch
+  a logical bit flip without ever being touched.</p>
+  <div class="boardrow">
+    <canvas id="board" width="480" height="480"></canvas>
+    <div class="meters">
+      <div class="meter"><div class="lab">LOGICAL QUBIT 1 — ⟨Z̄₁⟩</div>
+        <div class="val" id="lz0">+1</div></div>
+      <div class="meter"><div class="lab">LOGICAL QUBIT 2 — ⟨Z̄₂⟩</div>
+        <div class="val" id="lz1">+1</div></div>
+      <div class="meter"><div class="lab">ANYONS ON THE BOARD</div>
+        <div class="val zero" id="nany">0</div></div>
+      <button id="reset">reset the universe</button>
+      <p class="hint">Orange dots are <b>m</b>-anyons living on tiles. The dashed
+      line is logical qubit 1’s readout string — cross it and the meter ticks.
+      This grid is a <b>torus</b>: walk off one edge, return on the other.</p>
+    </div>
+  </div>
+</section>
+
+<section id="program">
+  <h2>2 · Program matter by measuring it</h2>
+  <p class="lead">A hexagon of six entangled qubits. Five get measured; the angle of
+  the <b>first measurement is the program</b>. At 0° the output is an ordinary
+  (classical-simulable) state. Turn the dial to 45° and the output becomes a
+  <b>magic state</b> — the resource that separates quantum from classical
+  computation. Measurement outcomes are random, yet the program is deterministic —
+  roll the dice and see why.</p>
+  <div class="dialrow">
+    <canvas id="bloch" width="220" height="220"></canvas>
+    <div>
+      <div class="lab" style="color:var(--dim);font-size:.8rem">MEASUREMENT ANGLE θ</div>
+      <input type="range" id="dial" min="0" max="100" value="0">
+      <div class="mono" id="dialval">θ = 0.000 rad</div>
+      <div class="meter" style="margin-top:14px"><div class="lab">MAGIC (stabilizer Rényi entropy)</div>
+        <div class="val" id="magic">0.0000</div></div>
+      <button class="roll" id="roll">roll the measurement dice 🎲</button>
+      <div id="branchout"></div>
+    </div>
+  </div>
+</section>
+
+<section id="verify">
+  <h2>3 · Don’t take the simulation’s word for it</h2>
+  <p class="lead">These aren’t just toys. The braid above and the magic dial were both
+  executed on real superconducting quantum processors — simulator-gated first, error
+  bars from independent machines. Anyone with a free IBM Quantum account can re-run them.</p>
+  <table>
+    <tr><th>Interaction</th><th>Real-hardware result</th><th>Machines / job</th></tr>
+    <tr><td>Braid flips the logical</td>
+        <td>⟨Z̄⟩ vacuum <b>+0.845 ± 0.030</b> → braid <b>−0.843 ± 0.035</b>; control loop +0.845</td>
+        <td class="jobid">ibm_marrakesh · ibm_kingston · ibm_fez</td></tr>
+    <tr><td>Anyon is local</td>
+        <td>tile flips to <b>−0.905 ± 0.010</b>, neighbour untouched at <b>+0.924 ± 0.015</b></td>
+        <td class="jobid">3 devices</td></tr>
+    <tr><td>Magic dial at 45°</td>
+        <td>output on the magic axis, direction overlap <b>0.999</b>, witness <b>0.4150</b> (ideal 0.4150)</td>
+        <td class="jobid">d8kdvb832u0s73f8l200</td></tr>
+  </table>
+  <p class="hint" style="margin-top:14px">
+    <button disabled>run YOUR braid on real hardware — phase 2</button>
+    &nbsp; Full methods, code and logs: <a href="https://github.com/dwatces">github.com/dwatces</a>
+  </p>
+</section>
+
+<footer>
+  Built by <a href="/">Daniel Olliver</a>, Auckland.
+  Six years ago I looked at a hexagonal ceiling and thought it was the secret to AI.
+  I spent this year testing that idea to destruction on real quantum hardware —
+  this page is what survived. <a href="/essay/">Read the whole story.</a>
+</footer>
+
+</div>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
