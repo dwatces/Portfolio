@@ -3,22 +3,6 @@ import "./Projects.css";
 
 const projects = [
   {
-    key: "hex",
-    name: "Hex — Quantum Playground",
-    status: "Live",
-    statusTone: "live",
-    statusDetail: "Runs in your browser",
-    description:
-      "Braid anyons in your browser on a true stabilizer simulation of a topological quantum computer — with the same experiments verified on three real IBM quantum processors, job IDs included.",
-    highlights: [
-      "Real Aaronson–Gottesman stabilizer engine in vanilla JS — every interaction is the actual physics",
-      "Headline results validated on ibm_marrakesh, ibm_kingston and ibm_fez with error bars",
-    ],
-    stack: ["JavaScript", "Canvas", "Qiskit", "IBM Quantum", "Stabilizer codes"],
-    sourceCode: "https://github.com/dwatces/equivariant-quantum-ml",
-    livePreview: "/anyons/",
-  },
-  {
     key: "scenic",
     name: "Scenic",
     status: "Live shortly",
@@ -72,12 +56,11 @@ const Projects = () => {
   return (
     <section id="projects" className="section">
       <div className="section__header">
-        <p className="eyebrow">Selected work</p>
-        <h2 className="section_title">Four focused builds</h2>
+        <p className="eyebrow">Delivery record</p>
+        <h2 className="section_title">Earlier full-stack work</h2>
         <p className="section__intro">
-          Full-stack product work, client-facing presentation, practical
-          account-based workflows — and quantum experiments verified on real
-          hardware.
+          The web-app track record behind the shipping skills: accounts, APIs,
+          payments, deployment.
         </p>
       </div>
       <div className="projects_grid">
