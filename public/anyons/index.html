@@ -48,10 +48,20 @@
   a { color:var(--cold); text-decoration:none; }
   .roll { margin-top:12px; }
   #branchout { margin-top:10px; min-height:44px; color:var(--dim); font-size:.85rem; }
+  .rgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px; }
+  .rcard { border:1px solid var(--line); border-radius:10px; padding:16px; background:#0d111a; }
+  .rcard h3 { font-size:1rem; margin-bottom:8px; color:var(--gold); }
+  .rcard p { font-size:.88rem; color:var(--dim); }
+  .rcard b { color:var(--text); }
+  .rcard img { width:100%; border-radius:6px; margin-top:10px; border:1px solid var(--line); }
+  .topnav { font-size:.85rem; margin-bottom:-30px; padding-top:18px; color:var(--dim); }
 </style>
 </head>
 <body>
 <div class="wrap">
+
+<p class="topnav"><a href="/">← danielolliver.com</a> · <a href="/essay/">the six-year story</a> ·
+<a href="https://github.com/dwatces">code & logs</a></p>
 
 <header>
   <h1>Hex <span class="hex">⬡</span> play with real quantum matter</h1>
@@ -109,8 +119,60 @@
   </div>
 </section>
 
+<section id="results">
+  <h2>3 · The research behind the toys</h2>
+  <p class="lead">This page is the playable tip of a year-long research program:
+  ~30 controlled experiments on whether hexagonal/honeycomb structure helps computation —
+  run to a hard rule (<i>no result recorded before its run completes</i>), with matched
+  parameters, controls, and error bars. Highlights:</p>
+
+  <div class="rgrid">
+    <div class="rcard">
+      <h3>Anyon braiding on three quantum computers</h3>
+      <p>Topological order on the honeycomb’s Kitaev model: conserved fluxes, a localized
+      anyon, and braiding — the −1 exchange statistics — reproduced on
+      <b>ibm_marrakesh, ibm_kingston and ibm_fez</b> with dynamical decoupling and
+      bootstrap error bars: ⟨Z̄⟩ +0.845 ± 0.030 → <b>−0.843 ± 0.035</b>, control +0.845.</p>
+      <img src="kitaev_topological_order.png" alt="Kitaev topological order, 3-device results" loading="lazy">
+    </div>
+    <div class="rcard">
+      <h3>The non-Abelian phase, computed exactly</h3>
+      <p>Adding a field opens the Ising-anyon phase: Chern number ±1 (gap matches
+      Kitaev’s 6√3·κ to 4 digits), one chiral Majorana edge branch, and Majorana zero
+      modes bound to vortices. Then braided numerically: exchanges sharing a vortex
+      <b>refuse to commute</b> (‖M−I‖ = 2.57, Ivanov-pattern match 0.975) while disjoint
+      exchanges commute to 0.005 — <b>non-Abelian statistics, end to end</b>.</p>
+      <img src="nonabelian_phase.png" alt="Non-Abelian phase: Chern numbers, chiral edge, Majorana zero modes" loading="lazy">
+    </div>
+    <div class="rcard">
+      <h3>Magic lives where the anyons get interesting</h3>
+      <p>Stabilizer Rényi entropy across the Kitaev phase diagram: the abelian corner
+      (where the braiding above runs) is the <b>magic-free, classically simulable</b>
+      corner (0.08/qubit); magic climbs ~7× exactly where the non-Abelian phase opens —
+      and the saturation value is log₂(3/2) to the digit, flagging the trivial-phase
+      crossover. Predictions logged before the run: 3/3.</p>
+    </div>
+    <div class="rcard">
+      <h3>Symmetry makes quantum decoders cheaper</h3>
+      <p>A surface-code neural decoder tied to the code’s exact (twisted) symmetry, at
+      <b>identical parameter count</b>: wins at every training size, <b>~4× sample
+      efficiency</b>, and reaches the matching-decoder baseline (0.9944 vs 0.9948) where
+      the plain network still lags. Found en route: naive lattice symmetry mis-ties the
+      label — the correct group action carries a syndrome-dependent twist.</p>
+    </div>
+    <div class="rcard">
+      <h3>…and the honest nulls that paid for it all</h3>
+      <p>Hexagonal <i>wiring</i> gives a learning system nothing — falsified across
+      every regime tested (backprop, reservoirs, local rules, scaffolds). The gifts that
+      survived are <b>symmetry</b> (when exactly present and data is scarce) and
+      <b>topology</b> (on real quantum hardware). Knowing exactly where the line sits is
+      the result. <a href="/essay/">The full six-year story →</a></p>
+    </div>
+  </div>
+</section>
+
 <section id="verify">
-  <h2>3 · Don’t take the simulation’s word for it</h2>
+  <h2>4 · Don’t take the simulation’s word for it</h2>
   <p class="lead">These aren’t just toys. The braid above and the magic dial were both
   executed on real superconducting quantum processors — simulator-gated first, error
   bars from independent machines. Anyone with a free IBM Quantum account can re-run them.</p>
