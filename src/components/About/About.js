@@ -6,24 +6,26 @@ const About = () => {
     <section className="about" aria-labelledby="intro-title">
       <div className="about__copy">
         <p className="eyebrow">
-          <span>Software Developer</span>
+          <span>AI Engineer · Full-Stack Developer</span>
           <span>Auckland, NZ</span>
         </p>
         <h1 id="intro-title" className="about__name">
-          Daniel Olliver builds clear, reliable web applications.
+          Daniel Olliver builds AI systems that hold up to evidence.
         </h1>
         <p className="about__desc">
-          I work across React, Next.js, Node.js, Express, MongoDB, and TypeScript.
-          My projects focus on useful full-stack workflows: accounts, media
-          uploads, reviews, deployment, and interfaces people can use without
-          friction. On the research side I run quantum-computing experiments on
-          real IBM hardware — <a href="/essay/">the six-year story</a> and a{" "}
-          <a href="/anyons/">playable demo</a> live on this site.
+          I build private AI assistants, RAG systems, and LLM-agent pipelines —
+          and I validate the way a researcher does: my own quantum-computing
+          experiments ran on three real IBM processors, with controls and error
+          bars (<a href="/essay/">the six-year story</a>, and a{" "}
+          <a href="/anyons/">playable demo</a>). Four years of full-stack
+          delivery (React, Node, TypeScript) means the AI work doesn&rsquo;t stop
+          at a prototype — it ships, with the accounts, APIs, and deployment
+          around it.
         </p>
         <div className="about__meta" aria-label="Profile summary">
-          <span>13 public GitHub repos</span>
-          <span>Available for work</span>
-          <span>Full-stack JavaScript</span>
+          <span>AI &amp; LLM integration</span>
+          <span>Validated on real quantum hardware</span>
+          <span>Full-stack delivery</span>
         </div>
         <div className="about__contact">
           <a href="#projects" className="btn btn-primary">
@@ -57,11 +59,12 @@ const About = () => {
         />
         <div className="about__focus">
           <span>Current focus</span>
-          React applications, API-backed products, and clean deployment handoffs.
+          Private AI assistants and document intelligence for professional
+          services — built, evaluated honestly, and put into production.
         </div>
         <div className="about__availability">
           <span className="status-dot" aria-hidden="true" />
-          Open to software developer roles
+          Taking on AI &amp; development projects
         </div>
       </div>
     </section>

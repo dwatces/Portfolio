@@ -85,15 +85,19 @@
       : { cls: "non-contractible", mode: "braid", w: [WX, WY] };
   }
   const hwbtn = document.getElementById("hwrun");
-  const hwhint = document.getElementById("hwhint");
+  const hwpanel = document.getElementById("hwpanel");
+  const hwstatus = document.getElementById("hwstatus");
   function updateHwButton(syn) {
     const vac = syn.m.length + syn.e.length === 0;
     const topo = classify(moves);
     const ready = vac && topo !== null;
     hwbtn.disabled = !ready;
-    hwhint.textContent = ready
-      ? ` — your loop is ${topo.cls} (winding ${topo.w}): queue it!`
-      : " — complete a loop on the board above to enable";
+    hwpanel.classList.toggle("ready", ready);
+    hwstatus.textContent = ready
+      ? (topo.cls === "non-contractible"
+          ? `loop complete — non-contractible (winding ${topo.w.join(",")}): a true braid`
+          : "loop complete — contractible: the control experiment")
+      : "complete a loop to enable";
   }
   hwbtn.addEventListener("click", () => {
     const topo = classify(moves);

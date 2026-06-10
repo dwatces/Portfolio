@@ -55,6 +55,15 @@
   .rcard b { color:var(--text); }
   .rcard img { width:100%; border-radius:6px; margin-top:10px; border:1px solid var(--line); }
   .topnav { font-size:.85rem; margin-bottom:-30px; padding-top:18px; color:var(--dim); }
+  .hw { margin-top:14px; padding:14px; border:1px dashed var(--line); border-radius:10px;
+        transition:border-color .25s; }
+  .hw .lab { color:var(--dim); font-size:.8rem; letter-spacing:.4px; }
+  #hwstatus { margin:6px 0 10px; font-size:.9rem; color:var(--dim); }
+  .hw.ready { border:1px solid var(--gold); }
+  .hw.ready #hwstatus { color:var(--gold); font-weight:600; }
+  .hw button { width:100%; }
+  .hw.ready button { border-color:var(--gold); color:var(--gold); }
+  .hw .fine { margin-top:10px; font-size:.78rem; color:var(--dim); line-height:1.5; }
 </style>
 </head>
 <body>
@@ -90,6 +99,14 @@
       <div class="meter"><div class="lab">ANYONS ON THE BOARD</div>
         <div class="val zero" id="nany">0</div></div>
       <button id="reset">reset the universe</button>
+      <div class="hw" id="hwpanel">
+        <div class="lab">REAL-HARDWARE QUEUE</div>
+        <div id="hwstatus">complete a loop to enable</div>
+        <button id="hwrun" disabled>queue this braid on a real quantum computer</button>
+        <p class="fine">Queued braids run on IBM hardware when the monthly free-tier
+        window refreshes — simulator-gated and budget-capped. Your braid and its
+        measured ⟨Z̄⟩, with the job ID, are posted publicly.</p>
+      </div>
       <p class="hint">Orange dots are <b>m</b>-anyons living on tiles. The dashed
       line is logical qubit 1’s readout string — cross it and the meter ticks.
       This grid is a <b>torus</b>: walk off one edge, return on the other.</p>
@@ -188,14 +205,10 @@
         <td>output on the magic axis, direction overlap <b>0.999</b>, witness <b>0.4150</b> (ideal 0.4150)</td>
         <td class="jobid">d8kdvb832u0s73f8l200</td></tr>
   </table>
-  <p class="hint" style="margin-top:14px">
-    <button id="hwrun" disabled>run YOUR braid on real hardware</button>
-    <span id="hwhint"> — complete a loop on the board above to enable</span><br>
-    Waitlist mode: requests queue publicly and execute when the monthly free-tier
-    hardware budget rolls over; your braid and its measured ⟨Z̄⟩ get posted with the
-    job ID. Full methods, code and logs:
-    <a href="https://github.com/dwatces">github.com/dwatces</a>
-  </p>
+  <p class="hint" style="margin-top:14px">Want your own braid on that table? Complete a
+  loop on the board in section 1 and queue it from the panel beside it — the first
+  public braids run when the next hardware window opens. Full methods, code and logs:
+  <a href="https://github.com/dwatces">github.com/dwatces</a></p>
 </section>
 
 <footer>
