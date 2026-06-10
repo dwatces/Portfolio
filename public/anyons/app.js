@@ -11,6 +11,7 @@
   let code = new ToricCode(L);
   let mover = null;          // [x,y] plaquette of the draggable anyon (UI hint only)
   let trail = [];            // crossed-edge segments for the worldline
+  let moves = [];            // plaquette path (for the phase-2 hardware request)
   let dragging = false;
 
   const lz0el = document.getElementById("lz0");
@@ -63,7 +64,54 @@
     setMeter(lz1el, code.logicalZ(1));
     nanyel.textContent = String(syn.m.length + syn.e.length);
     nanyel.className = "val " + (syn.m.length + syn.e.length ? "" : "zero");
+    updateHwButton(syn);
   }
+
+  /* ---- phase 2 (waitlist mode): classify the braid, file it as a public request */
+  function classify(mv) {
+    if (mv.length < 3) return null;
+    let wx = 0, wy = 0;
+    for (let i = 0; i + 1 < mv.length; i++) {
+      const dx = (((mv[i + 1][0] - mv[i][0]) % L) + L) % L;
+      const dy = (((mv[i + 1][1] - mv[i][1]) % L) + L) % L;
+      wx += dx === 1 ? 1 : dx === L - 1 ? -1 : 0;
+      wy += dy === 1 ? 1 : dy === L - 1 ? -1 : 0;
+    }
+    const closed = mv[0][0] === mv[mv.length - 1][0] && mv[0][1] === mv[mv.length - 1][1];
+    if (!closed) return null;
+    const WX = wx / L, WY = wy / L;
+    return (WX === 0 && WY === 0)
+      ? { cls: "contractible", mode: "control", w: [0, 0] }
+      : { cls: "non-contractible", mode: "braid", w: [WX, WY] };
+  }
+  const hwbtn = document.getElementById("hwrun");
+  const hwhint = document.getElementById("hwhint");
+  function updateHwButton(syn) {
+    const vac = syn.m.length + syn.e.length === 0;
+    const topo = classify(moves);
+    const ready = vac && topo !== null;
+    hwbtn.disabled = !ready;
+    hwhint.textContent = ready
+      ? ` — your loop is ${topo.cls} (winding ${topo.w}): queue it!`
+      : " — complete a loop on the board above to enable";
+  }
+  hwbtn.addEventListener("click", () => {
+    const topo = classify(moves);
+    if (!topo) return;
+    const spec = JSON.stringify({ L, moves });
+    const title = encodeURIComponent(
+      `[braid request] ${topo.cls} loop, winding ${topo.w.join(",")}`);
+    const body = encodeURIComponent(
+      "Auto-generated from the playground at danielolliver.com/anyons\n\n" +
+      "Topology class: " + topo.cls + " (hardware mode: " + topo.mode + ")\n" +
+      "Braid spec:\n```json\n" + spec + "\n```\n" +
+      "This will run on a real IBM quantum processor when the monthly free-tier " +
+      "budget allows (validated pipeline, sim-gated, budget-guarded). The measured " +
+      "logical value and job ID will be posted here.");
+    window.open(
+      `https://github.com/dwatces/equivariant-quantum-ml/issues/new?title=${title}&body=${body}`,
+      "_blank");
+  });
 
   function plaqAt(px, py) {
     const x = Math.floor((px - PAD) / CELL), y = Math.floor((py - PAD) / CELL);
@@ -83,13 +131,20 @@
     if (!p) return;
     const syn = code.syndromes();
     const onAnyon = syn.m.find(([x, y]) => x === p[0] && y === p[1]);
-    if (onAnyon) { mover = p; dragging = true; }
+    if (onAnyon) {
+      mover = p; dragging = true;
+      // grabbing anything but the tracked mover breaks path continuity ->
+      // board still works, but the hardware request is disabled for this braid
+      if (!(moves.length && moves[moves.length - 1][0] === p[0] &&
+            moves[moves.length - 1][1] === p[1])) moves = [];
+    }
     else if (syn.m.length === 0) {
       // tear a pair out of the vacuum: p and its +x neighbour
       const p2 = [(p[0] + 1) % L, p[1]];
       code.moveM(p, p2);
       mover = p2; dragging = true;
       trail = [[plaqCenter(p[0], p[1]), plaqCenter(p2[0], p2[1])]];
+      moves = [p.slice(), p2.slice()];
     }
     cv.setPointerCapture(ev.pointerId);
     render();
@@ -102,6 +157,7 @@
     if (!isAdjacent(mover, t)) return;       // one tile at a time (incl. torus wrap)
     code.moveM(mover, t);                     // REAL physics: X on the shared edge
     trail.push([plaqCenter(mover[0], mover[1]), plaqCenter(t[0], t[1])]);
+    moves.push(t.slice());
     mover = t;
     render();
   });
@@ -109,7 +165,7 @@
   cv.addEventListener("pointerup", stopDrag);
   cv.addEventListener("pointercancel", stopDrag);
   document.getElementById("reset").addEventListener("click", () => {
-    code = new ToricCode(L); mover = null; trail = []; render();
+    code = new ToricCode(L); mover = null; trail = []; moves = []; render();
   });
 
   /* ================================ MAGIC DIAL ================================ */
