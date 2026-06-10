@@ -1,11 +1,12 @@
 .nav__list {
   display: flex;
-  font-size: 1.2rem;
+  font-size: 0.95rem;
   justify-content: flex-end;
+  gap: 1.5rem;
 }
 
 .nav__link {
-  margin-left: 3rem;
+  margin-left: 0;
 }
 
 .app .nav__hamburger {
@@ -19,17 +20,22 @@
     justify-content: center;
     align-items: center;
     position: fixed;
-    font-size: 1em;
-    inset: 0;
-    width: 10rem !important;
-    height: 15rem !important;
-    background: rgb(100, 99, 99);
+    gap: 0.5rem;
+    font-size: 1rem;
+    top: 4rem;
+    right: 1rem;
+    width: min(13rem, calc(100vw - 2rem)) !important;
+    height: auto !important;
+    padding: 1rem;
+    border: 1px solid var(--clr-border);
+    border-radius: 8px;
+    background: var(--clr-heading);
     z-index: 100;
   }
 
   .nav__link {
-    margin: 0.5em 0;
-    padding: 0.5em;
+    margin: 0;
+    padding: 0.35rem;
   }
 
   .nav-link {
@@ -38,8 +44,11 @@
 
   .app .nav__hamburger {
     display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 100;
-    margin-top: 0rem;
-    margin-left: 0.8em;
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-left: 0.8rem;
   }
 }

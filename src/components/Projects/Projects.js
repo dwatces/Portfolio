@@ -3,38 +3,66 @@ import "./Projects.css";
 
 const projects = [
   {
-    key: "0",
-    name: "NZ Camps",
-    description:
-      "Explore, rate, and upload you favourite campsites around beautiful Aotearoa. A responsive web app supporting geocoding features and CRUD operations for campsites and users.",
-    stack: ["Node.js", "Express.js", "MongoDB", "HTML5", "CSS3", "Bootstrap"],
-    sourceCode: "https://github.com/dwatces/NZ-Camps",
-    livePreview: "https://nz-camps-1890076907bb.herokuapp.com/",
-  },
-  {
-    key: "1",
+    key: "scenic",
     name: "Scenic",
+    status: "Live",
+    statusTone: "live",
+    statusDetail: "Vercel · MongoDB Atlas",
     description:
-      "Upload and share your favourite scenes with the world. A responsive React app supporting geocoding features, in addition to CRUD operations implemented for images and users.",
-    stack: ["React.js", "Node.js", "Express.js", "MongoDB", "HTML5", "CSS3"],
+      "A full-stack image sharing app where users can register, authenticate, upload scenes, and browse community posts.",
+    highlights: [
+      "React client and Express/MongoDB API, both deployed serverless on Vercel",
+      "Includes account flows, JWT authorization, and image upload handling",
+    ],
+    stack: ["React", "Node.js", "Express", "MongoDB", "JWT"],
     sourceCode: "https://github.com/dwatces/Scenic",
-    livePreview: "https://scenic-b670e.web.app/",
+    livePreview: "https://scenic-app.vercel.app/",
   },
   {
-    key: "2",
-    name: "Eon Candles",
-    description: "Eon Candles is a website for a candle company I built for a client. It is a single page application built with React.js and Next.js.",
-    stack: ["React.js", "Next.js", "HTML5", "CSS3"],
-    sourceCode: "https://github.com/dwatces/Eon",
-    livePreview: "https://eon-ht82.vercel.app/"
+    key: "nzcamps",
+    name: "NZ Camps",
+    status: "Live",
+    statusTone: "live",
+    statusDetail: "Vercel · MongoDB Atlas",
+    description:
+      "A campground review platform for New Zealand with accounts, campground CRUD, reviews, and location geocoding. Recently modernized (mongoose 5\u21928) and redeployed serverless.",
+    highlights: [
+      "Server-rendered Express app using EJS, MongoDB, and RESTful routes",
+      "Good case study for auth, data modelling, maps, and deployment tradeoffs",
+    ],
+    stack: ["Node.js", "Express", "MongoDB", "EJS", "Passport"],
+    sourceCode: "https://github.com/dwatces/NZCamps",
+    livePreview: "https://nz-camps.vercel.app/",
   },
-
+  {
+    key: "eon",
+    name: "Eon Candles",
+    status: "Live",
+    statusTone: "live",
+    statusDetail: "Deployed on Vercel",
+    description:
+      "A brand and shop site for Eon, a New Zealand candle label pairing hand-poured soy candles with crystals and a calm, wellness-led identity.",
+    highlights: [
+      "Multi-page Next.js build spanning home, shop, and about views",
+      "Responsive product layout and brand storytelling, deployed on Vercel",
+    ],
+    stack: ["Next.js", "React", "JavaScript", "CSS", "Vercel"],
+    sourceCode: "https://github.com/dwatces/Eon",
+    livePreview: "https://eon-ht82.vercel.app/",
+  },
 ];
 
 const Projects = () => {
   return (
     <section id="projects" className="section">
-      <h2 className="section_title">Projects</h2>
+      <div className="section__header">
+        <p className="eyebrow">Delivery record</p>
+        <h2 className="section_title">Earlier full-stack work</h2>
+        <p className="section__intro">
+          The web-app track record behind the shipping skills: accounts, APIs,
+          payments, deployment.
+        </p>
+      </div>
       <div className="projects_grid">
         {projects.map((project) => (
           <ProjectGrid project={project} key={project.key} />

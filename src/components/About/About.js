@@ -1,21 +1,73 @@
 import "./About.css";
+import profile from "../../assets/profile.jpg";
 
 const About = () => {
   return (
-    <div className="about center">
-      <h1 className="about__name">Hey! I'm Daniel</h1>
-      <h2 className="about__role">Software Developer</h2>
-      <p className="about__desc">
-      I’m a skilled and versatile software developer passionate about creating full-stack web applications using the MERN stack and other cutting-edge technologies. With a strong foundation in agile methodologies, I excel at delivering scalable, user-focused solutions that meet client needs. I thrive on solving complex problems and am always eager to expand my knowledge of emerging technologies. Whether collaborating with a team or tackling challenges independently, I’m committed to building impactful software that makes a difference.
-      </p>
-      <div className="about__contact center">
-        <a href="https://www.dropbox.com/scl/fi/5rpnm8ea7woz07lmmg45d/Daniel-Olliver.docx?rlkey=8s08701xo5qi5veru75wz63aa&st=xsup5mdg&dl=0">
-          <span type="button" className="btn btn-outline">
+    <section className="about" aria-labelledby="intro-title">
+      <div className="about__copy">
+        <p className="eyebrow">
+          <span>AI Engineer · Full-Stack Developer</span>
+          <span>Auckland, NZ</span>
+        </p>
+        <h1 id="intro-title" className="about__name">
+          Daniel Olliver builds AI systems that hold up to evidence.
+        </h1>
+        <p className="about__desc">
+          I build private AI assistants, RAG systems, and LLM-agent pipelines —
+          and I validate the way a researcher does: my own quantum-computing
+          experiments ran on three real IBM processors, with controls and error
+          bars (<a href="/essay/">the six-year story</a>, and a{" "}
+          <a href="/anyons/">playable demo</a>). Four years of full-stack
+          delivery (React, Node, TypeScript) means the AI work doesn&rsquo;t stop
+          at a prototype — it ships, with the accounts, APIs, and deployment
+          around it.
+        </p>
+        <div className="about__meta" aria-label="Profile summary">
+          <span>AI &amp; LLM integration</span>
+          <span>Validated on real quantum hardware</span>
+          <span>Full-stack delivery</span>
+        </div>
+        <div className="about__contact">
+          <a href="#projects" className="btn btn-primary">
+            View Projects
+          </a>
+          <a
+            href="https://github.com/dwatces"
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-outline"
+          >
+            GitHub
+          </a>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-plain"
+          >
             Resume
-          </span>
-        </a>
+          </a>
+        </div>
       </div>
-    </div>
+      <div className="about__visual" aria-label="Daniel Olliver profile">
+        <img
+          src={profile}
+          alt="Daniel Olliver"
+          className="about__avatar"
+          width="288"
+          height="288"
+        />
+        <div className="about__focus">
+          <span>Current focus</span>
+          Private AI assistants and document intelligence for professional
+          services — built, evaluated honestly, and put into production.
+        </div>
+        <div className="about__availability">
+          <span className="status-dot" aria-hidden="true" />
+          Taking on AI &amp; development projects
+        </div>
+      </div>
+    </section>
   );
 };
 
