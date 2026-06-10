@@ -5,9 +5,9 @@ const projects = [
   {
     key: "scenic",
     name: "Scenic",
-    status: "Live shortly",
-    statusTone: "soon",
-    statusDetail: "Deployment coming online",
+    status: "Live",
+    statusTone: "live",
+    statusDetail: "Deployed on Vercel",
     description:
       "A full-stack image sharing app where users can register, authenticate, upload scenes, and browse community posts.",
     highlights: [
@@ -16,23 +16,23 @@ const projects = [
     ],
     stack: ["React", "Node.js", "Express", "MongoDB", "Firebase"],
     sourceCode: "https://github.com/dwatces/Scenic",
-    livePreview: "https://scenic-b670e.web.app/",
+    livePreview: "https://scenic-app.vercel.app/",
   },
   {
     key: "nzcamps",
     name: "NZ Camps",
-    status: "Live shortly",
-    statusTone: "soon",
-    statusDetail: "Deployment coming online",
+    status: "Live",
+    statusTone: "live",
+    statusDetail: "Deployed on Vercel · mongoose 8",
     description:
-      "A campground review platform for New Zealand with accounts, campground CRUD, reviews, and Google-powered geocoding.",
+      "A campground review platform for New Zealand with accounts, campground CRUD, reviews, and Google-powered geocoding. Recently modernized (mongoose 5\u21928) and redeployed serverless.",
     highlights: [
       "Server-rendered Express app using EJS, MongoDB, and RESTful routes",
       "Good case study for auth, data modelling, maps, and deployment tradeoffs",
     ],
     stack: ["Node.js", "Express", "MongoDB", "EJS", "Google APIs"],
     sourceCode: "https://github.com/dwatces/NZCamps",
-    livePreview: "https://nz-camps-1890076907bb.herokuapp.com/",
+    livePreview: "https://nz-camps.vercel.app/",
   },
   {
     key: "eon",
