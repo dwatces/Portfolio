@@ -1,4 +1,26 @@
 .contact {
-  flex-direction: column;
-  padding-bottom: 5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  border-top: 1px solid var(--clr-border);
+  padding: 4rem 0 5rem;
+}
+
+.contact__copy {
+  color: var(--clr-muted);
+  margin-top: 0.65rem;
+}
+
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media (max-width: 700px) {
+  .contact {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
