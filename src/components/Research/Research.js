@@ -62,11 +62,12 @@ const Research = () => {
       </div>
       <div className="research_grid">
         {items.map((it) => (
-          <article className="research_card" key={it.key}>
+          <a className="research_card" key={it.key} href={`/research/${it.key}/`}>
             <img src={it.img} alt={it.title} loading="lazy" />
             <h3>{it.title}</h3>
             <p>{it.claim}</p>
-          </article>
+            <span className="research_more">full result →</span>
+          </a>
         ))}
       </div>
     </section>
