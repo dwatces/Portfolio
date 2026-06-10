@@ -1,0 +1,163 @@
+/* Hex playground UI — drives engine.js. Every interaction calls the real physics. */
+"use strict";
+(() => {
+  const { ToricCode, MBQCHex } = window.HEX_ENGINE;
+
+  /* ================================ BRAID BOARD ================================ */
+  const L = 4, CELL = 110, PAD = 20;
+  const cv = document.getElementById("board");
+  const ctx = cv.getContext("2d");
+  cv.width = cv.height = 2 * PAD + L * CELL;
+  let code = new ToricCode(L);
+  let mover = null;          // [x,y] plaquette of the draggable anyon (UI hint only)
+  let trail = [];            // crossed-edge segments for the worldline
+  let dragging = false;
+
+  const lz0el = document.getElementById("lz0");
+  const lz1el = document.getElementById("lz1");
+  const nanyel = document.getElementById("nany");
+
+  function plaqCenter(x, y) { return [PAD + (x + 0.5) * CELL, PAD + (y + 0.5) * CELL]; }
+  function vertexPt(x, y) { return [PAD + x * CELL, PAD + y * CELL]; }
+
+  function setMeter(el, v) {
+    el.textContent = v > 0 ? "+1" : v < 0 ? "−1" : "0";
+    el.className = "val " + (v > 0 ? "plus" : v < 0 ? "minus" : "zero");
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    // lattice edges
+    ctx.strokeStyle = "#222b3d"; ctx.lineWidth = 1;
+    for (let i = 0; i <= L; i++) {
+      ctx.beginPath(); ctx.moveTo(PAD, PAD + i * CELL); ctx.lineTo(PAD + L * CELL, PAD + i * CELL); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(PAD + i * CELL, PAD); ctx.lineTo(PAD + i * CELL, PAD + L * CELL); ctx.stroke();
+    }
+    // logical Z1 readout string: Z on row {h(x,0)} -> the y=0 horizontal gridline
+    ctx.strokeStyle = "#3a4d2f"; ctx.setLineDash([6, 6]); ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(PAD, PAD); ctx.lineTo(PAD + L * CELL, PAD); ctx.stroke();
+    ctx.setLineDash([]);
+    // worldline trail
+    ctx.strokeStyle = "rgba(255,140,66,.35)"; ctx.lineWidth = 4; ctx.lineCap = "round";
+    for (const [a, b] of trail) {
+      ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke();
+    }
+    // syndromes (the truth comes from the physics, not UI state)
+    const syn = code.syndromes();
+    for (const [x, y] of syn.m) {
+      const [cx0, cy0] = plaqCenter(x, y);
+      const isMover = mover && x === mover[0] && y === mover[1];
+      ctx.beginPath(); ctx.arc(cx0, cy0, isMover ? 16 : 12, 0, 7);
+      ctx.fillStyle = isMover ? "#ffb066" : "#ff8c42";
+      ctx.shadowColor = "#ff8c42"; ctx.shadowBlur = 18;
+      ctx.fill(); ctx.shadowBlur = 0;
+    }
+    for (const [x, y] of syn.e) {
+      const [vx, vy] = vertexPt(x, y);
+      ctx.beginPath(); ctx.arc(vx, vy, 8, 0, 7);
+      ctx.fillStyle = "#4cc9f0"; ctx.shadowColor = "#4cc9f0"; ctx.shadowBlur = 14;
+      ctx.fill(); ctx.shadowBlur = 0;
+    }
+    // meters
+    setMeter(lz0el, code.logicalZ(0));
+    setMeter(lz1el, code.logicalZ(1));
+    nanyel.textContent = String(syn.m.length + syn.e.length);
+    nanyel.className = "val " + (syn.m.length + syn.e.length ? "" : "zero");
+  }
+
+  function plaqAt(px, py) {
+    const x = Math.floor((px - PAD) / CELL), y = Math.floor((py - PAD) / CELL);
+    if (x < 0 || y < 0 || x >= L || y >= L) return null;
+    return [x, y];
+  }
+  function pos(ev) {
+    const r = cv.getBoundingClientRect();
+    return [(ev.clientX - r.left) * (cv.width / r.width),
+            (ev.clientY - r.top) * (cv.height / r.height)];
+  }
+  function isAdjacent(a, b) { return code.sharedEdgeM(a, b) !== null; }
+
+  cv.addEventListener("pointerdown", (ev) => {
+    const [px, py] = pos(ev);
+    const p = plaqAt(px, py);
+    if (!p) return;
+    const syn = code.syndromes();
+    const onAnyon = syn.m.find(([x, y]) => x === p[0] && y === p[1]);
+    if (onAnyon) { mover = p; dragging = true; }
+    else if (syn.m.length === 0) {
+      // tear a pair out of the vacuum: p and its +x neighbour
+      const p2 = [(p[0] + 1) % L, p[1]];
+      code.moveM(p, p2);
+      mover = p2; dragging = true;
+      trail = [[plaqCenter(p[0], p[1]), plaqCenter(p2[0], p2[1])]];
+    }
+    cv.setPointerCapture(ev.pointerId);
+    render();
+  });
+  cv.addEventListener("pointermove", (ev) => {
+    if (!dragging || !mover) return;
+    const [px, py] = pos(ev);
+    const t = plaqAt(px, py);
+    if (!t || (t[0] === mover[0] && t[1] === mover[1])) return;
+    if (!isAdjacent(mover, t)) return;       // one tile at a time (incl. torus wrap)
+    code.moveM(mover, t);                     // REAL physics: X on the shared edge
+    trail.push([plaqCenter(mover[0], mover[1]), plaqCenter(t[0], t[1])]);
+    mover = t;
+    render();
+  });
+  const stopDrag = () => { dragging = false; render(); };
+  cv.addEventListener("pointerup", stopDrag);
+  cv.addEventListener("pointercancel", stopDrag);
+  document.getElementById("reset").addEventListener("click", () => {
+    code = new ToricCode(L); mover = null; trail = []; render();
+  });
+
+  /* ================================ MAGIC DIAL ================================ */
+  const mb = new MBQCHex();
+  const bl = document.getElementById("bloch");
+  const bctx = bl.getContext("2d");
+  const dial = document.getElementById("dial");
+  const dialval = document.getElementById("dialval");
+  const magicEl = document.getElementById("magic");
+  const branchout = document.getElementById("branchout");
+  let lastRun = mb.run(0);
+
+  function renderBloch(r) {
+    const W = bl.width, c = W / 2, R = W / 2 - 18;
+    bctx.clearRect(0, 0, W, W);
+    bctx.strokeStyle = "#222b3d"; bctx.lineWidth = 1.5;
+    bctx.beginPath(); bctx.arc(c, c, R, 0, 7); bctx.stroke();
+    bctx.fillStyle = "#8a93a6"; bctx.font = "11px ui-monospace,monospace";
+    bctx.fillText("+Z", c - 8, c - R + 14); bctx.fillText("+Y", c + R - 24, c + 4);
+    // vector lives in the Y-Z plane (X stays 0 along the dial)
+    const vx = c + r.bloch[1] * R, vy = c - r.bloch[2] * R;
+    bctx.strokeStyle = "#ffd166"; bctx.lineWidth = 3; bctx.lineCap = "round";
+    bctx.beginPath(); bctx.moveTo(c, c); bctx.lineTo(vx, vy); bctx.stroke();
+    bctx.beginPath(); bctx.arc(vx, vy, 5, 0, 7); bctx.fillStyle = "#ffd166"; bctx.fill();
+  }
+  function updateDial() {
+    const th = (Math.PI / 4) * (dial.value / 100);
+    lastRun = mb.run(th);
+    dialval.textContent = `θ = ${th.toFixed(3)} rad  (${(th / Math.PI * 180).toFixed(1)}°)`;
+    magicEl.textContent = lastRun.magic.toFixed(4);
+    magicEl.className = "val " + (lastRun.magic > 0.02 ? "plus" : "zero");
+    renderBloch(lastRun);
+    branchout.textContent = "";
+  }
+  dial.addEventListener("input", updateDial);
+  document.getElementById("roll").addEventListener("click", () => {
+    // sample a branch by its Born probability; show outcome + Pauli-frame fix
+    const u = Math.random();
+    let acc = 0, s = 0;
+    for (s = 0; s < 32; s++) { acc += lastRun.branches[s].p; if (u < acc) break; }
+    if (s >= 32) s = 31;
+    const bits = s.toString(2).padStart(5, "0").split("").reverse().join("");
+    branchout.innerHTML =
+      `dice said <span class="mono">${bits}</span> (one of 32 random outcomes) → ` +
+      `apply Pauli <b>${lastRun.frame[s]}</b> → <b>same programmed state, every time</b>. ` +
+      `That correction trick is how measurement-based quantum computers work.`;
+  });
+
+  render();
+  updateDial();
+})();
