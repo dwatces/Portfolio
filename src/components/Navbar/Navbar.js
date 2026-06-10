@@ -17,7 +17,7 @@ const Navbar = () => {
           </a>
         </li>
         <li className="nav__link">
-          <a href="/essay/" className="link nav-link">
+          <a href="#research" className="link nav-link">
             Research
           </a>
         </li>
