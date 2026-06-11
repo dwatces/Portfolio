@@ -22,6 +22,16 @@ const Navbar = () => {
           </a>
         </li>
         <li className="nav__link">
+          <a href="/essay/" className="link nav-link">
+            Essay
+          </a>
+        </li>
+        <li className="nav__link">
+          <a href="/anyons/" className="link nav-link">
+            Playground
+          </a>
+        </li>
+        <li className="nav__link">
           <a href="#projects" onClick={toggleNav} className="link nav-link">
             Projects
           </a>
