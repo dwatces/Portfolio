@@ -12,11 +12,6 @@ const Navbar = () => {
     <nav className="center nav">
       <ul style={{ display: showNav ? "flex" : null }} className="nav__list">
         <li className="nav__link">
-          <a href="#top" onClick={toggleNav} className="link nav-link">
-            About
-          </a>
-        </li>
-        <li className="nav__link">
           <a href="#research" className="link nav-link">
             Research
           </a>
@@ -34,11 +29,6 @@ const Navbar = () => {
         <li className="nav__link">
           <a href="#projects" onClick={toggleNav} className="link nav-link">
             Projects
-          </a>
-        </li>
-        <li className="nav__link">
-          <a href="#skills" onClick={toggleNav} className="link nav-link">
-            Skills
           </a>
         </li>
         <li className="nav__link">
