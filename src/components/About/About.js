@@ -28,14 +28,17 @@ const About = () => {
           <span>Full-stack delivery</span>
         </div>
         <div className="about__contact">
-          <a href="#projects" className="btn btn-primary">
-            View Projects
+          <a href="/anyons/" className="btn btn-primary">
+            Try the Quantum Playground
+          </a>
+          <a href="/essay/" className="btn btn-outline">
+            Read the Essay
           </a>
           <a
             href="https://github.com/dwatces"
             target="_blank"
             rel="noreferrer"
-            className="btn btn-outline"
+            className="btn btn-plain"
           >
             GitHub
           </a>
