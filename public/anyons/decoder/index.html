@@ -103,28 +103,30 @@
 </header>
 
 <section id="game">
-  <h2><span class="step">ROUND 1</span>You play first</h2>
-  <p class="lead">Errors struck the memory and lit up these checks (brighter = more
-  hits at that spot). The two stored quantum bits — call them <b>A</b> and <b>B</b> —
-  either survived or got flipped. Look at the sparks and make the call.</p>
+  <h2><span class="step">ROUND 1</span>Get a feel for it</h2>
+  <p class="lead">Errors just struck this memory — the sparks are its alarm bells.
+  Watch them shimmer for a moment, then have a <b>hunch</b>: did the two stored
+  quantum bits (<b>A</b> and <b>B</b>) make it through? No grades, no pressure —
+  honestly, nobody can see this pattern by eye (~28% is what anyone scores), and
+  that's exactly the point of what comes next.</p>
   <div class="boardrow">
     <canvas id="board" width="480" height="330"></canvas>
     <div class="side">
       <div class="answers">
-        <button data-c="0">✓ Both survived</button>
-        <button data-c="1">A flipped</button>
-        <button data-c="2">B flipped</button>
-        <button data-c="3">Both flipped</button>
+        <button data-c="0">✨ All good, I reckon</button>
+        <button data-c="1">Something hit A</button>
+        <button data-c="2">Something hit B</button>
+        <button data-c="3">Both took a hit</button>
       </div>
-      <div class="verdict" id="verdict">Your call?</div>
+      <button data-c="-1" id="tellMe" style="width:100%;margin-top:10px">🤷 No idea — just tell me</button>
+      <div class="verdict" id="verdict">Got a hunch?</div>
       <div class="scorechips">
-        <div class="chip"><span class="lab">YOU</span><b id="scoreYou">0/0</b></div>
-        <div class="chip"><span class="lab">THE NET (same rounds)</span><b id="scoreAI">0/0</b></div>
-        <div class="chip"><span class="lab">LUCKY GUESSING</span><b>~28%</b></div>
+        <div class="chip"><span class="lab">YOUR HUNCHES</span><b id="scoreYou">0/0</b></div>
+        <div class="chip"><span class="lab">THE NET (same sparks)</span><b id="scoreAI">0/0</b></div>
       </div>
-      <button id="nextRound" class="primary">Next round</button>
-      <p class="note" id="gameNote">If you hover around 25–30%, you're guessing — and that's
-      the honest expectation. This pattern is real but invisible to human eyes.</p>
+      <button id="nextRound" class="primary">Fresh sparks</button>
+      <p class="note" id="gameNote">A new burst loads after each reveal. Whenever you've
+      had enough, scroll on — the net plays this game two thousand times in Round 2.</p>
     </div>
   </div>
 </section>
