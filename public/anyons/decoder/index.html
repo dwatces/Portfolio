@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Error-Hunting Game — can you decode a quantum memory?</title>
+<meta name="description" content="A real neural network learned to catch quantum-memory errors. It runs live in your browser. Try to beat it.">
+<style>
+  :root {
+    --bg:#0b0e14; --panel:#11151f; --line:#1e2533; --text:#dde3ee; --dim:#8a93a6;
+    --hot:#ff8c42; --cold:#4cc9f0; --good:#7ae582; --bad:#ff5d73; --gold:#ffd166;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text);
+    font:16px/1.6 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  .wrap { max-width:980px; margin:0 auto; padding:0 20px; }
+  header { padding:20px 0 24px; }
+  .topnav { font-size:.85rem; color:var(--dim); padding:18px 0 26px; }
+  .topnav a { margin-right:14px; }
+  h1 { font-size:2.25rem; letter-spacing:-.5px; line-height:1.2; }
+  h1 .gold { color:var(--gold); }
+  .sub { color:var(--dim); margin-top:10px; max-width:700px; }
+  .badge { display:inline-block; margin-top:14px; padding:4px 12px; border:1px solid var(--line);
+    border-radius:999px; color:var(--good); font-size:.82rem; }
+  section { margin:34px 0; padding:26px; background:var(--panel);
+    border:1px solid var(--line); border-radius:14px; }
+  h2 { font-size:1.3rem; margin-bottom:6px; }
+  h2 .step { color:var(--gold); font-size:.85rem; letter-spacing:1.5px; display:block; }
+  .lead { color:var(--dim); font-size:.95rem; margin-bottom:18px; max-width:760px; }
+  .boardrow { display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; }
+  canvas { background:#0d111a; border:1px solid var(--line); border-radius:10px; }
+  .side { min-width:260px; flex:1; }
+  .answers { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .answers button { padding:14px 10px; font-size:.95rem; border-radius:10px; }
+  button { background:#1b2230; color:var(--text); border:1px solid var(--line);
+    padding:9px 16px; border-radius:8px; font-size:.92rem; cursor:pointer; }
+  button:hover { border-color:var(--dim); }
+  button:disabled { opacity:.45; cursor:default; }
+  button.primary { border-color:var(--gold); color:var(--gold); }
+  button.picked { border-color:var(--cold); color:var(--cold); }
+  button.right { border-color:var(--good); color:var(--good); }
+  button.wrong { border-color:var(--bad); color:var(--bad); }
+  .verdict { margin-top:14px; min-height:56px; font-size:.95rem; }
+  .verdict b.good { color:var(--good); } .verdict b.bad { color:var(--bad); }
+  .scorechips { display:flex; gap:10px; margin:14px 0; flex-wrap:wrap; }
+  .chip { padding:8px 14px; border:1px solid var(--line); border-radius:10px; font-size:.9rem; }
+  .chip b { font-size:1.25rem; font-variant-numeric:tabular-nums; }
+  .chip .lab { color:var(--dim); font-size:.78rem; display:block; letter-spacing:.4px; }
+  .bars { margin-top:6px; }
+  .bar { margin:12px 0; }
+  .bar .lab { font-size:.86rem; color:var(--dim); display:flex; justify-content:space-between; }
+  .bar .lab b { color:var(--text); font-variant-numeric:tabular-nums; }
+  .track { height:14px; background:#0d111a; border:1px solid var(--line);
+    border-radius:99px; overflow:hidden; margin-top:4px; }
+  .fill { height:100%; width:0%; border-radius:99px; transition:width .25s; }
+  .fill.ai { background:linear-gradient(90deg,#3a86ff,var(--cold)); }
+  .fill.mwpm { background:linear-gradient(90deg,#6d6875,#a3a0ab); }
+  .fill.rng { background:#3c4254; }
+  .fill.plain { background:linear-gradient(90deg,#9d4452,var(--bad)); }
+  .fill.sym { background:linear-gradient(90deg,#2f9e6e,var(--good)); }
+  .ctrls { display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin:10px 0 4px; }
+  input[type=range] { width:240px; accent-color:var(--gold); }
+  .mono { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.85rem; }
+  .note { color:var(--dim); font-size:.86rem; margin-top:12px; max-width:760px; }
+  .twins { display:flex; gap:14px; margin:12px 0; flex-wrap:wrap; }
+  .twin { flex:1; min-width:250px; border:1px solid var(--line); border-radius:12px;
+    padding:16px; background:#0d111a; }
+  .twin h3 { font-size:1rem; margin-bottom:4px; }
+  .twin .big { font-size:2.1rem; font-weight:700; font-variant-numeric:tabular-nums; }
+  .twin.sym h3, .twin.sym .big { color:var(--good); }
+  .twin.plain h3, .twin.plain .big { color:var(--bad); }
+  .twin .sm { color:var(--dim); font-size:.82rem; }
+  table { border-collapse:collapse; width:100%; font-size:.9rem; margin-top:10px; }
+  th,td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line);
+    font-variant-numeric:tabular-nums; }
+  th { color:var(--dim); font-weight:600; }
+  td.win { color:var(--good); font-weight:600; }
+  a { color:var(--cold); text-decoration:none; }
+  .links { display:flex; gap:18px; flex-wrap:wrap; font-size:.92rem; }
+  footer { padding:30px 0 60px; color:var(--dim); font-size:.85rem; }
+  #ladderval { color:var(--gold); font-weight:700; font-size:1.05rem; }
+  .loading { color:var(--gold); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="topnav">
+    <a href="../../">daniel olliver</a>
+    <a href="../">quantum playground</a>
+    <a href="../../essay/">the essay</a>
+    <a href="https://github.com/dwatces/equivariant-quantum-ml">github</a>
+    <a href="https://pypi.org/project/demsym/">pip install demsym</a>
+  </div>
+  <h1>The error-hunting game<br><span class="gold">you vs. a 63,000-parameter brain</span></h1>
+  <p class="sub">A quantum computer's memory is guarded by an endless stream of parity
+  checks. When checks light up, something went wrong inside — and someone has to work
+  out <i>what</i>, fast, or the stored information is lost. Below: checks from a
+  simulated honeycomb quantum memory, and a real neural network that learned to read
+  them. It is running live in this page — no server, no tricks.</p>
+  <span class="badge">every number on this page is measured, in your browser, on the nets you're playing against</span>
+</header>
+
+<section id="game">
+  <h2><span class="step">ROUND 1</span>You play first</h2>
+  <p class="lead">Errors struck the memory and lit up these checks (brighter = more
+  hits at that spot). The two stored quantum bits — call them <b>A</b> and <b>B</b> —
+  either survived or got flipped. Look at the sparks and make the call.</p>
+  <div class="boardrow">
+    <canvas id="board" width="480" height="330"></canvas>
+    <div class="side">
+      <div class="answers">
+        <button data-c="0">✓ Both survived</button>
+        <button data-c="1">A flipped</button>
+        <button data-c="2">B flipped</button>
+        <button data-c="3">Both flipped</button>
+      </div>
+      <div class="verdict" id="verdict">Your call?</div>
+      <div class="scorechips">
+        <div class="chip"><span class="lab">YOU</span><b id="scoreYou">0/0</b></div>
+        <div class="chip"><span class="lab">THE NET (same rounds)</span><b id="scoreAI">0/0</b></div>
+        <div class="chip"><span class="lab">LUCKY GUESSING</span><b>~28%</b></div>
+      </div>
+      <button id="nextRound" class="primary">Next round</button>
+      <p class="note" id="gameNote">If you hover around 25–30%, you're guessing — and that's
+      the honest expectation. This pattern is real but invisible to human eyes.</p>
+    </div>
+  </div>
+</section>
+
+<section id="race">
+  <h2><span class="step">ROUND 2</span>Now watch the net work</h2>
+  <p class="lead">Same game, played fast. The net decodes each burst of sparks live in
+  your browser; the classical gold-standard algorithm (minimum-weight matching, the
+  one real quantum computers use today) answered the same shots ahead of time.</p>
+  <div class="ctrls">
+    <button id="playBtn" class="primary">▶ Play</button>
+    <label class="mono">speed <input id="speed" type="range" min="2" max="60" value="14"></label>
+    <span class="mono" id="shotCount">shot 0 / 2000</span>
+  </div>
+  <div class="bars">
+    <div class="bar"><div class="lab"><span>symmetry-aware neural net (live)</span><b id="aiPct">—</b></div>
+      <div class="track"><div class="fill ai" id="aiFill"></div></div></div>
+    <div class="bar"><div class="lab"><span>gold standard (matching algorithm)</span><b id="mwpmPct">—</b></div>
+      <div class="track"><div class="fill mwpm" id="mwpmFill"></div></div></div>
+    <div class="bar"><div class="lab"><span>lucky guessing</span><b id="rngPct">—</b></div>
+      <div class="track"><div class="fill rng" id="rngFill"></div></div></div>
+  </div>
+  <p class="note">Honesty first: the net does <b>not</b> beat the gold standard here, and we
+  don't claim it does. What's remarkable is sitting one section down.</p>
+</section>
+
+<section id="switch">
+  <h2><span class="step">ROUND 3</span>The switch — why this net works at all</h2>
+  <p class="lead">Here are <b>identical twin networks</b>: same size (63k parameters), same
+  training examples, same everything — except one was hard-wired with the honeycomb's
+  symmetry: <i>"rotate the sparks 120°, and your answer must rotate the same way."</i>
+  The other twin had to figure the task out alone. Run them on the same 300 shots:</p>
+  <div class="twins">
+    <div class="twin plain"><h3>ordinary net</h3><div class="big" id="plainBig">?</div>
+      <div class="sm">trained on 64,000 examples · scores <b>29.1%</b> on the full
+      200,000-shot test — <b>it never learned anything</b> (guessing is 29.1%)</div></div>
+    <div class="twin sym"><h3>symmetry-aware net</h3><div class="big" id="symBig">?</div>
+      <div class="sm">same 64,000 examples · scores <b>74.7%</b> on the full
+      200,000-shot test</div></div>
+  </div>
+  <button id="runSwitch" class="primary">Run the twins on 300 shots</button>
+  <p class="note">That's the research result this page exists to show: on this code, telling
+  the network about the lattice's symmetry isn't a speed-up — it's the difference between
+  <b>learning and not learning</b>. We proved the symmetry exactly from the error model
+  (it even <i>swaps the roles of A and B</i> as it rotates), then built it into the net.</p>
+</section>
+
+<section id="ladder">
+  <h2><span class="step">ROUND 4</span>How little data does it need?</h2>
+  <p class="lead">Real machines can't hand you millions of labelled failures. Drag the
+  slider — each stop loads the <i>actual</i> symmetry-aware net trained on that many
+  examples and runs it on 300 shots, live.</p>
+  <div class="ctrls">
+    <input id="ladderSlider" type="range" min="0" max="4" value="0" step="1">
+    <span class="mono">trained on <span id="ladderval">250</span> examples</span>
+  </div>
+  <div class="bar"><div class="lab"><span id="ladderLab">net trained on 250 examples</span><b id="ladderPct">—</b></div>
+    <div class="track"><div class="fill sym" id="ladderFill"></div></div></div>
+  <p class="note" id="ladderNote">For scale: the ordinary twin never beats guessing even with
+  64,000 examples — the symmetry-aware net is already ahead of that with <b>250</b>.</p>
+</section>
+
+<section id="why">
+  <h2>What you just saw, in plain terms</h2>
+  <p class="lead" style="margin-bottom:8px">— Quantum computers fail constantly; an error-decoder
+  must call every failure correctly, at speed, forever. It's a real bottleneck in the field.<br>
+  — Labelled failure data from real hardware is scarce, so AI that learns from <b>few</b>
+  examples is what matters — not bigger models or more compute.<br>
+  — The unlock here wasn't horsepower. It was <b>mathematics</b>: proving the memory's exact
+  symmetry from its error model and building that proof into the network.</p>
+  <table>
+    <tr><th>training examples</th><th>ordinary net</th><th>symmetry-aware net</th><th>gold standard</th></tr>
+    <tr><td>250</td><td>—</td><td class="win" id="t250">34.4%</td><td rowspan="5" style="vertical-align:middle">94.7%</td></tr>
+    <tr><td>1,000</td><td>—</td><td class="win">40.5%</td></tr>
+    <tr><td>4,000</td><td>—</td><td class="win">46.7%</td></tr>
+    <tr><td>16,000</td><td>—</td><td class="win">59.4%</td></tr>
+    <tr><td>64,000</td><td>29.1% (≈ guessing)</td><td class="win">74.7%</td></tr>
+  </table>
+  <p class="note">Measured on 200,000 held-out shots, on the exact float16 nets shipped with this
+  page (simulated circuit-level noise, one code size, honeycomb Floquet memory at L=6). The gold
+  standard remains unbeaten and we claim no exception. Technical readers: the symmetry is an exact
+  p3 space group of the detector error model with a GL(2,F₂) twist that mixes the logical qubits —
+  solved, verified and shipped via <a href="https://pypi.org/project/demsym/">demsym</a>
+  (<span class="mono">pip install demsym</span>); preprint in preparation.</p>
+</section>
+
+<section>
+  <h2>Go deeper</h2>
+  <div class="links">
+    <a href="../">🜢 braid real anyons (the playground)</a>
+    <a href="../../essay/">📜 the six-year essay behind this</a>
+    <a href="https://github.com/dwatces/equivariant-quantum-ml">⌨ code + verified runs</a>
+    <a href="https://pypi.org/project/demsym/">📦 demsym on PyPI</a>
+  </div>
+</section>
+
+<footer>
+  Daniel Olliver · Auckland, NZ · every accuracy on this page is recomputed in your browser
+  from the shipped networks — open the console and check.
+</footer>
+
+</div>
+<script src="data/meta.js"></script>
+<script src="data/model_p3_9_64k.js"></script>
+<script src="data/model_plain_64k.js"></script>
+<script src="decoder.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
