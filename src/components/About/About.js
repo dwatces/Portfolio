@@ -13,14 +13,16 @@ const About = () => {
           Daniel Olliver builds AI systems that hold up to evidence.
         </h1>
         <p className="about__desc">
-          I build private AI assistants, RAG systems, and LLM-agent pipelines —
-          and I validate the way a researcher does: my own quantum-computing
-          experiments ran on three real IBM processors, with controls and error
-          bars (<a href="/essay/">the six-year story</a>, and a{" "}
-          <a href="/anyons/">playable demo</a>). Four years of full-stack
-          delivery (React, Node, TypeScript) means the AI work doesn&rsquo;t stop
-          at a prototype — it ships, with the accounts, APIs, and deployment
-          around it.
+          I build private AI assistants, document-aware retrieval (RAG), and
+          AI automation pipelines — and I validate the way a researcher does:
+          my own quantum-computing experiments ran on three real IBM
+          processors, with controls and error bars. Don&rsquo;t take my word
+          for it — <a href="/anyons/decoder/">play against a neural network I
+          trained</a>, live in your browser, or read{" "}
+          <a href="/essay/">the six-year story</a>. Four years of full-stack
+          delivery (React, Node, TypeScript) means the AI work doesn&rsquo;t
+          stop at a prototype — it ships, with the accounts, APIs, and
+          deployment around it.
         </p>
         <div className="about__meta" aria-label="Profile summary">
           <span>AI &amp; LLM integration</span>
@@ -28,8 +30,8 @@ const About = () => {
           <span>Full-stack delivery</span>
         </div>
         <div className="about__contact">
-          <a href="/anyons/" className="btn btn-primary">
-            Try the Quantum Playground
+          <a href="/anyons/decoder/" className="btn btn-primary">
+            Play the Error-Hunting Game
           </a>
           <a href="/essay/" className="btn btn-outline">
             Read the Essay

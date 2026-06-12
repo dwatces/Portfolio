@@ -22,7 +22,7 @@ const Navbar = () => {
           </a>
         </li>
         <li className="nav__link">
-          <a href="/anyons/" className="link nav-link">
+          <a href="/anyons/decoder/" className="link nav-link">
             Playground
           </a>
         </li>

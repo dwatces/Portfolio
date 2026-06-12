@@ -124,13 +124,48 @@ overlap with theory.</li>
 have gone further. What it is, is <i>measured, by one person, honestly, on real
 hardware and a nine-year-old GPU, with controls and error bars.</i></p>
 
+<h2>Verdict five: then the hexagon won a learning task — from underneath</h2>
+<p>The arc had one more turn in it. This month I went to the one place where hexagons
+and learning genuinely share a workplace: <b>decoding quantum error-correcting
+codes</b>. A decoder is a learning system that reads a quantum machine&rsquo;s error alarms
+and must name the fault, fast, forever — exactly the job neural networks are being
+recruited for across the field, and one where labelled training data from real devices
+is desperately scarce.</p>
+<p>What I found, verified to the same standard as everything above: the square-lattice
+surface code — the industry default — <b>provably cannot hand its lattice symmetry to
+a learner at circuit level.</b> Across 999 candidate symmetry maps and 1,728 gate
+schedules (including schedules co-designed to restore the symmetry), not one survives
+compilation — a check on the mirror axis would need a gate order equal to its own
+reflection, and no order is. The honeycomb Floquet code — built on the same
+three-bonds-per-site property that makes the Kitaev model possible — keeps its full
+rotation symmetry <b>exactly</b>, under the most naive compilation, because weight-2
+checks leave the schedule nothing to break. And the symmetry it keeps is strange:
+rotating the lattice 120° <i>swaps the two stored qubits</i> — solved and verified
+mechanism-by-mechanism from the code&rsquo;s own error model, at two lattice sizes.</p>
+<p>Build that exact symmetry into a neural decoder and something happens that I had
+never seen in six years of hexagon experiments. Two identical 63,000-parameter
+networks, same training data, same everything: the plain one <b>never learns the
+honeycomb task at all</b> — it sits at the guess rate through 64,000 training examples,
+and stays there even given 22× more parameters — while the symmetry-aware twin reaches
+81%, and with 1,000 examples already beats the plain network given 256,000. Not a
+speed-up. A switch. The first time in this whole story that hexagonal structure beat
+the square at a <i>learning</i> task — and it happened precisely the way verdicts one
+to four said it would have to: not by wiring a network hexagonally, but through real
+structure — a code&rsquo;s exact, physics-level symmetry — that gradient descent cannot
+route around and cannot invent from data.</p>
+<p>You can <a href="/anyons/decoder/">play against the trained network in your
+browser</a> — it ships with this site — install the solver that found the symmetry
+(<code>pip install demsym</code>), and a preprint with every logged number is in
+preparation.</p>
+
 <h2>What the six years actually taught me</h2>
 <p>The conviction was wrong as stated and right in a way I couldn&rsquo;t have articulated
 in 2020. Intelligence did not live in the geometry — every learning system I built was
 supremely indifferent to it. But the hexagon really is special: it&rsquo;s why grid cells in
 your brain are hexagonal, why graphene has Dirac cones, why the only exactly-solvable
-topological spin liquid lives on a honeycomb. Its specialness belongs to <b>physics
-and topology</b>, not to gradient descent. The early note I wrote — &ldquo;perhaps it
+topological spin liquid lives on a honeycomb — and why the one error-correcting code
+that hands its full symmetry to a neural decoder is a honeycomb too. Its specialness
+belongs to <b>physics and topology</b>, not to gradient descent. The early note I wrote — &ldquo;perhaps it
 requires qubits&rdquo; — turned out to be the most accurate sentence in six years of
 notes.</p>
 <p>I think there&rsquo;s a general lesson, and it&rsquo;s not about hexagons. Most technical
@@ -142,8 +177,10 @@ parameters, sim-gating, never writing a number before reading the log — is the
 discipline I bring to everything I build.</p>
 
 <div class="cta">
-<b>Touch the physics yourself:</b> <a href="/anyons/">braid anyons in your browser</a> —
-a true stabilizer simulation, with the real-hardware job IDs beside every claim.<br>
+<b>Touch the physics yourself:</b> <a href="/anyons/decoder/">play the error-hunting
+game</a> — a trained neural decoder running live in your browser — or
+<a href="/anyons/">braid anyons</a> on a true stabilizer simulation, with the
+real-hardware job IDs beside every claim.<br>
 Code, logs, and figures for every number: <a href="https://github.com/dwatces">github.com/dwatces</a>.
 The quantum runs are reproducible on IBM&rsquo;s free tier.
 </div>
