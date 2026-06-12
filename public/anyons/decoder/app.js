@@ -106,10 +106,14 @@
   // ---------- round 1: the game ----------
   let seed = 987654321;
   const rnd = () => (seed = (1103515245 * seed + 12345) % 2147483648) / 2147483648;
-  const NAMES = ["both survived", "A flipped", "B flipped", "both flipped"];
-  let cur = -1, youH = 0, aiH = 0, rounds = 0, pulseT = 0, raf = null;
+  const NAMES = ["both made it through", "A took a hit", "B took a hit",
+                 "both took a hit"];
+  let cur = -1, youH = 0, aiH = 0, rounds = 0, raf = null, autoNext = null;
+  const gameButtons = () =>
+    document.querySelectorAll("#game .answers button, #tellMe");
   function newRound() {
     if (playing) { playing = false; $("playBtn").textContent = "▶ Play"; }
+    clearTimeout(autoNext);
     cur = Math.floor(rnd() * stream.n);
     const x = stream.shot(cur).slice();
     cancelAnimationFrame(raf);
@@ -117,35 +121,47 @@
       drawShot(x, t);
       raf = requestAnimationFrame(loop);
     })(0);
-    $("verdict").textContent = "Your call?";
-    document.querySelectorAll("#game .answers button").forEach((b) => {
+    $("verdict").textContent = "Got a hunch?";
+    gameButtons().forEach((b) => {
       b.disabled = false;
-      b.className = "";
+      b.classList.remove("right", "wrong", "picked");
     });
   }
-  document.querySelectorAll("#game .answers button").forEach((b) => {
-    b.addEventListener("click", () => {
-      if (cur < 0) return;
-      const guess = +b.dataset.c, truth = META.truth[cur];
-      const ai = hero().predict(stream.shot(cur));
+  function reveal(guess) {
+    if (cur < 0) return;
+    const truth = META.truth[cur];
+    const ai = hero().predict(stream.shot(cur));
+    const hunch = guess >= 0;
+    if (hunch) {
       rounds++;
       if (guess === truth) youH++;
       if (ai === truth) aiH++;
-      document.querySelectorAll("#game .answers button").forEach((bb) => {
-        bb.disabled = true;
-        const c = +bb.dataset.c;
-        if (c === truth) bb.className = "right";
-        else if (c === guess) bb.className = "wrong";
-      });
-      const you = guess === truth;
-      $("verdict").innerHTML =
-        `Truth: <b class="good">${NAMES[truth]}</b>. ` +
-        `You were <b class="${you ? "good" : "bad"}">${you ? "right" : "wrong"}</b>; ` +
-        `the net said “${NAMES[ai]}” — <b class="${ai === truth ? "good" : "bad"}">` +
-        `${ai === truth ? "right" : "wrong"}</b>.`;
       $("scoreYou").textContent = `${youH}/${rounds}`;
       $("scoreAI").textContent = `${aiH}/${rounds}`;
+    }
+    gameButtons().forEach((bb) => {
+      bb.disabled = true;
+      const c = +bb.dataset.c;
+      if (c === truth) bb.classList.add("right");
+      else if (hunch && c === guess) bb.classList.add("wrong");
     });
+    const aiBit = ` The net read the same sparks and said “${NAMES[ai]}” — ` +
+      `<b class="${ai === truth ? "good" : "bad"}">` +
+      `${ai === truth ? "spot on" : "it missed this one"}</b>.`;
+    let line;
+    if (!hunch) line = `It was: <b class="good">${NAMES[truth]}</b>.` + aiBit;
+    else if (guess === truth) {
+      line = `🎯 It was “<b class="good">${NAMES[truth]}</b>” — ` +
+        `you beat the ~28% odds!` + aiBit;
+    } else {
+      line = `It was “<b class="good">${NAMES[truth]}</b>”. No shame — ` +
+        `this pattern really is invisible by eye.` + aiBit;
+    }
+    $("verdict").innerHTML = line;
+    autoNext = setTimeout(() => { if (!playing) newRound(); }, 3500);
+  }
+  gameButtons().forEach((b) => {
+    b.addEventListener("click", () => reveal(+b.dataset.c));
   });
   $("nextRound").addEventListener("click", newRound);
   newRound();
