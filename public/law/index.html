@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Private AI for Law Firms — the time savings, without the privilege risk</title>
+<meta name="description" content="A private AI assistant that answers and summarises from your firm's own documents — cited, and running on your own systems, in line with Law Society guidance. No client data leaves your firm." />
+<!-- Host free via Netlify Drop (drag this folder to app.netlify.com/drop). Replace the
+     [VIDEO] embed below with your unlisted YouTube/Loom link once recorded. Update the
+     two mailto: addresses if you use a dedicated inbox or a Calendly link. -->
+<style>
+  :root{ --ink:#172033; --muted:#56617a; --line:#e4e7ef; --bg:#fff; --soft:#f6f8fc;
+         --navy:#1f3357; --navy-d:#16294a; --gold:#9a7b3f; --ok:#1f7a55; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .sans{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+  .wrap{max-width:980px;margin:0 auto;padding:0 22px}
+  h1,h2,h3{line-height:1.2;margin:0;font-weight:700}
+  p{margin:0}
+  a{color:var(--navy)}
+  header{border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{font-size:18px;font-weight:700;letter-spacing:.01em}
+  .brand span{color:var(--gold)}
+  .btn{display:inline-block;border:0;border-radius:6px;padding:12px 20px;font-weight:700;font-size:15px;cursor:pointer;background:var(--navy);color:#fff;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+  .btn:hover{background:#16294a}
+  .nav .btn{padding:9px 16px;font-size:14px}
+
+  .hero{padding:58px 0 36px}
+  .hero h1{font-size:40px;max-width:16em}
+  .hero .sub{margin-top:20px;font-size:20px;color:var(--muted);max-width:34em}
+  .hero .cta{margin-top:28px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .note{font-size:14px;color:var(--muted)}
+
+  section{padding:38px 0;border-top:1px solid var(--line)}
+  h2{font-size:27px}
+  .lead{margin-top:12px;color:var(--muted);font-size:18px;max-width:42em}
+  .quote{margin-top:18px;border-left:3px solid var(--gold);padding:8px 0 8px 18px;font-style:italic;color:#33405c;max-width:40em}
+
+  /* demo mock */
+  .demo{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:22px;max-width:680px;margin-top:8px}
+  .demo .q{font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-weight:700;color:var(--navy);font-size:15px}
+  .demo .a{font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;color:#27324c;margin-top:8px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px}
+  .cite{display:inline-block;margin-top:10px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:12px;font-weight:700;color:var(--gold);background:#f7f1e4;border:1px solid #ecdfc4;border-radius:999px;padding:3px 10px}
+  .video{margin-top:18px;background:#0e1830;border-radius:10px;aspect-ratio:16/9;max-width:680px;display:flex;align-items:center;justify-content:center;color:#cdd6ee;font-family:-apple-system,Segoe UI,Roboto,sans-serif;text-align:center}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+  .card{border:1px solid var(--line);border-radius:10px;padding:20px}
+  .card .n{font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-weight:800;color:var(--gold)}
+  .card h3{font-size:17px;margin-top:8px}
+  .card p{margin-top:7px;color:var(--muted);font-size:15px}
+
+  .cta-band{background:var(--navy);color:#fff;text-align:center}
+  .cta-band h2{color:#fff}
+  .cta-band .lead{color:#c9d3e8;margin:12px auto 0}
+  .cta-band .btn{background:#fff;color:var(--navy);margin-top:22px}
+  footer{padding:24px 0;color:var(--muted);font-size:14px}
+  @media(max-width:760px){ .hero h1{font-size:31px} .steps{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand sans">Daniel Olliver <span>·</span> Private AI for law firms</div>
+    <a class="btn" href="mailto:daniel@danielolliver.com?subject=A%20call%20about%20private%20AI">Book a 20-min call</a>
+  </div>
+</header>
+
+<div class="wrap hero">
+  <h1>The time savings of AI — without putting client data at risk.</h1>
+  <p class="sub">A private assistant that answers questions and summarises from your firm's <em>own</em> documents — with sources — running on your own systems. No client or privileged information ever leaves the firm.</p>
+  <div class="cta">
+    <a class="btn" href="mailto:daniel@danielolliver.com?subject=A%20call%20about%20private%20AI">Book a 20-minute call</a>
+    <span class="note">Built around NZ &amp; Australian Law Society AI guidance.</span>
+  </div>
+</div>
+
+<section><div class="wrap">
+  <h2>The problem you already know</h2>
+  <p class="lead">Your Law Society has made it clear:</p>
+  <p class="quote">"Lawyers cannot safely enter confidential, sensitive or privileged client information into public AI chatbots like ChatGPT, or any other public tools." Doing so can waive privilege.</p>
+  <p class="lead">But the time savings are real — and competitors are starting to capture them. The answer isn't to ban AI; it's to use it <strong>privately</strong>.</p>
+</div></section>
+
+<section class="soft"><div class="wrap">
+  <h2>What it does — see for yourself</h2>
+  <p class="lead">Your team asks a question in plain English. The assistant answers from your own documents, policies and precedents, and shows you the source — and nothing leaves your systems.</p>
+  <div id="ms-demo" class="ms-demo">
+    <div class="ms-head"><span class="ms-dot"></span> Firm assistant <span class="ms-lock">🔒 Private · on your systems</span></div>
+    <div id="ms-thread" class="ms-thread"></div>
+  </div>
+  <p class="note" style="margin-top:12px">↑ A live preview — the assistant answering from the firm's own documents, with sources. (Plays on its own; you can add a real screen-recording later if you like.)</p>
+</div></section>
+
+<section><div class="wrap">
+  <h2>How it works</h2>
+  <div class="steps">
+    <div class="card"><div class="n sans">1</div><h3>We point it at your documents</h3><p>Your SOPs, precedents, policies and matter files — set up on your own systems.</p></div>
+    <div class="card"><div class="n sans">2</div><h3>Your team just asks</h3><p>Plain-English questions; instant answers with the source shown, so it's verifiable.</p></div>
+    <div class="card"><div class="n sans">3</div><h3>Nothing leaves the firm</h3><p>Private by design and set up to fit the conduct rules on confidentiality and privilege.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Who's behind it</h2>
+  <p class="lead">I'm Daniel Olliver — a New Zealand-based software developer with a Postgraduate Certificate in Artificial Intelligence. I build private AI systems, and I've delivered production software handling sensitive data, including a patient-assessment platform for a UK healthcare provider. I work with one firm at a time, hands-on, and start with a free demo on a few of your own (redacted) documents so you can see it before committing to anything.</p>
+</div></section>
+
+<section class="cta-band"><div class="wrap">
+  <h2>See it on your own documents.</h2>
+  <p class="lead">A free, no-obligation 20-minute demo — on a few of your own redacted files, so you know exactly what it does for your firm.</p>
+  <a class="btn" href="mailto:daniel@danielolliver.com?subject=A%20call%20about%20private%20AI">Book a 20-minute call</a>
+</div></section>
+
+<footer><div class="wrap">© Daniel Olliver · Private AI for law firms · daniel@danielolliver.com</div></footer>
+
+<style>
+  .ms-demo{max-width:680px;margin-top:10px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 44px -30px rgba(20,30,70,.4);overflow:hidden}
+  .ms-head{display:flex;align-items:center;gap:8px;padding:11px 16px;background:var(--navy);color:#fff;font-family:-apple-system,'Segoe UI',Roboto,sans-serif;font-size:13px;font-weight:600}
+  .ms-dot{width:8px;height:8px;border-radius:50%;background:#52d39a;box-shadow:0 0 0 0 rgba(82,211,154,.6);animation:mspulse 2s infinite}
+  @keyframes mspulse{0%{box-shadow:0 0 0 0 rgba(82,211,154,.5)}70%{box-shadow:0 0 0 7px rgba(82,211,154,0)}100%{box-shadow:0 0 0 0 rgba(82,211,154,0)}}
+  .ms-lock{margin-left:auto;font-weight:600;opacity:.9;font-size:12px}
+  .ms-thread{padding:16px;min-height:236px;font-family:-apple-system,'Segoe UI',Roboto,sans-serif}
+  .ms-row{margin-bottom:13px;opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform .4s ease}
+  .ms-row.show{opacity:1;transform:none}
+  .ms-q{font-weight:700;color:var(--navy);font-size:15px}
+  .ms-q:before{content:"You: "}
+  .ms-a{margin-top:6px;background:var(--soft);border:1px solid var(--line);border-radius:9px;padding:12px 14px;font-size:14.5px;color:#27324c;line-height:1.55}
+  .ms-cite{display:inline-block;margin-top:9px;font-size:11.5px;font-weight:700;color:var(--gold);background:#f7f1e4;border:1px solid #ecdfc4;border-radius:999px;padding:3px 10px}
+  .ms-think{font-size:14px;color:var(--muted)}
+</style>
+<script>
+(function(){
+  var items=[
+    {q:"Can I use ChatGPT to summarise a client's affidavit?",
+     a:"No. An affidavit holds confidential client information — pasting it into ChatGPT can waive privilege and breaches the firm's AI policy. Use the firm's private assistant, which keeps all data on firm systems.",
+     c:"Source: Confidentiality & AI Policy"},
+    {q:"What's our conflict-check process for a new matter?",
+     a:"Before any work begins: search the conflicts database for every party and related entity (including former clients and adverse parties); if a potential conflict appears, escalate to the managing partner; then document the check in the matter file.",
+     c:"Source: Matter Intake › Conflict-Check Process"},
+    {q:"Where do client retainer deposits go?",
+     a:"Into the client trust account — never the operating account. Funds move to operating only after work is billed, per the engagement terms; trust accounting is reconciled monthly.",
+     c:"Source: Billing & Trust Accounting"}
+  ];
+  var thread=document.getElementById('ms-thread'); if(!thread) return;
+  var i=0;
+  function add(html){var d=document.createElement('div');d.className='ms-row';d.innerHTML=html;thread.appendChild(d);requestAnimationFrame(function(){d.classList.add('show');});return d;}
+  function step(){
+    thread.innerHTML='';
+    var it=items[i];
+    add('<div class="ms-q">'+it.q+'</div>');
+    var t=add('<div class="ms-think">Searching the firm’s documents…</div>');
+    setTimeout(function(){
+      t.remove();
+      add('<div class="ms-a">'+it.a+'<div class="ms-cite">'+it.c+'</div></div>');
+      i=(i+1)%items.length;
+      setTimeout(step,4300);
+    },1300);
+  }
+  var started=false;
+  function maybeStart(){if(started)return;var r=thread.getBoundingClientRect();if(r.top<window.innerHeight-60){started=true;step();}}
+  window.addEventListener('scroll',maybeStart,{passive:true});
+  window.addEventListener('load',maybeStart);
+  setTimeout(maybeStart,500);
+})();
+</script>
+</body>
+</html>
