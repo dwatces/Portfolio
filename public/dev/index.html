@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daniel Olliver — Full-Stack Developer</title>
+    <meta
+      name="description"
+      content="Daniel Olliver — full-stack web developer in Auckland, New Zealand. React, Next.js, TypeScript, Node, Express, MongoDB. Production apps from first commit to deployment. Available for contract and freelance work."
+    />
+    <link rel="icon" href="favicon.png" />
+    <meta property="og:title" content="Daniel Olliver — Full-Stack Developer" />
+    <meta
+      property="og:description"
+      content="Four years of professional full-stack development. React, Next.js, TypeScript, Node, Express, MongoDB — idea to production."
+    />
+    <meta property="og:type" content="website" />
+    <style>
+      @font-face {
+        font-family: "Work Sans";
+        src: local("Work Sans"), url("font.ttf") format("truetype");
+        font-display: swap;
+      }
+
+      * {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        outline: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --clr-bg: #f7f8f5;
+        --clr-bg-alt: #ffffff;
+        --clr-fg: #24313a;
+        --clr-heading: #111827;
+        --clr-muted: #64717d;
+        --clr-primary: #256f8f;
+        --clr-primary-soft: #8fc7d8;
+        --clr-accent: #2f6f64;
+        --clr-border: #d8ded8;
+        --clr-chip: #eef3ef;
+        --clr-success: #1f9d68;
+        --clr-success-strong: #0f6b45;
+        --clr-success-soft: #dff4e9;
+        --clr-info-strong: #315c8f;
+        --clr-info-soft: #e2edf8;
+        --shadow: rgba(17, 24, 39, 0.08) 0 14px 40px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        line-height: 1.6;
+        color: var(--clr-fg);
+        background-color: var(--clr-bg);
+        font-family: "Work Sans", Arial, sans-serif;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        line-height: 1.2;
+      }
+      h1 {
+        font-size: 3.6rem;
+      }
+      h2 {
+        font-size: 2.1rem;
+      }
+      h3 {
+        font-size: 1.35rem;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      ul {
+        list-style: none;
+      }
+      :focus-visible {
+        outline: 3px solid #8fc7d8;
+        outline-offset: 3px;
+      }
+
+      main {
+        max-width: 1100px;
+        width: 95%;
+        margin: 0 auto;
+      }
+
+      /* ---------- header / nav ---------- */
+      .header {
+        height: 5rem;
+        max-width: 1100px;
+        width: 95%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid var(--clr-border);
+        background: var(--clr-bg);
+      }
+      .brand {
+        color: var(--clr-heading);
+        font-weight: 800;
+        font-size: 1.35rem;
+      }
+      .nav {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .nav a {
+        color: var(--clr-fg);
+        font-weight: 700;
+        position: relative;
+        padding-bottom: 0.2rem;
+      }
+      .nav a::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 0.18em;
+        background: var(--clr-primary);
+        transition: width 0.2s ease-in;
+      }
+      .nav a:hover::before,
+      .nav a:focus::before {
+        width: 100%;
+      }
+
+      /* ---------- shared bits ---------- */
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--clr-accent);
+        font-size: 0.92rem;
+        font-weight: 800;
+      }
+      .eyebrow span + span::before {
+        content: "";
+        display: inline-block;
+        width: 1.6rem;
+        height: 1px;
+        margin-right: 0.5rem;
+        vertical-align: middle;
+        background: var(--clr-border);
+      }
+      .section {
+        margin-top: 5rem;
+      }
+      .section__header {
+        max-width: 42rem;
+      }
+      .section_title {
+        color: var(--clr-heading);
+        margin-top: 0.35rem;
+      }
+      .section__intro {
+        color: var(--clr-muted);
+        margin-top: 0.7rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        min-height: 2.65rem;
+        border-radius: 6px;
+        padding: 0.65rem 0.95rem;
+        font-weight: 800;
+        font-size: 0.9rem;
+        transition: background 0.2s ease, border-color 0.2s ease,
+          color 0.2s ease;
+      }
+      .btn-primary {
+        background: var(--clr-heading);
+        border: 1px solid var(--clr-heading);
+        color: var(--clr-bg);
+      }
+      .btn-primary:hover,
+      .btn-primary:focus {
+        background: var(--clr-primary);
+        border-color: var(--clr-primary);
+      }
+      .btn-outline {
+        color: var(--clr-primary);
+        border: 1px solid var(--clr-primary);
+      }
+      .btn-outline:hover,
+      .btn-outline:focus {
+        background: var(--clr-primary);
+        color: var(--clr-bg);
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 20rem;
+        gap: 3.5rem;
+        align-items: center;
+        min-height: min(40rem, calc(100vh - 8rem));
+        padding: 3rem 0;
+      }
+      .hero__copy {
+        max-width: 46rem;
+      }
+      .hero__name {
+        max-width: 16ch;
+        margin-top: 0.35rem;
+        color: var(--clr-heading);
+        font-weight: 700;
+      }
+      .hero__desc {
+        margin-top: 1.5rem;
+        max-width: 42rem;
+        color: var(--clr-muted);
+        font-size: 1.08rem;
+      }
+      .hero__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+      .hero__meta span {
+        border: 1px solid var(--clr-border);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.58);
+        color: var(--clr-muted);
+        font-size: 0.9rem;
+        padding: 0.45rem 0.75rem;
+      }
+      .hero__cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 2rem;
+      }
+      .hero__card {
+        display: grid;
+        gap: 0.9rem;
+        justify-items: center;
+        align-self: center;
+        padding: 1rem;
+        border: 1px solid var(--clr-border);
+        border-radius: 8px;
+        background: var(--clr-bg-alt);
+        box-shadow: var(--shadow);
+      }
+      .hero__avatar {
+        width: 100%;
+        aspect-ratio: 1;
+        height: auto;
+        object-fit: cover;
+        object-position: center 25%;
+        border-radius: 6px;
+      }
+      .hero__focus {
+        width: 100%;
+        border-top: 1px solid var(--clr-border);
+        color: var(--clr-muted);
+        font-size: 0.92rem;
+        padding-top: 0.9rem;
+      }
+      .hero__focus span {
+        display: block;
+        color: var(--clr-heading);
+        font-weight: 800;
+        margin-bottom: 0.25rem;
+      }
+      .hero__avail {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        color: var(--clr-muted);
+        font-size: 0.92rem;
+      }
+      .dot {
+        width: 0.65rem;
+        height: 0.65rem;
+        border-radius: 50%;
+        background: var(--clr-success);
+        box-shadow: 0 0 0 4px var(--clr-success-soft);
+      }
+
+      /* ---------- project cards ---------- */
+      .grid {
+        padding-top: 1.5rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+        gap: 1.25rem;
+        align-items: stretch;
+      }
+      .project {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+        padding: 1.5rem;
+        border: 1px solid var(--clr-border);
+        border-radius: 8px;
+        background: var(--clr-bg-alt);
+        box-shadow: var(--shadow);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+      .project:hover {
+        border-color: var(--clr-primary-soft);
+        transform: translateY(-4px);
+      }
+      .project__header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .project__header h3 {
+        margin-top: 0.45rem;
+        color: var(--clr-heading);
+      }
+      .status {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        line-height: 1;
+        padding: 0.38rem 0.55rem;
+      }
+      .status--live {
+        background: var(--clr-success-soft);
+        color: var(--clr-success-strong);
+      }
+      .status--prod {
+        background: var(--clr-info-soft);
+        color: var(--clr-info-strong);
+      }
+      .status-detail {
+        color: var(--clr-muted);
+        font-size: 0.78rem;
+        line-height: 1.4;
+        max-width: 8rem;
+        text-align: right;
+      }
+      .project p.desc {
+        margin-top: 1rem;
+        color: var(--clr-muted);
+      }
+      .highlights {
+        display: grid;
+        gap: 0.55rem;
+        margin-top: 1rem;
+        color: var(--clr-fg);
+        font-size: 0.95rem;
+        list-style: disc;
+        padding-left: 1.1rem;
+      }
+      .stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1.25rem 0;
+      }
+      .stack li {
+        font-weight: 500;
+        font-size: 0.82rem;
+        color: var(--clr-muted);
+        background: var(--clr-chip);
+        border: 1px solid var(--clr-border);
+        border-radius: 999px;
+        padding: 0.35rem 0.55rem;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: auto;
+        padding-top: 0.25rem;
+      }
+      .action {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        min-height: 2.35rem;
+        border: 1px solid var(--clr-border);
+        border-radius: 6px;
+        color: var(--clr-heading);
+        font-size: 0.9rem;
+        font-weight: 700;
+        padding: 0.45rem 0.7rem;
+      }
+      .action:hover,
+      .action:focus {
+        border-color: var(--clr-primary);
+        color: var(--clr-primary);
+      }
+      .action--primary {
+        background: var(--clr-heading);
+        border-color: var(--clr-heading);
+        color: var(--clr-bg);
+      }
+      .action--primary:hover,
+      .action--primary:focus {
+        background: var(--clr-primary);
+        color: var(--clr-bg);
+      }
+      .private-note {
+        margin-top: auto;
+        padding-top: 0.25rem;
+        color: var(--clr-muted);
+        font-size: 0.85rem;
+      }
+
+      /* ---------- experience ---------- */
+      .timeline {
+        margin-top: 1.5rem;
+        display: grid;
+        gap: 1.1rem;
+      }
+      .role {
+        border: 1px solid var(--clr-border);
+        border-left: 3px solid var(--clr-primary);
+        border-radius: 8px;
+        background: var(--clr-bg-alt);
+        box-shadow: var(--shadow);
+        padding: 1.25rem 1.4rem;
+      }
+      .role__top {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: baseline;
+      }
+      .role__title {
+        color: var(--clr-heading);
+        font-weight: 800;
+        font-size: 1.1rem;
+      }
+      .role__org {
+        color: var(--clr-primary);
+        font-weight: 700;
+      }
+      .role__dates {
+        color: var(--clr-muted);
+        font-size: 0.9rem;
+        white-space: nowrap;
+      }
+      .role__desc {
+        color: var(--clr-muted);
+        margin-top: 0.5rem;
+      }
+
+      /* ---------- skills ---------- */
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .skills__group {
+        border-top: 3px solid var(--clr-heading);
+        padding-top: 1rem;
+      }
+      .skills__group h3 {
+        color: var(--clr-heading);
+        font-size: 1.1rem;
+      }
+      .skills__list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+        margin-top: 0.85rem;
+      }
+      .skills__list li {
+        border: 1px solid var(--clr-border);
+        border-radius: 999px;
+        background: var(--clr-bg-alt);
+        color: var(--clr-muted);
+        font-size: 0.9rem;
+        font-weight: 700;
+        padding: 0.45rem 0.65rem;
+      }
+
+      /* ---------- education ---------- */
+      .edu {
+        margin-top: 1.5rem;
+        display: grid;
+        gap: 0.7rem;
+      }
+      .edu__item {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        border-top: 1px solid var(--clr-border);
+        padding-top: 0.7rem;
+      }
+      .edu__item strong {
+        color: var(--clr-heading);
+      }
+      .edu__item span {
+        color: var(--clr-muted);
+        font-size: 0.95rem;
+      }
+
+      /* ---------- contact ---------- */
+      .contact {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        border: 1px solid var(--clr-border);
+        border-radius: 10px;
+        background: var(--clr-bg-alt);
+        box-shadow: var(--shadow);
+        padding: 2rem;
+      }
+      .contact__copy {
+        color: var(--clr-muted);
+        margin-top: 0.5rem;
+        max-width: 30rem;
+      }
+      .contact__actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      /* ---------- footer ---------- */
+      .site-footer {
+        max-width: 1100px;
+        width: 95%;
+        margin: 4rem auto 2.5rem;
+        color: var(--clr-muted);
+        font-size: 0.9rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        border-top: 1px solid var(--clr-border);
+        padding-top: 1.25rem;
+      }
+      .site-footer a {
+        color: var(--clr-primary);
+        font-weight: 700;
+      }
+
+      /* ---------- responsive ---------- */
+      @media (max-width: 820px) {
+        .hero {
+          grid-template-columns: 1fr;
+          min-height: auto;
+          padding: 2.5rem 0 1.5rem;
+        }
+        .hero__card {
+          justify-items: start;
+          max-width: 18rem;
+        }
+        .skills {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2.4rem;
+        }
+        h2 {
+          font-size: 1.75rem;
+        }
+        .header {
+          height: 4rem;
+        }
+        .nav {
+          gap: 1rem;
+          font-size: 0.95rem;
+        }
+        .section {
+          margin-top: 3rem;
+        }
+        .skills {
+          grid-template-columns: 1fr;
+        }
+        .hero__name {
+          max-width: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <a href="#top" class="brand">Daniel Olliver</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__copy">
+          <p class="eyebrow">
+            <span>Full-Stack Developer</span><span>Auckland, NZ</span>
+          </p>
+          <h1 id="hero-title" class="hero__name">
+            Daniel Olliver builds full-stack web apps that ship.
+          </h1>
+          <p class="hero__desc">
+            Four years of professional full-stack development across the
+            JavaScript stack &mdash; React, Next.js, TypeScript, Node, Express,
+            and MongoDB / Supabase. I take products from the first commit to
+            production: authentication, REST APIs, Stripe payments, third-party
+            integrations, and deployment. I&rsquo;ve delivered a production
+            patient-assessment platform for a UK healthcare provider, shipped
+            features inside a live scheduling product, and built and deployed a
+            handful of full-stack apps you can open right now.
+          </p>
+          <div class="hero__meta" aria-label="Summary">
+            <span>4 years professional delivery</span>
+            <span>Production healthcare platform</span>
+            <span>MERN &middot; Next.js &middot; TypeScript</span>
+            <span>Idea &rarr; deployed</span>
+          </div>
+          <div class="hero__cta">
+            <a href="mailto:daniel@danielolliver.com" class="btn btn-primary"
+              >Email Me</a
+            >
+            <a
+              href="resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              class="btn btn-outline"
+              >R&eacute;sum&eacute; (PDF)</a
+            >
+            <a
+              href="https://github.com/dwatces"
+              target="_blank"
+              rel="noreferrer"
+              class="btn btn-outline"
+              >GitHub</a
+            >
+          </div>
+        </div>
+        <div class="hero__card" aria-label="Profile">
+          <img
+            src="profile.jpg"
+            alt="Daniel Olliver"
+            class="hero__avatar"
+            width="288"
+            height="288"
+          />
+          <div class="hero__focus">
+            <span>What I do</span>
+            Full-stack web apps &mdash; front end, API, database, and
+            deployment &mdash; built to ship and maintained in production.
+          </div>
+          <div class="hero__avail">
+            <span class="dot" aria-hidden="true"></span>
+            Available for contract &amp; freelance work
+          </div>
+        </div>
+      </section>
+
+      <!-- SELECTED WORK -->
+      <section id="work" class="section" aria-labelledby="work-title">
+        <div class="section__header">
+          <p class="eyebrow">Selected work</p>
+          <h2 id="work-title" class="section_title">Shipped, in production</h2>
+          <p class="section__intro">
+            A commercial client build plus live apps you can open and click
+            through right now &mdash; accounts, APIs, data, and deployment.
+          </p>
+        </div>
+        <div class="grid">
+          <!-- Healthcare platform -->
+          <article class="project">
+            <div class="project__header">
+              <div>
+                <p class="status status--prod">Production</p>
+                <h3>ADHD Assessment Platform</h3>
+              </div>
+              <span class="status-detail">UK healthcare provider</span>
+            </div>
+            <p class="desc">
+              A patient-facing ADHD assessment platform delivered for a UK
+              healthcare provider &mdash; a real clinical workflow running in
+              commercial production.
+            </p>
+            <ul class="highlights" aria-label="ADHD platform highlights">
+              <li>
+                Full-stack build: React frontend, Node / Express backend, and
+                Supabase (PostgreSQL) for patient data
+              </li>
+              <li>
+                Delivered over a three-month contract and deployed to production
+                under strict reliability requirements
+              </li>
+            </ul>
+            <ul class="stack">
+              <li>React</li>
+              <li>Node.js</li>
+              <li>Express</li>
+              <li>Supabase</li>
+              <li>PostgreSQL</li>
+            </ul>
+            <p class="private-note">Private client product &mdash; walkthrough on request.</p>
+          </article>
+
+          <!-- Scenic -->
+          <article class="project">
+            <div class="project__header">
+              <div>
+                <p class="status status--live">Live</p>
+                <h3>Scenic</h3>
+              </div>
+              <span class="status-detail">Vercel &middot; MongoDB Atlas</span>
+            </div>
+            <p class="desc">
+              A full-stack image-sharing app where users register,
+              authenticate, upload scenes, and browse community posts.
+            </p>
+            <ul class="highlights" aria-label="Scenic highlights">
+              <li>
+                React client and Express / MongoDB API, both deployed serverless
+                on Vercel
+              </li>
+              <li>Account flows, JWT authorization, and image upload handling</li>
+            </ul>
+            <ul class="stack">
+              <li>React</li>
+              <li>Node.js</li>
+              <li>Express</li>
+              <li>MongoDB</li>
+              <li>JWT</li>
+            </ul>
+            <div class="actions">
+              <a
+                href="https://github.com/dwatces/Scenic"
+                target="_blank"
+                rel="noreferrer"
+                class="action"
+                >Code</a
+              >
+              <a
+                href="https://scenic-app.vercel.app/"
+                target="_blank"
+                rel="noreferrer"
+                class="action action--primary"
+                >Live Site</a
+              >
+            </div>
+          </article>
+
+          <!-- NZ Camps -->
+          <article class="project">
+            <div class="project__header">
+              <div>
+                <p class="status status--live">Live</p>
+                <h3>NZ Camps</h3>
+              </div>
+              <span class="status-detail">Vercel &middot; MongoDB Atlas</span>
+            </div>
+            <p class="desc">
+              A campground review platform for New Zealand with accounts,
+              campground CRUD, reviews, and location geocoding. Recently
+              modernized (mongoose 5&rarr;8) and redeployed serverless.
+            </p>
+            <ul class="highlights" aria-label="NZ Camps highlights">
+              <li>Server-rendered Express app using EJS, MongoDB, and RESTful routes</li>
+              <li>Auth, data modelling, maps, and deployment trade-offs</li>
+            </ul>
+            <ul class="stack">
+              <li>Node.js</li>
+              <li>Express</li>
+              <li>MongoDB</li>
+              <li>EJS</li>
+              <li>Passport</li>
+            </ul>
+            <div class="actions">
+              <a
+                href="https://github.com/dwatces/NZCamps"
+                target="_blank"
+                rel="noreferrer"
+                class="action"
+                >Code</a
+              >
+              <a
+                href="https://nz-camps.vercel.app/"
+                target="_blank"
+                rel="noreferrer"
+                class="action action--primary"
+                >Live Site</a
+              >
+            </div>
+          </article>
+
+          <!-- Eon -->
+          <article class="project">
+            <div class="project__header">
+              <div>
+                <p class="status status--live">Live</p>
+                <h3>Eon Candles</h3>
+              </div>
+              <span class="status-detail">Next.js &middot; Vercel</span>
+            </div>
+            <p class="desc">
+              A brand and shop site for Eon, a New Zealand candle label pairing
+              hand-poured soy candles with a calm, wellness-led identity.
+            </p>
+            <ul class="highlights" aria-label="Eon highlights">
+              <li>Multi-page Next.js build spanning home, shop, and about views</li>
+              <li>Responsive product layout and brand storytelling, deployed on Vercel</li>
+            </ul>
+            <ul class="stack">
+              <li>Next.js</li>
+              <li>React</li>
+              <li>JavaScript</li>
+              <li>CSS</li>
+              <li>Vercel</li>
+            </ul>
+            <div class="actions">
+              <a
+                href="https://github.com/dwatces/Eon"
+                target="_blank"
+                rel="noreferrer"
+                class="action"
+                >Code</a
+              >
+              <a
+                href="https://eon-ht82.vercel.app/"
+                target="_blank"
+                rel="noreferrer"
+                class="action action--primary"
+                >Live Site</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" class="section" aria-labelledby="exp-title">
+        <div class="section__header">
+          <p class="eyebrow">Experience</p>
+          <h2 id="exp-title" class="section_title">Where I&rsquo;ve worked</h2>
+          <p class="section__intro">
+            Intern to full-time to independent &mdash; four years shipping
+            production web software.
+          </p>
+        </div>
+        <div class="timeline">
+          <article class="role">
+            <div class="role__top">
+              <div class="role__title">
+                Freelance Full-Stack Developer
+                <span class="role__org">&middot; Independent</span>
+              </div>
+              <div class="role__dates">2024 &ndash; present</div>
+            </div>
+            <p class="role__desc">
+              Delivered a production ADHD patient-assessment platform for a UK
+              healthcare provider (three-month contract &mdash; React / Node /
+              Express / Supabase). Built and maintained WordPress sites for
+              international clients across hosting, DNS, CRM integrations, and
+              GA4 / GTM analytics, and integrated Stripe and Facebook Ads across
+              e-commerce projects.
+            </p>
+          </article>
+
+          <article class="role">
+            <div class="role__top">
+              <div class="role__title">
+                Developer
+                <span class="role__org">&middot; 3PM</span>
+              </div>
+              <div class="role__dates">2022 &ndash; 2024</div>
+            </div>
+            <p class="role__desc">
+              Delivered a React / Node.js resource-scheduling platform for
+              construction trades on a three-month contract, then brought on
+              full-time. Shipped production MERN features in an Agile team with
+              sprint cycles, code reviews, and cross-functional work.
+            </p>
+          </article>
+
+          <article class="role">
+            <div class="role__top">
+              <div class="role__title">
+                Graduate Teaching Assistant
+                <span class="role__org">&middot; University of Auckland</span>
+              </div>
+              <div class="role__dates">2024</div>
+            </div>
+            <p class="role__desc">
+              Supported teaching and student work across computer-science
+              coursework.
+            </p>
+          </article>
+
+          <article class="role">
+            <div class="role__top">
+              <div class="role__title">
+                Full-Stack Developer Intern &amp; Scrum Master
+                <span class="role__org">&middot; OutPace</span>
+              </div>
+              <div class="role__dates">2021</div>
+            </div>
+            <p class="role__desc">
+              Designed and built a responsive full-stack application working
+              directly with company directors, and led Agile ceremonies &mdash;
+              standups, retrospectives, and weekly demos.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" class="section" aria-labelledby="skills-title">
+        <div class="section__header">
+          <p class="eyebrow">Toolbox</p>
+          <h2 id="skills-title" class="section_title">Full-stack, end to end</h2>
+        </div>
+        <div class="skills">
+          <section class="skills__group">
+            <h3>Frontend</h3>
+            <ul class="skills__list">
+              <li>React</li>
+              <li>Next.js</li>
+              <li>TypeScript</li>
+              <li>JavaScript</li>
+              <li>HTML</li>
+              <li>CSS</li>
+            </ul>
+          </section>
+          <section class="skills__group">
+            <h3>Backend &amp; Data</h3>
+            <ul class="skills__list">
+              <li>Node.js</li>
+              <li>Express</li>
+              <li>MongoDB</li>
+              <li>Supabase</li>
+              <li>REST APIs</li>
+              <li>EJS</li>
+            </ul>
+          </section>
+          <section class="skills__group">
+            <h3>Integrations</h3>
+            <ul class="skills__list">
+              <li>Stripe</li>
+              <li>Google APIs</li>
+              <li>WordPress</li>
+              <li>Auth / JWT</li>
+              <li>AI / LLM (RAG)</li>
+            </ul>
+          </section>
+          <section class="skills__group">
+            <h3>Delivery</h3>
+            <ul class="skills__list">
+              <li>Git</li>
+              <li>Vercel</li>
+              <li>Firebase</li>
+              <li>Heroku</li>
+              <li>Agile</li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section class="section" aria-labelledby="edu-title">
+        <div class="section__header">
+          <p class="eyebrow">Education</p>
+          <h2 id="edu-title" class="section_title">Background</h2>
+        </div>
+        <div class="edu">
+          <div class="edu__item">
+            <strong>Postgraduate Certificate in Artificial Intelligence</strong>
+            <span>University of Auckland &middot; 2024</span>
+          </div>
+          <div class="edu__item">
+            <strong>BSc, Computer Science</strong>
+            <span>Auckland University of Technology &middot; 2021</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="section">
+        <div class="contact">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2 class="section_title">Let&rsquo;s build the next one.</h2>
+            <p class="contact__copy">
+              Based in Auckland and available for contract and freelance
+              full-stack development &mdash; locally and remote.
+            </p>
+          </div>
+          <div class="contact__actions">
+            <a href="mailto:daniel@danielolliver.com" class="btn btn-primary"
+              >Email Me</a
+            >
+            <a
+              href="resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              class="btn btn-outline"
+              >R&eacute;sum&eacute; (PDF)</a
+            >
+            <a
+              href="https://github.com/dwatces"
+              target="_blank"
+              rel="noreferrer"
+              class="btn btn-outline"
+              >GitHub</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>&copy; 2026 Daniel Olliver &middot; Auckland, New Zealand</span>
+      <span>
+        Also building AI &amp; research &mdash;
+        <a href="https://danielolliver.com" target="_blank" rel="noreferrer"
+          >danielolliver.com</a
+        >
+      </span>
+    </footer>
+  </body>
+</html>

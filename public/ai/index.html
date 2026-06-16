@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Private AI for law &amp; accounting firms — the time savings, without the confidentiality risk</title>
+<meta name="description" content="A private AI assistant that answers and summarises from your firm's own documents — cited, and running on your own systems. No client, privileged, or financial information ever leaves the firm. Built around NZ & Australian professional-conduct guidance." />
+<link rel="icon" href="favicon.png" />
+<!-- Deploy: drop this folder on a host pointed at ai.danielolliver.com (Netlify Drop /
+     Firebase target / Vercel). Self-contained: no build step, no external assets.
+     Update the mailto: addresses if you switch to a dedicated inbox or a Calendly link. -->
+<style>
+  @font-face{font-family:"Work Sans";src:local("Work Sans"),url("font.ttf") format("truetype");font-display:swap;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --bg:#f7f8f5;--bg-alt:#ffffff;--fg:#24313a;--head:#111827;--muted:#5c6873;
+    --teal:#256f8f;--teal-soft:#8fc7d8;--accent:#2f6f64;--border:#d8ded8;--chip:#eef3ef;
+    --ok:#1f9d68;--ok-soft:#dff4e9;--info-soft:#e2edf8;--info:#315c8f;
+    --shadow:rgba(17,24,39,.08) 0 14px 40px;
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:"Work Sans",Arial,sans-serif;color:var(--fg);background:var(--bg);line-height:1.6;min-width:320px;}
+  h1,h2,h3{line-height:1.2;color:var(--head);font-weight:700;}
+  h1{font-size:3.1rem;letter-spacing:-.5px;}
+  h2{font-size:2rem;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  :focus-visible{outline:3px solid var(--teal-soft);outline-offset:3px;}
+  .wrap{max-width:1100px;width:95%;margin:0 auto;}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;min-height:2.7rem;
+       border-radius:6px;padding:.7rem 1.1rem;font-weight:800;font-size:.92rem;
+       transition:background .2s ease,border-color .2s ease,color .2s ease;}
+  .btn-primary{background:var(--head);border:1px solid var(--head);color:var(--bg);}
+  .btn-primary:hover{background:var(--teal);border-color:var(--teal);}
+  .btn-outline{color:var(--teal);border:1px solid var(--teal);}
+  .btn-outline:hover{background:var(--teal);color:#fff;}
+  .btn-light{background:#fff;border:1px solid #fff;color:var(--head);}
+  .btn-light:hover{background:var(--teal);border-color:var(--teal);color:#fff;}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:.5rem;color:var(--accent);font-size:.9rem;font-weight:800;flex-wrap:wrap;}
+  .eyebrow span+span::before{content:"";display:inline-block;width:1.5rem;height:1px;margin-right:.5rem;vertical-align:middle;background:var(--border);}
+
+  /* header */
+  header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--border);}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:5rem;gap:1rem;}
+  .brand{color:var(--head);font-weight:800;font-size:1.12rem;}
+  .brand b{color:var(--teal);font-weight:800;}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) 26rem;gap:3rem;align-items:center;padding:3.4rem 0 3rem;}
+  .hero__copy{max-width:40rem;}
+  .hero h1{margin-top:.5rem;max-width:15ch;}
+  .hero .sub{margin-top:1.3rem;font-size:1.12rem;color:var(--muted);max-width:34em;}
+  .hero .cta{margin-top:1.8rem;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;}
+  .trust{margin-top:1.3rem;display:flex;flex-wrap:wrap;gap:.6rem;}
+  .trust span{border:1px solid var(--border);background:rgba(255,255,255,.6);color:var(--muted);
+              font-size:.84rem;border-radius:999px;padding:.4rem .7rem;}
+
+  .hero__demo{display:flex;flex-direction:column;}
+
+  /* sections */
+  section.block{padding:3.6rem 0;border-top:1px solid var(--border);}
+  .block .head{max-width:44rem;}
+  .lead{margin-top:.7rem;color:var(--muted);font-size:1.06rem;max-width:44em;}
+  .quote{margin-top:1.1rem;border-left:3px solid var(--teal);padding:.4rem 0 .4rem 1.1rem;color:#384455;font-size:1.02rem;max-width:42em;}
+  .quote i{font-style:italic;}
+  .quote .who{display:block;font-size:.85rem;color:var(--muted);margin-top:.4rem;font-style:normal;}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-top:1.6rem;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:1.6rem;}
+  .card{border:1px solid var(--border);border-radius:10px;background:var(--bg-alt);box-shadow:var(--shadow);padding:1.4rem 1.5rem;}
+  .card .n{font-weight:800;color:var(--accent);font-size:.95rem;}
+  .card h3{font-size:1.12rem;margin-top:.35rem;}
+  .card p{margin-top:.5rem;color:var(--muted);font-size:.97rem;}
+  .card .tagrow{margin-bottom:.2rem;}
+  .tag-pill{display:inline-block;font-size:.74rem;font-weight:800;border-radius:999px;padding:.28rem .55rem;letter-spacing:.02em;}
+  .tag-law{background:var(--info-soft);color:var(--info);}
+  .tag-acc{background:var(--ok-soft);color:#0f6b45;}
+
+  /* who's behind */
+  .who-behind{display:grid;grid-template-columns:1fr;gap:0;}
+
+  /* cta band */
+  .cta-band{background:var(--head);color:#eef2f7;text-align:center;border:0;}
+  .cta-band h2{color:#fff;}
+  .cta-band .lead{color:#c5cedd;margin:.8rem auto 0;}
+
+  footer{padding:1.8rem 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--border);text-align:center;}
+
+  /* chat demo */
+  .demo{background:var(--bg-alt);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;}
+  .demo__head{display:flex;align-items:center;gap:.5rem;padding:.75rem 1rem;background:var(--head);color:#fff;font-size:.82rem;font-weight:700;}
+  .demo__dot{width:.5rem;height:.5rem;border-radius:50%;background:#52d39a;box-shadow:0 0 0 0 rgba(82,211,154,.6);animation:pulse 2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(82,211,154,.5)}70%{box-shadow:0 0 0 7px rgba(82,211,154,0)}100%{box-shadow:0 0 0 0 rgba(82,211,154,0)}}
+  .demo__lock{margin-left:auto;font-weight:700;opacity:.92;font-size:.74rem;}
+  .demo__thread{padding:1rem;min-height:16.5rem;}
+  .row{margin-bottom:.85rem;opacity:0;transform:translateY(6px);transition:opacity .4s ease,transform .4s ease;}
+  .row.show{opacity:1;transform:none;}
+  .q{font-weight:800;color:var(--head);font-size:.95rem;}
+  .q:before{content:"You: ";color:var(--teal);}
+  .qtag{margin-left:.4rem;font-size:.7rem;font-weight:800;border-radius:999px;padding:.15rem .45rem;vertical-align:1px;}
+  .a{margin-top:.5rem;background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:.75rem .85rem;font-size:.92rem;color:#2b3647;line-height:1.55;}
+  .cite{display:inline-block;margin-top:.6rem;font-size:.72rem;font-weight:800;color:var(--accent);background:var(--chip);border:1px solid var(--border);border-radius:999px;padding:.2rem .6rem;}
+  .think{font-size:.9rem;color:var(--muted);}
+  .caret{display:inline-block;margin-left:1px;color:var(--teal);animation:blink 1.05s step-end infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  .demo__cap{margin-top:.85rem;color:var(--muted);font-size:.82rem;text-align:center;line-height:1.45;}
+
+  @media(max-width:880px){
+    .hero{grid-template-columns:1fr;gap:2rem;padding:2.6rem 0 1.5rem;}
+    .hero h1{max-width:none;}
+    .grid2,.grid3{grid-template-columns:1fr;}
+  }
+  @media(max-width:600px){
+    h1{font-size:2.3rem;}
+    h2{font-size:1.65rem;}
+    .nav{height:4rem;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">Daniel Olliver <b>· Private AI</b></div>
+    <a class="btn btn-primary" href="mailto:daniel@danielolliver.com?subject=A%20call%20about%20private%20AI">Book a 20-min call</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <div class="wrap hero">
+    <div class="hero__copy">
+      <p class="eyebrow"><span>Private AI for law &amp; accounting firms</span><span>NZ &amp; Australia</span></p>
+      <h1>The time savings of AI — without putting client data at risk.</h1>
+      <p class="sub">A private assistant that answers questions and summarises from your firm's <em>own</em> documents — with sources — running on your own systems. No client, privileged, or financial information ever leaves the firm.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="mailto:daniel@danielolliver.com?subject=A%20call%20about%20private%20AI">Book a 20-minute call</a>
+        <a class="btn btn-outline" href="#how">How it works</a>
+      </div>
+      <div class="trust">
+        <span>Runs on your systems</span>
+        <span>Every answer cited</span>
+        <span>Built around conduct-rule guidance</span>
+      </div>
+    </div>
+
+    <div class="hero__demo">
+      <div class="demo" aria-label="Live preview of the firm assistant">
+      <div class="demo__head"><span class="demo__dot"></span> Firm assistant <span class="demo__lock">🔒 Private · on your systems</span></div>
+      <div id="thread" class="demo__thread"></div>
+      </div>
+      <p class="demo__cap">A live preview — real, cited answers over a sample firm's own documents, generated privately so nothing leaves the firm.</p>
+    </div>
+  </div>
+
+  <!-- PROBLEM -->
+  <section class="block"><div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span>The problem you already know</span></p>
+      <h2>Client information can't go into public AI.</h2>
+    </div>
+    <p class="quote"><i>"Lawyers cannot safely enter confidential, sensitive or privileged client information into public AI chatbots like ChatGPT, or any other public tools."</i> Doing so can waive privilege.
+      <span class="who">— reflecting NZ &amp; Australian Law Society guidance</span></p>
+    <p class="quote">For accountants, client financial information is confidential under the professional Code of Ethics — the same duty means tax returns, statements and client records can't be pasted into public AI tools.
+      <span class="who">— professional confidentiality obligations</span></p>
+    <p class="lead">But the time savings are real — and competitors are starting to capture them. The answer isn't to ban AI; it's to use it <strong>privately</strong>.</p>
+  </div></section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="block"><div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span>Built for firms that hold confidential client information</span></p>
+      <h2>Who it's for</h2>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <div class="tagrow"><span class="tag-pill tag-law">Law firms</span></div>
+        <h3>Your precedents, on tap — privately</h3>
+        <p>Answer and summarise from your own precedents, policies and matter files — without ever risking privilege or breaching the conduct rules.</p>
+      </div>
+      <div class="card">
+        <div class="tagrow"><span class="tag-pill tag-acc">Accounting &amp; bookkeeping firms</span></div>
+        <h3>Your processes, instantly searchable</h3>
+        <p>Put your SOPs, engagement terms and process docs to work — while client financials and records stay entirely on your systems.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- HOW IT WORKS -->
+  <section class="block" id="how"><div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span>How it works</span></p>
+      <h2>Set up around your firm — not the other way round.</h2>
+    </div>
+    <div class="grid3">
+      <div class="card"><div class="n">01</div><h3>We point it at your documents</h3><p>Your SOPs, precedents, policies and client-process files — set up on your own systems.</p></div>
+      <div class="card"><div class="n">02</div><h3>Your team just asks</h3><p>Plain-English questions; instant answers with the source shown, so it's verifiable.</p></div>
+      <div class="card"><div class="n">03</div><h3>Nothing leaves the firm</h3><p>Private by design and set up to fit your duties on confidentiality and privilege.</p></div>
+    </div>
+  </div></section>
+
+  <!-- WHO'S BEHIND -->
+  <section class="block"><div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span>Who's behind it</span></p>
+      <h2>One developer, hands-on.</h2>
+    </div>
+    <p class="lead">I'm Daniel Olliver — a New Zealand-based software developer with a Postgraduate Certificate in Artificial Intelligence. I build private AI systems, and I've delivered production software handling sensitive data, including a patient-assessment platform for a UK healthcare provider. I work with one firm at a time, hands-on, and start with a free demo on a few of your own (redacted) documents so you can see it before committing to anything.</p>
+  </div></section>
+
+  <!-- CTA -->
+  <section class="block cta-band"><div class="wrap">
+    <h2>See it on your own documents.</h2>
+    <p class="lead">A free, no-obligation 20-minute demo — on a few of your own redacted files, so you know exactly what it does for your firm.</p>
+    <div class="cta" style="justify-content:center;margin-top:1.6rem;">
+      <a class="btn btn-light" href="mailto:daniel@danielolliver.com?subject=A%20call%20about%20private%20AI">Book a 20-minute call</a>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap">© Daniel Olliver · Private AI for law &amp; accounting firms · daniel@danielolliver.com</div></footer>
+
+<script>
+(function(){
+  var items=[{"q": "Can I paste a client's affidavit into ChatGPT to summarise it?", "a": "No. Pasting a client's affidavit into ChatGPT would violate the firm's AI policy, breach confidentiality, and risk waiving privilege — this is treated as an ethics issue. Client information must stay within firm-controlled systems only. If you need AI help summarizing client documents, use the firm's approved internal tool instead.", "c": "Source: Confidentiality & AI Policy", "tag": "Law", "cls": "tag-law"}, {"q": "Can I upload a client's tax return to an AI tool to pull the figures?", "a": "No. Client data must never be pasted into public or third-party cloud AI services — tax documents and sensitive information must stay within firm-controlled systems only. The firm has an internal knowledge assistant that runs on firm hardware specifically because client and firm data cannot leave the building.", "c": "Source: Private AI Policy", "tag": "Accounting", "cls": "tag-acc"}, {"q": "A potential new client wants to sue someone we acted for last year — is that a conflict?", "a": "That's a potential conflict that must be escalated to the managing partner before proceeding. The firm needs to run a conflict check against all former clients, and representing a new client against a former client typically raises conflict-of-interest concerns.", "c": "Source: Conflict-Check Process", "tag": "Law", "cls": "tag-law"}, {"q": "Can I email a client's financial statements to my personal email to finish them at home?", "a": "No, you cannot email client financial statements to your personal email. All client data must stay within firm-controlled systems, and sensitive documents should never be shared via unencrypted email attachments.", "c": "Source: Client Data Handling", "tag": "Accounting", "cls": "tag-acc"}, {"q": "Is it OK to use ChatGPT to help draft a contract if I take the client's name out first?", "a": "No. The firm's policy prohibits using public AI tools like ChatGPT for client work, even if you remove identifying information. Pasting case facts or contract details into public tools can waive privilege and breach confidentiality, and is treated as an ethics issue.", "c": "Source: AI Policy", "tag": "Law", "cls": "tag-law"}, {"q": "For a tax return with a large balance owing, who has to sign off before we file?", "a": "For returns with a balance due over $25,000, a partner provides final sign-off before the return is e-filed. The return first goes through the standard two-tier review—preparer and senior reviewer—but the partner's approval is required as the final step for these higher-balance returns.", "c": "Source: Two-Tier Review", "tag": "Accounting", "cls": "tag-acc"}, {"q": "What do we do if a client's confidential information is accidentally leaked or breached?", "a": "If you suspect client data has been exposed — whether through a lost device, misdirected email, or suspicious login — report it to the practice manager and managing partner within one hour. Do not investigate the breach yourself. The firm follows a written incident-response plan to handle these situations properly.", "c": "Source: Data Handling & Breach Response", "tag": "Law", "cls": "tag-law"}, {"q": "Can I use a free online AI tool to categorise a client's bank transactions?", "a": "No. The firm prohibits pasting client data into public, third-party cloud AI services — that includes free online tools. Client information must stay on firm-controlled infrastructure only. If you need to categorize transactions, use tools and systems the firm manages internally.", "c": "Source: Private AI Policy", "tag": "Accounting", "cls": "tag-acc"}];
+  var thread=document.getElementById('thread'); if(!thread) return;
+  var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var i=0;
+  function wait(ms){return new Promise(function(r){setTimeout(r,ms);});}
+  function type(el,text,sp){
+    return new Promise(function(res){
+      if(REDUCED){el.textContent=text;return res();}
+      var n=0;
+      (function tick(){
+        el.textContent=text.slice(0,n);
+        if(n++>=text.length) return res();
+        setTimeout(tick,sp);
+      })();
+    });
+  }
+  function row(cls){var d=document.createElement('div');d.className='row show '+(cls||'');return d;}
+  function step(){
+    thread.innerHTML='';
+    var it=items[i];
+    var qRow=row(); qRow.innerHTML='<div class="q"><span class="qt"></span></div>';
+    thread.appendChild(qRow);
+    type(qRow.querySelector('.qt'), it.q, 16).then(function(){
+      var tag=document.createElement('span'); tag.className='qtag '+it.cls; tag.textContent=it.tag;
+      qRow.querySelector('.q').appendChild(tag);
+      var think=row('think'); think.textContent='Searching the firm\u2019s documents\u2026';
+      thread.appendChild(think);
+      return wait(REDUCED?250:950).then(function(){
+        think.remove();
+        var aRow=row(); aRow.innerHTML='<div class="a"><span class="at"></span><span class="caret">\u258b</span></div>';
+        thread.appendChild(aRow);
+        return type(aRow.querySelector('.at'), it.a, 15).then(function(){
+          var car=aRow.querySelector('.caret'); if(car) car.remove();
+          var cite=document.createElement('div'); cite.className='cite'; cite.textContent=it.c;
+          aRow.querySelector('.a').appendChild(cite);
+          return wait(2700);
+        });
+      });
+    }).then(function(){ i=(i+1)%items.length; step(); });
+  }
+  var started=false;
+  function maybeStart(){if(started)return;var r=thread.getBoundingClientRect();if(r.top<window.innerHeight-40){started=true;step();}}
+  window.addEventListener('scroll',maybeStart,{passive:true});
+  window.addEventListener('load',maybeStart);
+  setTimeout(maybeStart,400);
+})();
+</script>
+</body>
+</html>
