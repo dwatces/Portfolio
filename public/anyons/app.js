@@ -205,6 +205,33 @@
     branchout.textContent = "";
   }
   dial.addEventListener("input", updateDial);
+
+  let isDraggingBloch = false;
+  bl.style.cursor = "pointer";
+  bl.style.touchAction = "none";
+  bl.addEventListener("pointerdown", (ev) => {
+    isDraggingBloch = true;
+    bl.setPointerCapture(ev.pointerId);
+    updateFromBloch(ev);
+  });
+  bl.addEventListener("pointermove", (ev) => {
+    if (isDraggingBloch) updateFromBloch(ev);
+  });
+  const stopBlochDrag = () => { isDraggingBloch = false; };
+  bl.addEventListener("pointerup", stopBlochDrag);
+  bl.addEventListener("pointercancel", stopBlochDrag);
+
+  function updateFromBloch(ev) {
+    const r = bl.getBoundingClientRect();
+    const px = (ev.clientX - r.left) * (bl.width / r.width) - bl.width / 2;
+    const py = (ev.clientY - r.top) * (bl.height / r.height) - bl.height / 2;
+    let th = Math.atan2(px, -py);
+    if (th < 0) th = 0;
+    let val = (th / (Math.PI / 4)) * 100;
+    dial.value = Math.max(0, Math.min(100, val));
+    updateDial();
+  }
+
   document.getElementById("roll").addEventListener("click", () => {
     // sample a branch by its Born probability; show outcome + Pauli-frame fix
     const u = Math.random();
