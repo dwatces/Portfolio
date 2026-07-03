@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://danielolliver.com/</loc><lastmod>2026-07-04</lastmod><priority>1.0</priority></url>
+  <url><loc>https://danielolliver.com/ai/</loc><lastmod>2026-07-02</lastmod><priority>0.9</priority></url>
+  <url><loc>https://danielolliver.com/dev/</loc><lastmod>2026-06-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://danielolliver.com/law/</loc><lastmod>2026-06-16</lastmod><priority>0.9</priority></url>
+  <url><loc>https://danielolliver.com/essay/</loc><lastmod>2026-06-30</lastmod><priority>0.7</priority></url>
+  <url><loc>https://danielolliver.com/anyons/</loc><lastmod>2026-06-30</lastmod><priority>0.7</priority></url>
+  <url><loc>https://danielolliver.com/anyons/decoder/</loc><lastmod>2026-06-30</lastmod><priority>0.6</priority></url>
+  <url><loc>https://danielolliver.com/research/braiding/</loc><lastmod>2026-06-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://danielolliver.com/research/chern/</loc><lastmod>2026-06-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://danielolliver.com/research/coldstart/</loc><lastmod>2026-06-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://danielolliver.com/research/decoder/</loc><lastmod>2026-06-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://danielolliver.com/research/nonabelian/</loc><lastmod>2026-06-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://danielolliver.com/research/qrc/</loc><lastmod>2026-06-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://danielolliver.com/resume.pdf</loc><lastmod>2026-06-30</lastmod><priority>0.4</priority></url>
+  <url><loc>https://danielolliver.com/dev/resume.pdf</loc><lastmod>2026-06-30</lastmod><priority>0.4</priority></url>
+</urlset>
