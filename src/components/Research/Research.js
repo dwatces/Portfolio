@@ -2,6 +2,13 @@ import "./Research.css";
 
 const items = [
   {
+    key: "hexlife",
+    img: "/research/hexlife_crossover_locking.png",
+    title: "The lattice's teeth: when the substrate owns the pattern",
+    claim:
+      "The same pattern-forming physics on square vs hexagonal lattices at matched density, paired seeds: substrate-indifferent at normal scales — until, below ~3 lattice constants, the substrate sets the packing symmetry and locks orientation to its crystal axes. 11,946 patterns, replicated across hardware.",
+  },
+  {
     key: "braiding",
     img: "/research/kitaev_topological_order.png",
     title: "Anyon braiding on three quantum computers",

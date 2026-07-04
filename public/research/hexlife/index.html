@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#256f8f">
+<title>The lattice's teeth: when the substrate owns the pattern — Daniel Olliver</title>
+<meta name="description" content="Matched-density Lenia on square vs hexagonal lattices — same rule, same parameters, same seeds. At normal scales the patterns don't care; below ~3 lattice constants the substrate sets the packing symmetry and locks orientation to its crystal axes. 11,946 patterns, replicated across hardware.">
+<link rel="icon" href="/favicon.png">
+<style>
+  @font-face { font-family:"Work Sans"; src:local("Work Sans"),
+    url(/static/media/font.e7663f1a.ttf) format("truetype"); font-display:swap; }
+  :root {
+    --clr-bg:#f7f8f5; --clr-bg-alt:#fff; --clr-fg:#24313a; --clr-heading:#111827;
+    --clr-muted:#64717d; --clr-primary:#256f8f; --clr-primary-soft:#8fc7d8;
+    --clr-accent:#2f6f64; --clr-border:#d8ded8; --clr-chip:#eef3ef;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--clr-bg); color:var(--clr-fg);
+    font:16px/1.65 "Work Sans",Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:var(--clr-primary); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  :focus-visible { outline:3px solid var(--clr-primary-soft); outline-offset:3px; }
+  .crumb { font-size:.88rem; margin-bottom:28px; color:var(--clr-muted); }
+  .crumb a { color:var(--clr-primary); }
+  .wrap { max-width:760px; margin:0 auto; padding:52px 22px 80px; }
+  h1 { font-size:clamp(1.65rem, 4vw + .6rem, 2.1rem); line-height:1.15; letter-spacing:-.4px;
+       color:var(--clr-heading); margin-bottom:18px; }
+  .fig { background:var(--clr-bg-alt); border:1px solid var(--clr-border);
+    border-radius:12px; overflow:hidden; margin-bottom:24px;
+    box-shadow:rgba(17,24,39,.07) 0 12px 34px; }
+  .fig img { width:100%; display:block; background:#fff; }
+  .lead { font-size:1.12rem; line-height:1.6; color:var(--clr-fg); margin-bottom:24px; }
+  .detail p { color:var(--clr-fg); margin-bottom:16px; }
+  .detail em { color:var(--clr-accent); font-style:normal; font-weight:600; }
+  .cta { display:flex; flex-wrap:wrap; gap:10px; margin:30px 0 8px; }
+  .btn { display:inline-block; padding:9px 16px; border-radius:8px; font-size:.92rem;
+    font-weight:500; border:1px solid transparent;
+    transition:background .18s ease,border-color .18s ease,color .18s ease; }
+  .btn:hover { text-decoration:none; }
+  .btn-primary { background:var(--clr-primary); color:#fff; }
+  .btn-primary:hover { background:#1f5d78; }
+  .btn-outline { background:#fff; border-color:var(--clr-border); color:var(--clr-primary); }
+  .btn-outline:hover { border-color:var(--clr-primary-soft); }
+  .btn-plain { color:var(--clr-muted); }
+  .foot { margin-top:36px; padding-top:22px; border-top:1px solid var(--clr-border);
+    color:var(--clr-muted); font-size:.9rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="crumb"><a href="/">danielolliver.com</a> / <a href="/research/">Research</a></p>
+<h1>The lattice's teeth: when the substrate owns the pattern</h1>
+<div class="fig"><img src="/research/hexlife_crossover_locking.png" alt="Orientation locking versus spot spacing: square arrays unlock by ~6.5 lattice constants, hexagonal arrays keep a weak box-invariant lock"></div>
+<p class="lead">The same continuous pattern-forming system (Lenia-class) run on a square lattice and a hexagonal lattice at exactly matched cell density — same rule, same parameters, same random seeds; only the geometry differs. At normal scales the emergent patterns do not care which lattice they grow on. Below ~3 lattice constants, the substrate owns them — <em>11,946 measured patterns</em>, replicated on independent hardware to the third decimal.</p>
+<div class="detail">
+<p>The method is the story. Five separate &ldquo;discoveries&rdquo; in one night were all measurement artifacts — sheared coordinates, raster contamination, a wrong wrap on a sheared torus, wrong connectivity, a granularity floor. Each looked like a large, significant effect; paired controls killed every one. What survived the hunt is a clean null: at normal scales the patterns even pack <em>hexagonally on the square grid</em> — hexagonal order is what the physics does, on any floor.</p>
+<p>Pushed down toward the lattice scale, the null breaks — cleanly. Below ~3 lattice constants the substrate sets the packing symmetry class and locks the pattern&rsquo;s orientation to its crystal axes (matched-symmetry lock up to <em>|0.94–0.97|</em>, while the wrong-symmetry channel sits at zero), and the locking direction flips with the ratio of pattern spacing to lattice spacing — textbook commensuration physics, the same class as atoms adsorbed on crystal surfaces. Pushed bigger, the locking rings through sign flips and dies on the square lattice by about 6.5 lattice constants. On the hexagonal lattice it never quite dies: a weak <em>+0.2 lock, box-invariant</em> across domain sizes (n=192/256/384), persists as far as measured (8.7a) — because the emergent patterns are themselves hexagonal, and only the hexagonal floor speaks their native symmetry. A second, unplanned observable rode along: a lattice-scale ring/micro-texture morphology channel that the square substrate sustains 2–3× more than hex, each locked in its own symmetry.</p>
+<p>Bounded honestly: in the commensurate regime both substrates imprint their own symmetry with comparable strength — this is geometry transmitting at commensurate scale, and symmetry-matching at long range, not &ldquo;hex wins.&rdquo; The rig — matched-density Bravais lattices with paired controls — is going open source.</p>
+</div>
+<div class="cta">
+  <a class="btn btn-primary" href="https://github.com/dwatces" target="_blank" rel="noreferrer">Code &amp; logs</a>
+  <a class="btn btn-outline" href="/essay/">Read the essay</a>
+</div>
+<p class="foot">Every number above is from a completed, logged run — controls, matched parameters, and error bars; negatives included. <a href="/research/">← all research</a> &nbsp;·&nbsp; next: <a href="/research/braiding/">anyon braiding on real hardware →</a></p>
+</div>
+</body>
+</html>
