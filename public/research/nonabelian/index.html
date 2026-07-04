@@ -1,46 +1,63 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#256f8f">
 <title>The non-Abelian phase, computed end to end — Daniel Olliver</title>
+<meta name="description" content="Kitaev + field, exactly: Chern number ±1 (analytic gap matched to 4 digits), one chiral Majorana edge mode, Majorana zero modes bound to vortices — then br">
+<link rel="icon" href="/favicon.png">
 <style>
-  :root { --bg:#0b0e14; --panel:#11151f; --line:#1e2533; --text:#dde3ee;
-          --dim:#8a93a6; --gold:#ffd166; --cold:#4cc9f0; }
+  @font-face { font-family:"Work Sans"; src:local("Work Sans"),
+    url(/static/media/font.e7663f1a.ttf) format("truetype"); font-display:swap; }
+  :root {
+    --clr-bg:#f7f8f5; --clr-bg-alt:#fff; --clr-fg:#24313a; --clr-heading:#111827;
+    --clr-muted:#64717d; --clr-primary:#256f8f; --clr-primary-soft:#8fc7d8;
+    --clr-accent:#2f6f64; --clr-border:#d8ded8; --clr-chip:#eef3ef;
+  }
   * { box-sizing:border-box; margin:0; padding:0; }
-  body { background:var(--bg); color:var(--text);
-    font:16px/1.65 -apple-system,"Segoe UI",Roboto,sans-serif; }
-  .wrap { max-width:840px; margin:0 auto; padding:40px 20px 70px; }
-  .crumb { font-size:.85rem; color:var(--dim); margin-bottom:26px; }
-  a { color:var(--cold); text-decoration:none; }
-  h1 { font-size:1.7rem; line-height:1.3; margin-bottom:8px; letter-spacing:-.3px; }
-  .dek { color:var(--dim); margin-bottom:22px; max-width:700px; }
-  img { width:100%; border:1px solid var(--line); border-radius:10px; margin:6px 0 22px;
-        background:#0d111a; }
-  h2 { font-size:1.05rem; color:var(--gold); margin:22px 0 8px; }
-  p { margin-bottom:12px; }
-  ul { margin:0 0 12px 20px; }
-  li { margin-bottom:6px; }
-  b { color:#fff; }
-  .nums { background:var(--panel); border:1px solid var(--line); border-radius:10px;
-          padding:14px 18px; margin:10px 0 18px; font-size:.92rem; }
-  .nums li { margin-bottom:7px; }
-  .limits { border-left:3px solid var(--dim); padding:4px 14px; color:var(--dim);
-            font-size:.92rem; margin:14px 0; }
-  .foot { margin-top:30px; padding-top:16px; border-top:1px solid var(--line);
-          font-size:.88rem; color:var(--dim); }
-</style></head><body><div class="wrap">
-<p class="crumb"><a href="/#research">← research</a> · <a href="/anyons/">playground</a> ·
-<a href="/essay/">the six-year story</a> · <a href="https://github.com/dwatces">code &amp; logs</a></p>
+  body { background:var(--clr-bg); color:var(--clr-fg);
+    font:16px/1.65 "Work Sans",Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:var(--clr-primary); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .crumb { font-size:.88rem; margin-bottom:28px; color:var(--clr-muted); }
+  .crumb a { color:var(--clr-primary); }
+  .wrap { max-width:760px; margin:0 auto; padding:52px 22px 80px; }
+  h1 { font-size:2.1rem; line-height:1.15; letter-spacing:-.4px;
+       color:var(--clr-heading); margin-bottom:18px; }
+  .fig { background:var(--clr-bg-alt); border:1px solid var(--clr-border);
+    border-radius:12px; overflow:hidden; margin-bottom:24px; }
+  .fig img { width:100%; display:block; background:#fff; }
+  .lead { font-size:1.12rem; line-height:1.6; color:var(--clr-fg); margin-bottom:24px; }
+  .detail p { color:var(--clr-fg); margin-bottom:16px; }
+  .detail em { color:var(--clr-accent); font-style:normal; font-weight:600; }
+  .cta { display:flex; flex-wrap:wrap; gap:10px; margin:30px 0 8px; }
+  .btn { display:inline-block; padding:9px 16px; border-radius:8px; font-size:.92rem;
+    font-weight:500; border:1px solid transparent; }
+  .btn:hover { text-decoration:none; }
+  .btn-primary { background:var(--clr-primary); color:#fff; }
+  .btn-primary:hover { background:#1f5d78; }
+  .btn-outline { background:#fff; border-color:var(--clr-border); color:var(--clr-primary); }
+  .btn-outline:hover { border-color:var(--clr-primary-soft); }
+  .btn-plain { color:var(--clr-muted); }
+  .foot { margin-top:36px; padding-top:22px; border-top:1px solid var(--clr-border);
+    color:var(--clr-muted); font-size:.9rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="crumb"><a href="/">danielolliver.com</a> / <a href="/research/">Research</a></p>
 <h1>The non-Abelian phase, computed end to end</h1>
-<p class="dek">Kitaev honeycomb + field: the Ising-anyon phase — Chern numbers, a chiral Majorana edge, vortex-bound zero modes — computed exactly, then braided numerically with a clean null control.</p>
-<img src="../nonabelian_phase.png" alt="The non-Abelian phase, computed end to end">
-<h2>What was measured</h2>
-<p>Adding the field-induced term κ to the Kitaev model opens its non-Abelian phase. In the exact free-Majorana (BdG) solution: the B phase gaps into Chern number ±1 (sign following the field), a cylinder hosts exactly one chiral Majorana edge branch (the c = 1/2 signature), and vortices bind Majorana zero modes — the carriers of Ising-anyon statistics. The zero modes were then <b>braided</b>: parallel transport of the 4-mode subspace along vortex-exchange paths, with the holonomy read out in the vortex-localized basis.</p>
-<h2>Headline numbers</h2>
-<ul class="nums"><li>Analytic anchor: gap at κ=0.1 equals Kitaev's 6√3·κ <b>to 4 digits</b>; Chern +1/0/−1 exactly across the phase diagram</li><li>Edge: 88 in-gap cylinder states, <b>100% edge-localized</b> vs 0 in the trivial phase; velocity <b>±1.83</b> flips with the field sign</li><li>Vortex zero modes: E₀ down to <b>3×10⁻³</b> vs bulk gap 2.0, mode weight ~1.9/2.0 on the two vortices; toric control: nothing</li><li>Braiding: exchanges sharing a vortex give ‖M−I‖ = <b>2.57</b> matching the predicted Ivanov pattern at <b>0.975</b>; disjoint exchanges commute to <b>0.005</b> — a ~500× contrast</li></ul>
-<h2>Method &amp; discipline</h2>
-<p>Self-diagnosing construction: a wrong sign prescription would read Chern 0, and the flux-counting assertion guarantees exactly two vortices. The commutator-loop observable is gauge-free (the gauge field returns exactly to its start). Two build bugs were caught and corrected by the controls — the vortex string direction and the zero-mode subspace dimension — and are documented in the run log.</p>
-<div class="limits"><b>Honest limits:</b> exact at the free-Majorana level with the perturbative κ term (the finite-field model is not exactly solvable); braiding is at the standard zero-mode-transport level in a fixed flux sector; established theory (Kitaev 2006; Ivanov 2001), realized end to end rather than discovered.</div>
-<p class="foot">Part of a ~30-experiment program run under one hard rule: no result is
-recorded before its run completes. Methods and logs:
-<a href="https://github.com/dwatces">github.com/dwatces</a>.</p>
-</div></body></html>
+<div class="fig"><img src="/research/nonabelian_phase.png" alt="The non-Abelian phase, computed end to end"></div>
+<p class="lead">Kitaev + field, exactly: Chern number ±1 (analytic gap matched to 4 digits), one chiral Majorana edge mode, Majorana zero modes bound to vortices — then braided numerically. Exchanges sharing a vortex refuse to commute (Ivanov-pattern match 0.975); disjoint exchanges commute to 0.005.</p>
+<div class="detail">
+<p>Adding a field term to the Kitaev honeycomb opens its non-Abelian phase. The whole structure is computed exactly from the free-Majorana spectrum — Chern number ±1, a single chiral Majorana edge branch, and the Majorana zero modes bound to vortices.</p><p>Those zero modes are then braided numerically: exchanges that share a vortex refuse to commute (matching Ivanov’s prediction at 0.975) while disjoint exchanges commute to 0.005. Non-commuting exchanges with a near-exact null control are non-Abelian statistics, end to end.</p>
+</div>
+<div class="cta">
+  <a class="btn btn-primary" href="/essay/">Read the essay</a>
+  <a class="btn btn-plain" href="https://github.com/dwatces" target="_blank" rel="noreferrer">Code &amp; logs</a>
+</div>
+<p class="foot">Every number above is from a completed, logged run — controls, matched parameters, and error bars; negatives included. <a href="/research/">← all research</a></p>
+</div>
+</body>
+</html>

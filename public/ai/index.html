@@ -3,12 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#f7f8f5" />
 <title>Private AI for law &amp; accounting firms — the time savings, without the confidentiality risk</title>
 <meta name="description" content="A private AI assistant that answers and summarises from your firm's own documents — cited, and running on your own systems. No client, privileged, or financial information ever leaves the firm. Built around NZ & Australian professional-conduct guidance." />
+<link rel="canonical" href="https://danielolliver.com/ai/" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://danielolliver.com/ai/" />
+<meta property="og:title" content="Private AI for law &amp; accounting firms" />
+<meta property="og:description" content="The time savings of AI without putting client data at risk — answers from your firm's own documents, cited, on your own systems. Try the live assistant yourself." />
 <link rel="icon" href="favicon.png" />
-<!-- Deploy: drop this folder on a host pointed at ai.danielolliver.com (Netlify Drop /
-     Firebase target / Vercel). Self-contained: no build step, no external assets.
-     Update the mailto: addresses if you switch to a dedicated inbox or a Calendly link. -->
+<!-- Deploy: serve this folder at danielolliver.com/ai/ (must keep the trailing slash so
+     the relative font/icon paths resolve). Self-contained: no build step, no external assets.
+     Contact address is daniel@danielolliver.com. -->
 <style>
   @font-face{font-family:"Work Sans";src:local("Work Sans"),url("font.ttf") format("truetype");font-display:swap;}
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -29,7 +35,7 @@
   .wrap{max-width:1100px;width:95%;margin:0 auto;}
 
   .btn{display:inline-flex;align-items:center;justify-content:center;cursor:pointer;min-height:2.7rem;
-       border-radius:6px;padding:.7rem 1.1rem;font-weight:800;font-size:.92rem;
+       border-radius:6px;padding:.7rem 1.1rem;font-weight:800;font-size:.92rem;white-space:nowrap;
        transition:background .2s ease,border-color .2s ease,color .2s ease;}
   .btn-primary{background:var(--head);border:1px solid var(--head);color:var(--bg);}
   .btn-primary:hover{background:var(--teal);border-color:var(--teal);}
@@ -106,17 +112,67 @@
   .caret{display:inline-block;margin-left:1px;color:var(--teal);animation:blink 1.05s step-end infinite;}
   @keyframes blink{50%{opacity:0;}}
   .demo__cap{margin-top:.85rem;color:var(--muted);font-size:.82rem;text-align:center;line-height:1.45;}
+  .demo__cap a,.lead a,.card p a{color:var(--teal);font-weight:700;border-bottom:1px solid var(--teal-soft);}
+
+  /* offer + faq */
+  .offer{display:grid;grid-template-columns:minmax(0,1fr) 21rem;gap:1.4rem;margin-top:1.6rem;align-items:start;}
+  .offer .card ul{margin-top:.6rem;}
+  .offer .card li{position:relative;padding-left:1.35rem;color:var(--muted);font-size:.97rem;margin-top:.55rem;}
+  .offer .card li::before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:800;}
+  .price-card{text-align:center;border-top:4px solid var(--teal);}
+  .price{font-size:2.6rem;font-weight:800;color:var(--head);line-height:1;margin-top:.4rem;}
+  .strike{color:var(--muted);text-decoration:line-through;font-weight:600;font-size:1.05rem;margin-left:.45rem;}
+  .note-sm{font-size:.85rem;color:var(--muted);margin-top:.7rem;line-height:1.5;}
+  .faq .card h3{font-size:1.02rem;}
+  .cta-band .linkline{margin-top:1.1rem;color:#c5cedd;font-size:.92rem;}
+  .cta-band .linkline a{color:#fff;border-bottom:1px solid rgba(255,255,255,.45);font-weight:700;}
+  .navlinks{display:flex;gap:.6rem;align-items:center;}
 
   @media(max-width:880px){
+    .offer{grid-template-columns:1fr;}
     .hero{grid-template-columns:1fr;gap:2rem;padding:2.6rem 0 1.5rem;}
     .hero h1{max-width:none;}
     .grid2,.grid3{grid-template-columns:1fr;}
   }
   @media(max-width:600px){
-    h1{font-size:2.3rem;}
-    h2{font-size:1.65rem;}
-    .nav{height:4rem;}
+    h1{font-size:2.15rem;}
+    h2{font-size:1.5rem;}
+    .nav{height:3.6rem;}
+    .brand{font-size:.98rem;white-space:nowrap;}
+    .navlinks{gap:.45rem;}
+    .navlinks .btn{padding:.45rem .7rem;font-size:.8rem;min-height:2.2rem;}
+    .hero{padding:2.1rem 0 1.4rem;}
+    .hero .sub{font-size:1.02rem;}
+    .cta{flex-direction:column;align-items:stretch;}
+    .cta .btn{width:100%;}
+    section.block{padding:2.5rem 0;}
+    .lead{font-size:1rem;}
+    .quote{font-size:.97rem;}
+    .demo__thread{min-height:13.5rem;}
+    .card{padding:1.15rem 1.2rem;}
+    .price{font-size:2.2rem;}
+    .note-sm{font-size:.82rem;}
   }
+  @media(max-width:480px){
+    .brand b{display:none;}
+    .nav{gap:.6rem;}
+  }
+  @media(max-width:390px){
+    .brand{font-size:.9rem;}
+    .navlinks .btn{padding:.42rem .55rem;font-size:.76rem;}
+  }
+  @media(max-width:360px){
+    /* hero's full-width "Try the live assistant" sits directly below */
+    .navlinks .btn-outline{display:none;}
+  }
+
+  /* tap feedback for the contact buttons (mailto is unreliable in mobile
+     in-app browsers, so a toast always surfaces the address) */
+  #mail-toast{position:fixed;left:50%;bottom:1.2rem;transform:translateX(-50%) translateY(8px);
+    background:#111827;color:#fff;font-size:.88rem;font-weight:700;padding:.75rem 1.1rem;
+    border-radius:999px;box-shadow:0 10px 30px rgba(17,24,39,.35);opacity:0;pointer-events:none;
+    transition:opacity .25s ease,transform .25s ease;z-index:99;max-width:92vw;text-align:center;}
+  #mail-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 </style>
 </head>
 <body>
@@ -124,7 +180,10 @@
 <header>
   <div class="wrap nav">
     <div class="brand">Daniel Olliver <b>· Private AI</b></div>
-    <a class="btn btn-primary" href="mailto:daniel@danielolliver.com?subject=A%20call%20about%20private%20AI">Book a 20-min call</a>
+    <div class="navlinks">
+      <a class="btn btn-outline" href="https://firm-assistant.bluegrass-3ea58dc1.australiaeast.azurecontainerapps.io" target="_blank" rel="noopener">Try it live</a>
+      <a class="btn btn-primary js-mail" href="#contact" data-subject="A call about private AI">Book a call</a>
+    </div>
   </div>
 </header>
 
@@ -136,7 +195,8 @@
       <h1>The time savings of AI — without putting client data at risk.</h1>
       <p class="sub">A private assistant that answers questions and summarises from your firm's <em>own</em> documents — with sources — running on your own systems. No client, privileged, or financial information ever leaves the firm.</p>
       <div class="cta">
-        <a class="btn btn-primary" href="mailto:daniel@danielolliver.com?subject=A%20call%20about%20private%20AI">Book a 20-minute call</a>
+        <a class="btn btn-primary" href="https://firm-assistant.bluegrass-3ea58dc1.australiaeast.azurecontainerapps.io" target="_blank" rel="noopener">Try the live assistant</a>
+        <a class="btn btn-outline js-mail" href="#contact" data-subject="A call about private AI">Book a 20-minute call</a>
         <a class="btn btn-outline" href="#how">How it works</a>
       </div>
       <div class="trust">
@@ -151,7 +211,8 @@
       <div class="demo__head"><span class="demo__dot"></span> Firm assistant <span class="demo__lock">🔒 Private · on your systems</span></div>
       <div id="thread" class="demo__thread"></div>
       </div>
-      <p class="demo__cap">A live preview — real, cited answers over a sample firm's own documents, generated privately so nothing leaves the firm.</p>
+      <p class="demo__cap">A preview of real, cited answers over a sample firm's own documents.
+        <a href="https://firm-assistant.bluegrass-3ea58dc1.australiaeast.azurecontainerapps.io" target="_blank" rel="noopener">Open the live assistant</a> and ask your own questions — no sign-up.</p>
     </div>
   </div>
 
@@ -201,6 +262,25 @@
     </div>
   </div></section>
 
+  <!-- TRY IT LIVE -->
+  <section class="block" id="try"><div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span>Prove it to yourself</span></p>
+      <h2>Don't take my word for it — ask it something.</h2>
+      <p class="lead">The assistant above is running <strong>live right now</strong> on a sample firm's
+        handbook, hosted in Sydney. Open it and ask your own questions — every answer shows the
+        document it came from, and if something isn't in the documents it says so instead of
+        guessing. Ask it something off-topic and watch it decline.</p>
+    </div>
+    <div class="cta" style="margin-top:1.6rem;">
+      <a class="btn btn-primary" href="https://firm-assistant.bluegrass-3ea58dc1.australiaeast.azurecontainerapps.io" target="_blank" rel="noopener">Open the live assistant</a>
+    </div>
+    <p class="note-sm">No sign-up. Try: <em>"Can I paste a client's affidavit into ChatGPT?"</em> ·
+      <em>"A new client wants to sue someone we acted for last year — is that a conflict?"</em> ·
+      <em>"Where do client retainer deposits go?"</em> — or anything else.
+      In your firm, the same assistant runs on <strong>your</strong> documents, in your own environment.</p>
+  </div></section>
+
   <!-- WHO'S BEHIND -->
   <section class="block"><div class="wrap">
     <div class="head">
@@ -210,17 +290,79 @@
     <p class="lead">I'm Daniel Olliver — a New Zealand-based software developer with a Postgraduate Certificate in Artificial Intelligence. I build private AI systems, and I've delivered production software handling sensitive data, including a patient-assessment platform for a UK healthcare provider. I work with one firm at a time, hands-on, and start with a free demo on a few of your own (redacted) documents so you can see it before committing to anything.</p>
   </div></section>
 
+  <!-- OFFER -->
+  <section class="block" id="audit"><div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span>Start small</span></p>
+      <h2>The AI Opportunity Audit — one week, fixed price, risk-free.</h2>
+      <p class="lead">No open-ended consulting engagement, no strategy deck. One week, three concrete
+        things, and if you don't find it worth the fee, you don't pay.</p>
+    </div>
+    <div class="offer">
+      <div class="card">
+        <h3>What you get</h3>
+        <ul>
+          <li>A prioritised report: the top 3 places AI saves <em>your</em> firm time — ranked by impact, specific to how you work.</li>
+          <li>A working private assistant on a sample of your own documents — you see it answer, cited, not a slideshow about it.</li>
+          <li>A clear build proposal with real numbers — what a full setup involves and costs, so you can decide either way.</li>
+        </ul>
+      </div>
+      <div class="card price-card">
+        <div class="tagrow"><span class="tag-pill tag-acc">Founding-client rate</span></div>
+        <div class="price">$500<span class="strike">$1,500</span></div>
+        <p>Fixed. One week from a 30-minute kickoff.</p>
+        <div class="cta" style="justify-content:center;margin-top:1rem;">
+          <a class="btn btn-primary js-mail" href="#contact" data-subject="AI Opportunity Audit">Ask about the audit</a>
+        </div>
+        <p class="note-sm">Risk-free: not worth it, don't pay.<br/>For the next few firms only.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- FAQ -->
+  <section class="block faq"><div class="wrap">
+    <div class="head">
+      <p class="eyebrow"><span>The questions partners actually ask</span></p>
+      <h2>Straight answers.</h2>
+    </div>
+    <div class="grid2">
+      <div class="card"><h3>Is our client data used to train AI?</h3>
+        <p>No. On the private-cloud setup, Microsoft's documented Azure OpenAI terms exclude your data from
+           model training. On the on-premise setup, nothing leaves your building at all.</p></div>
+      <div class="card"><h3>Where does our data live?</h3>
+        <p>In your own Microsoft/Azure subscription — hosted in Sydney (Australia East) — or entirely on your
+           own hardware. Never in a public chatbot. Firms with strict onshore-processing requirements have a
+           dedicated-capacity option; we'd walk through it honestly.</p></div>
+      <div class="card"><h3>What happens when it doesn't know?</h3>
+        <p>It says so. Every answer cites the source document so staff can verify it — and questions the
+           documents don't cover get a "that's not in the firm's documents" instead of a guess.
+           <a href="https://firm-assistant.bluegrass-3ea58dc1.australiaeast.azurecontainerapps.io" target="_blank" rel="noopener">Test that yourself</a>.</p></div>
+      <div class="card"><h3>Do we need new hardware or IT staff?</h3>
+        <p>Private cloud: no hardware at all. On-premise: a modest office PC or small server.
+           I set it up hands-on either way — your team just types questions.</p></div>
+      <div class="card"><h3>What does it cost to start?</h3>
+        <p>A $500 fixed-price, one-week audit (founding rate — normally $1,500), risk-free. The full build is
+           quoted in the audit with real numbers, so you never commit blind.</p></div>
+      <div class="card"><h3>We're a small firm with no tech team — is this for us?</h3>
+        <p>That's exactly who it's built for: 2–20-person firms. If AI genuinely wouldn't help your firm,
+           the audit says that too — you're paying for an honest answer, not a sales pitch.</p></div>
+    </div>
+  </div></section>
+
   <!-- CTA -->
-  <section class="block cta-band"><div class="wrap">
+  <section class="block cta-band" id="contact"><div class="wrap">
     <h2>See it on your own documents.</h2>
     <p class="lead">A free, no-obligation 20-minute demo — on a few of your own redacted files, so you know exactly what it does for your firm.</p>
     <div class="cta" style="justify-content:center;margin-top:1.6rem;">
-      <a class="btn btn-light" href="mailto:daniel@danielolliver.com?subject=A%20call%20about%20private%20AI">Book a 20-minute call</a>
+      <a class="btn btn-light js-mail" href="#contact" data-subject="A call about private AI">Book a 20-minute call</a>
     </div>
+    <p class="linkline">Got here from my email? Just hit <strong>reply</strong> — it comes straight to me.
+      Or <a href="https://firm-assistant.bluegrass-3ea58dc1.australiaeast.azurecontainerapps.io" target="_blank" rel="noopener">try the live assistant</a> first.</p>
   </div></section>
 </main>
 
-<footer><div class="wrap">© Daniel Olliver · Private AI for law &amp; accounting firms · daniel@danielolliver.com</div></footer>
+<footer><div class="wrap">© Daniel Olliver · Private AI for law &amp; accounting firms · <span id="mail-text"></span></div></footer>
+<div id="mail-toast" role="status" aria-live="polite"></div>
 
 <script>
 (function(){
@@ -269,6 +411,33 @@
   window.addEventListener('scroll',maybeStart,{passive:true});
   window.addEventListener('load',maybeStart);
   setTimeout(maybeStart,400);
+})();
+</script>
+<script>
+(function(){
+  var addr='daniel'+'@'+'danielolliver.com';
+  var slot=document.getElementById('mail-text');
+  if(slot){var a=document.createElement('a');a.href='mailto:'+addr;a.textContent=addr;slot.appendChild(a);}
+  var toast=document.getElementById('mail-toast'),tmr;
+  function show(msg){
+    if(!toast)return;
+    toast.textContent=msg;toast.classList.add('show');
+    clearTimeout(tmr);tmr=setTimeout(function(){toast.classList.remove('show');},4500);
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target&&e.target.closest?e.target.closest('.js-mail'):null;
+    if(!b)return;
+    e.preventDefault();
+    var subj=b.getAttribute('data-subject')||'';
+    var url='mailto:'+addr+(subj?'?subject='+encodeURIComponent(subj):'');
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(addr).then(
+        function(){show('Email '+addr+' — address copied');},
+        function(){show('Email '+addr);}
+      );
+    }else{show('Email '+addr);}
+    window.location.href=url;
+  });
 })();
 </script>
 </body>
