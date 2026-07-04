@@ -11,7 +11,44 @@
 <meta property="og:url" content="https://danielolliver.com/law/" />
 <meta property="og:title" content="Private AI for Law Firms" />
 <meta property="og:description" content="The time savings of AI without putting privilege at risk — answers from your firm's own documents, cited, on your own systems. Try the live assistant yourself." />
+<meta property="og:image" content="https://danielolliver.com/law/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" href="/favicon.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Daniel Olliver — Private AI for Law Firms",
+  "url": "https://danielolliver.com/law/",
+  "email": "daniel@danielolliver.com",
+  "description": "Private AI assistants for law firms: answers and summaries from the firm's own documents, cited, running on the firm's own systems. Built around NZ and Australian Law Society AI guidance.",
+  "areaServed": ["New Zealand", "Australia"],
+  "founder": {"@type": "Person", "name": "Daniel Olliver", "url": "https://danielolliver.com/"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Is our client data used to train AI?",
+     "acceptedAnswer": {"@type": "Answer", "text": "No. On the private-cloud setup, Microsoft's documented Azure OpenAI terms exclude your data from model training. On the on-premise setup, nothing leaves your building at all."}},
+    {"@type": "Question", "name": "Where does our data live?",
+     "acceptedAnswer": {"@type": "Answer", "text": "In your own Microsoft/Azure subscription — hosted in Sydney (Australia East) — or entirely on your own hardware. Never in a public chatbot."}},
+    {"@type": "Question", "name": "What happens when the assistant doesn't know?",
+     "acceptedAnswer": {"@type": "Answer", "text": "It says so. Every answer cites the source document so staff can verify it — and questions the documents don't cover get \"that's not in the firm's documents\" instead of a guess."}},
+    {"@type": "Question", "name": "Do we need new hardware or IT staff?",
+     "acceptedAnswer": {"@type": "Answer", "text": "Private cloud: no hardware at all. On-premise: a modest office PC or small server. Setup is done hands-on either way — your team just types questions."}},
+    {"@type": "Question", "name": "What does it cost to start?",
+     "acceptedAnswer": {"@type": "Answer", "text": "A $500 fixed-price, one-week AI Opportunity Audit (founding rate — normally $1,500), risk-free: if it isn't worth it, you don't pay. The full build is quoted in the audit with real numbers."}},
+    {"@type": "Question", "name": "We're a small firm with no tech team — is this for us?",
+     "acceptedAnswer": {"@type": "Answer", "text": "That's exactly who it's built for: 2–20-lawyer firms. If AI genuinely wouldn't help your practice, the audit says that too."}}
+  ]
+}
+</script>
 <style>
   @font-face{font-family:"Work Sans";src:local("Work Sans"),url("/static/media/font.e7663f1a.ttf") format("truetype");font-display:swap;}
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -317,7 +354,7 @@
   </div></section>
 </main>
 
-<footer><div class="wrap">© Daniel Olliver · Private AI for law firms · <span id="mail-text"></span></div></footer>
+<footer><div class="wrap">© Daniel Olliver · Private AI for law firms · <span id="mail-text"></span> · <a href="https://danielolliver.com/" style="color:var(--teal);font-weight:700;">danielolliver.com</a></div></footer>
 <div id="mail-toast" role="status" aria-live="polite"></div>
 
 <script>
