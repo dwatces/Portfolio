@@ -1,46 +1,64 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#256f8f">
 <title>Anyon braiding on three quantum computers — Daniel Olliver</title>
+<meta name="description" content="Topological order on the Kitaev honeycomb, measured on real hardware: conserved fluxes, a localized anyon, and the −1 braiding statistics — ⟨Z̄⟩ +0.845 ± 0">
+<link rel="icon" href="/favicon.png">
 <style>
-  :root { --bg:#0b0e14; --panel:#11151f; --line:#1e2533; --text:#dde3ee;
-          --dim:#8a93a6; --gold:#ffd166; --cold:#4cc9f0; }
+  @font-face { font-family:"Work Sans"; src:local("Work Sans"),
+    url(/static/media/font.e7663f1a.ttf) format("truetype"); font-display:swap; }
+  :root {
+    --clr-bg:#f7f8f5; --clr-bg-alt:#fff; --clr-fg:#24313a; --clr-heading:#111827;
+    --clr-muted:#64717d; --clr-primary:#256f8f; --clr-primary-soft:#8fc7d8;
+    --clr-accent:#2f6f64; --clr-border:#d8ded8; --clr-chip:#eef3ef;
+  }
   * { box-sizing:border-box; margin:0; padding:0; }
-  body { background:var(--bg); color:var(--text);
-    font:16px/1.65 -apple-system,"Segoe UI",Roboto,sans-serif; }
-  .wrap { max-width:840px; margin:0 auto; padding:40px 20px 70px; }
-  .crumb { font-size:.85rem; color:var(--dim); margin-bottom:26px; }
-  a { color:var(--cold); text-decoration:none; }
-  h1 { font-size:1.7rem; line-height:1.3; margin-bottom:8px; letter-spacing:-.3px; }
-  .dek { color:var(--dim); margin-bottom:22px; max-width:700px; }
-  img { width:100%; border:1px solid var(--line); border-radius:10px; margin:6px 0 22px;
-        background:#0d111a; }
-  h2 { font-size:1.05rem; color:var(--gold); margin:22px 0 8px; }
-  p { margin-bottom:12px; }
-  ul { margin:0 0 12px 20px; }
-  li { margin-bottom:6px; }
-  b { color:#fff; }
-  .nums { background:var(--panel); border:1px solid var(--line); border-radius:10px;
-          padding:14px 18px; margin:10px 0 18px; font-size:.92rem; }
-  .nums li { margin-bottom:7px; }
-  .limits { border-left:3px solid var(--dim); padding:4px 14px; color:var(--dim);
-            font-size:.92rem; margin:14px 0; }
-  .foot { margin-top:30px; padding-top:16px; border-top:1px solid var(--line);
-          font-size:.88rem; color:var(--dim); }
-</style></head><body><div class="wrap">
-<p class="crumb"><a href="/#research">← research</a> · <a href="/anyons/">playground</a> ·
-<a href="/essay/">the six-year story</a> · <a href="https://github.com/dwatces">code &amp; logs</a></p>
+  body { background:var(--clr-bg); color:var(--clr-fg);
+    font:16px/1.65 "Work Sans",Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:var(--clr-primary); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .crumb { font-size:.88rem; margin-bottom:28px; color:var(--clr-muted); }
+  .crumb a { color:var(--clr-primary); }
+  .wrap { max-width:760px; margin:0 auto; padding:52px 22px 80px; }
+  h1 { font-size:2.1rem; line-height:1.15; letter-spacing:-.4px;
+       color:var(--clr-heading); margin-bottom:18px; }
+  .fig { background:var(--clr-bg-alt); border:1px solid var(--clr-border);
+    border-radius:12px; overflow:hidden; margin-bottom:24px; }
+  .fig img { width:100%; display:block; background:#fff; }
+  .lead { font-size:1.12rem; line-height:1.6; color:var(--clr-fg); margin-bottom:24px; }
+  .detail p { color:var(--clr-fg); margin-bottom:16px; }
+  .detail em { color:var(--clr-accent); font-style:normal; font-weight:600; }
+  .cta { display:flex; flex-wrap:wrap; gap:10px; margin:30px 0 8px; }
+  .btn { display:inline-block; padding:9px 16px; border-radius:8px; font-size:.92rem;
+    font-weight:500; border:1px solid transparent; }
+  .btn:hover { text-decoration:none; }
+  .btn-primary { background:var(--clr-primary); color:#fff; }
+  .btn-primary:hover { background:#1f5d78; }
+  .btn-outline { background:#fff; border-color:var(--clr-border); color:var(--clr-primary); }
+  .btn-outline:hover { border-color:var(--clr-primary-soft); }
+  .btn-plain { color:var(--clr-muted); }
+  .foot { margin-top:36px; padding-top:22px; border-top:1px solid var(--clr-border);
+    color:var(--clr-muted); font-size:.9rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="crumb"><a href="/">danielolliver.com</a> / <a href="/research/">Research</a></p>
 <h1>Anyon braiding on three quantum computers</h1>
-<p class="dek">Topological order on the Kitaev honeycomb — flux conservation, a localized anyon, and the −1 braiding statistics — measured on real superconducting hardware and reproduced across three independent machines.</p>
-<img src="../kitaev_topological_order.png" alt="Anyon braiding on three quantum computers">
-<h2>What was measured</h2>
-<p>The Kitaev honeycomb model is the canonical topologically ordered system, and its construction is <b>impossible on a square lattice</b> — a coordination theorem, not a benchmark. Three signatures were prepared and measured on IBM processors: conservation of the plaquette Z₂ flux under Kitaev dynamics (against a symmetry-breaking field control), creation of a single localized anyon with an untouched neighbour, and braiding — dragging one excitation around another flips a logical observable, the −1 mutual exchange statistics that topological quantum computing is built on.</p>
-<h2>Headline numbers</h2>
-<ul class="nums"><li>Braiding: ⟨Z̄⟩ vacuum <b>+0.845 ± 0.030</b> → braid <b>−0.843 ± 0.035</b>; contractible-loop control <b>+0.845 ± 0.033</b> (separation ≈ 1.69 vs ~0.03 device scatter)</li><li>Flux conservation: ⟨W_p⟩ <b>+0.642 ± 0.016</b> under Kitaev dynamics vs <b>+0.115 ± 0.030</b> under the field control (t₀ = +0.918 ± 0.030)</li><li>Localized anyon: target plaquette flips to <b>−0.905 ± 0.010</b> while its neighbour sits untouched at <b>+0.924 ± 0.015</b></li><li>All three results on <b>ibm_marrakesh, ibm_kingston and ibm_fez</b></li></ul>
-<h2>Method &amp; discipline</h2>
-<p>Every circuit was simulator-gated before submission; hardware runs used dynamical decoupling, bootstrap shot-noise errors, and cross-device standard deviations as the honest dominant error bar. The braiding observable is the logical-operator anticommutation of an 8-qubit toric code (the Kitaev model's anisotropic limit), with a contractible loop as the null control.</p>
-<div class="limits"><b>Honest limits:</b> this is textbook physics demonstrated rigorously, not novel research; the braiding is abelian (toric-code class), not the non-Abelian regime universal topological computation requires; the code distance is small.</div>
-<p class="foot">Part of a ~30-experiment program run under one hard rule: no result is
-recorded before its run completes. Methods and logs:
-<a href="https://github.com/dwatces">github.com/dwatces</a>.</p>
-</div></body></html>
+<div class="fig"><img src="/research/kitaev_topological_order.png" alt="Anyon braiding on three quantum computers"></div>
+<p class="lead">Topological order on the Kitaev honeycomb, measured on real hardware: conserved fluxes, a localized anyon, and the −1 braiding statistics — ⟨Z̄⟩ +0.845 ± 0.030 → −0.843 ± 0.035 against a +0.845 control — reproduced on ibm_marrakesh, ibm_kingston and ibm_fez with error bars.</p>
+<div class="detail">
+<p>Most topological-walk experiments use a single particle; most many-body experiments aren’t topological. This measures both at once, on superconducting hardware, simulator-gated before every submission, with a matched-depth random control beside every claim.</p><p>The minus sign — ⟨Z̄⟩ flipping from +0.845 to −0.843 while a control loop does nothing — is anyon exchange statistics, the primitive topological quantum computing is built on. Not new physics; measured by one person, honestly, on three independent machines.</p>
+</div>
+<div class="cta">
+  <a class="btn btn-primary" href="/anyons/">Braid anyons yourself</a>
+  <a class="btn btn-outline" href="/essay/">Read the essay</a>
+  <a class="btn btn-plain" href="https://github.com/dwatces" target="_blank" rel="noreferrer">Code &amp; logs</a>
+</div>
+<p class="foot">Every number above is from a completed, logged run — controls, matched parameters, and error bars; negatives included. <a href="/research/">← all research</a></p>
+</div>
+</body>
+</html>
