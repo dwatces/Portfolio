@@ -270,9 +270,10 @@
       <p class="eyebrow"><span>Prove it to yourself</span></p>
       <h2>Don't take my word for it — ask it something.</h2>
       <p class="lead">This is the assistant itself, running <strong>live right now</strong> on a sample
-        firm's handbook, hosted in Sydney. Ask your own questions — every answer shows the
-        document it came from, and if something isn't in the documents it says so instead of
-        guessing. Ask it something off-topic and watch it decline.</p>
+        firm's handbook and sample matter documents, hosted in Sydney. It won't tell you anything
+        about the law you don't already know — it does the <strong>reading</strong>: summaries,
+        chronologies, figures pulled from documents, first drafts from your own precedents. Every
+        answer shows its source, and if something isn't in the documents it says so.</p>
     </div>
     <div class="embed-wrap">
       <iframe id="hb-frame" src="https://firm-assistant.bluegrass-3ea58dc1.australiaeast.azurecontainerapps.io/?__theme=light&amp;embed=1"
@@ -292,9 +293,9 @@
       });
     })();
     </script>
-    <p class="note-sm">No sign-up. Try: <em>"Can I paste a client's affidavit into ChatGPT?"</em> ·
-      <em>"A new client wants to sue someone we acted for last year — is that a conflict?"</em> ·
-      <em>"Where do client retainer deposits go?"</em> — or anything else.
+    <p class="note-sm">No sign-up. Give it work: <em>"Summarise the sample affidavit — dates, assets, what's sought"</em> ·
+      <em>"List every dollar figure in the sample affidavit, in order"</em> ·
+      <em>"Draft a first engagement letter from the firm's precedent"</em> — or anything else.
       In your firm, the same assistant runs on <strong>your</strong> documents, in your own environment.
       Prefer a full window? <a href="https://firm-assistant.bluegrass-3ea58dc1.australiaeast.azurecontainerapps.io" target="_blank" rel="noopener" style="color:var(--teal);font-weight:700;">Open it in its own tab ↗</a></p>
   </div></section>
@@ -385,21 +386,18 @@
 <script>
 (function(){
   var items=[
+    {q:"Summarise the sample affidavit — key dates, assets in dispute, what's being sought.",
+     a:"Married Feb 2009, separated Aug 2024. In dispute: the Mt Albert family home (valued $1.34m, May 2025; $210k mortgage), Tolley Electrical Ltd ($480k per accounts — contested), both KiwiSavers (incl. a $25k post-separation lump sum, Sept 2024), and a Waiheke section ($720k, gift vs relationship property). Seeking equal division, s 44 orders, and interim maintenance of $650/week.",
+     c:"Source: Sample affidavit — Tolley matter"},
+    {q:"Under the sample s21 agreement, what happens to the family home if the parties renovate?",
+     a:"The Ponsonby home stays Ms Milford's separate property — but if the parties jointly fund renovations over $50,000, Mr Chen acquires a share equal to half the value those renovations add, assessed by a registered valuer at separation or sale.",
+     c:"Source: Sample s21 agreement — cl 1"},
+    {q:"List every dollar figure in the sample affidavit, in order.",
+     a:"$610,000 purchase (2012) · $85,000 deposit · $1,340,000 valuation (May 2025) · $210,000 mortgage · $480,000 company value · $68,000 vehicle · $96,400 and $187,000 KiwiSaver · $25,000 lump sum · $40,000 retaining wall · $720,000 rating valuation · $18,500 withdrawal · $32,000 boat · $650/week sought.",
+     c:"Source: Sample affidavit — Tolley matter"},
     {q:"Can I paste a client's affidavit into ChatGPT to summarise it?",
-     a:"No. Pasting a client's affidavit into ChatGPT would violate the firm's AI policy, breach confidentiality, and risk waiving privilege — this is treated as an ethics issue. Client information must stay within firm-controlled systems only. If you need AI help summarising client documents, use the firm's approved internal tool instead.",
-     c:"Source: Confidentiality & AI Policy"},
-    {q:"A potential new client wants to sue someone we acted for last year — is that a conflict?",
-     a:"That's a potential conflict that must be escalated to the managing partner before proceeding. The firm needs to run a conflict check against all former clients, and representing a new client against a former client typically raises conflict-of-interest concerns.",
-     c:"Source: Conflict-Check Process"},
-    {q:"Is it OK to use ChatGPT to help draft a contract if I take the client's name out first?",
-     a:"No. The firm's policy prohibits using public AI tools like ChatGPT for client work, even if you remove identifying information. Pasting case facts or contract details into public tools can waive privilege and breach confidentiality, and is treated as an ethics issue.",
-     c:"Source: AI Policy"},
-    {q:"Where do client retainer deposits go?",
-     a:"Into the client trust account — never the operating account. Funds move to operating only after work is billed, per the engagement terms; trust accounting is reconciled monthly.",
-     c:"Source: Billing & Trust Accounting"},
-    {q:"What do we do if a client's confidential information is accidentally leaked or breached?",
-     a:"If you suspect client data has been exposed — whether through a lost device, misdirected email, or suspicious login — report it to the practice manager and managing partner within one hour. Do not investigate the breach yourself. The firm follows a written incident-response plan to handle these situations properly.",
-     c:"Source: Data Handling & Breach Response"}
+     a:"No. That would breach the firm's AI policy and confidentiality, and can risk waiving privilege. Client documents stay on firm-controlled systems — use the firm's private assistant instead.",
+     c:"Source: Confidentiality & AI Policy"}
   ];
   var thread=document.getElementById('thread'); if(!thread) return;
   var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
