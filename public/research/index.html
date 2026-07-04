@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#256f8f">
+<title>Research — Daniel Olliver</title>
+<meta name="description" content="Hardware-verified quantum research and symmetry-aware machine learning: anyon braiding on three quantum computers, the non-Abelian phase end to end, equivariant decoders and readouts — every claim from completed, logged runs.">
+<link rel="icon" href="/favicon.png">
+<style>
+  @font-face { font-family:"Work Sans"; src:local("Work Sans"),
+    url(/static/media/font.e7663f1a.ttf) format("truetype"); font-display:swap; }
+  :root {
+    --clr-bg:#f7f8f5; --clr-bg-alt:#fff; --clr-fg:#24313a; --clr-heading:#111827;
+    --clr-muted:#64717d; --clr-primary:#256f8f; --clr-primary-soft:#8fc7d8;
+    --clr-accent:#2f6f64; --clr-border:#d8ded8; --clr-chip:#eef3ef;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--clr-bg); color:var(--clr-fg);
+    font:16px/1.65 "Work Sans",Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+  a { color:var(--clr-primary); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .crumb { font-size:.88rem; margin-bottom:28px; color:var(--clr-muted); }
+  .crumb a { color:var(--clr-primary); }
+  .wrap { max-width:920px; margin:0 auto; padding:52px 22px 80px; }
+  h1 { font-size:2.1rem; line-height:1.15; letter-spacing:-.4px;
+       color:var(--clr-heading); margin-bottom:18px; }
+  .lead { font-size:1.12rem; line-height:1.6; color:var(--clr-fg); margin-bottom:34px; max-width:760px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:20px; }
+  .card { display:flex; flex-direction:column; background:var(--clr-bg-alt);
+    border:1px solid var(--clr-border); border-radius:12px; overflow:hidden;
+    color:var(--clr-fg); transition:border-color .15s ease; }
+  .card:hover { border-color:var(--clr-primary-soft); text-decoration:none; }
+  .card img { width:100%; aspect-ratio:16/10; object-fit:cover; display:block; background:#fff;
+    border-bottom:1px solid var(--clr-border); }
+  .card .body { padding:16px 18px 18px; }
+  .card h2 { font-size:1.05rem; line-height:1.35; color:var(--clr-heading); margin-bottom:8px; }
+  .card p { font-size:.92rem; color:var(--clr-muted); }
+  .cta { display:flex; flex-wrap:wrap; gap:10px; margin:34px 0 8px; }
+  .btn { display:inline-block; padding:9px 16px; border-radius:8px; font-size:.92rem;
+    font-weight:500; border:1px solid transparent; }
+  .btn:hover { text-decoration:none; }
+  .btn-primary { background:var(--clr-primary); color:#fff; }
+  .btn-primary:hover { background:#1f5d78; }
+  .btn-outline { background:#fff; border-color:var(--clr-border); color:var(--clr-primary); }
+  .btn-outline:hover { border-color:var(--clr-primary-soft); }
+  .foot { margin-top:36px; padding-top:22px; border-top:1px solid var(--clr-border);
+    color:var(--clr-muted); font-size:.9rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<p class="crumb"><a href="/">danielolliver.com</a> / Research</p>
+<h1>Research</h1>
+<p class="lead">Hardware-verified quantum experiments and symmetry-aware machine learning. Every number comes from a completed, logged run — controls, matched parameters, and error bars; negatives included.</p>
+<div class="grid">
+  <a class="card" href="/research/braiding/">
+    <img src="/research/kitaev_topological_order.png" alt="Anyon braiding on three quantum computers">
+    <div class="body">
+      <h2>Anyon braiding on three quantum computers</h2>
+      <p>Topological order on the Kitaev honeycomb, measured on real hardware — the −1 braiding statistics reproduced on ibm_marrakesh, ibm_kingston and ibm_fez with error bars.</p>
+    </div>
+  </a>
+  <a class="card" href="/research/nonabelian/">
+    <img src="/research/nonabelian_phase.png" alt="The non-Abelian phase, computed end to end">
+    <div class="body">
+      <h2>The non-Abelian phase, computed end to end</h2>
+      <p>Kitaev + field, exactly: Chern number ±1, one chiral Majorana edge mode, and Majorana zero modes bound to vortices.</p>
+    </div>
+  </a>
+  <a class="card" href="/research/decoder/">
+    <img src="/research/equiv_decoder.png" alt="Symmetry-tied neural decoders for quantum error correction">
+    <div class="body">
+      <h2>Symmetry-tied neural decoders for quantum error correction</h2>
+      <p>An ML decoder tied to the surface code's exact symmetry — at identical parameter count — wins at every training size and is ~4× more sample-efficient.</p>
+    </div>
+  </a>
+  <a class="card" href="/research/qrc/">
+    <img src="/research/qrc_equivariance.png" alt="Equivariant readouts for quantum machine learning">
+    <div class="body">
+      <h2>Equivariant readouts for quantum machine learning</h2>
+      <p>A quantum reservoir with a symmetry-tied readout (exact C3 commutation): large sample-efficiency gains in the scarce-data regime.</p>
+    </div>
+  </a>
+  <a class="card" href="/research/chern/">
+    <img src="/research/haldane_chern.png" alt="Topological-materials ML: match the symmetry, exactly">
+    <div class="body">
+      <h2>Topological-materials ML: match the symmetry, exactly</h2>
+      <p>Classifying Chern phases of the Haldane model: the physically matched C3 prior wins at every scarce size, while the too-large C6 group loses.</p>
+    </div>
+  </a>
+  <a class="card" href="/research/coldstart/">
+    <img src="/research/coldstart_equivariance.png" alt="The equivariance law, held on real city data">
+    <div class="body">
+      <h2>The equivariance law, held on real city data</h2>
+      <p>New-station demand forecasting across five cities × two seasons: equivariant models pay exactly when the symmetry is present and data is scarce.</p>
+    </div>
+  </a>
+</div>
+<div class="cta">
+  <a class="btn btn-primary" href="/anyons/">Braid anyons yourself</a>
+  <a class="btn btn-outline" href="/essay/">Read the essay</a>
+</div>
+<p class="foot"><a href="/">← danielolliver.com</a></p>
+</div>
+</body>
+</html>
