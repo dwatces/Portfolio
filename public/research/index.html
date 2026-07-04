@@ -29,8 +29,15 @@
   .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:20px; }
   .card { display:flex; flex-direction:column; background:var(--clr-bg-alt);
     border:1px solid var(--clr-border); border-radius:12px; overflow:hidden;
-    color:var(--clr-fg); transition:border-color .15s ease; }
-  .card:hover { border-color:var(--clr-primary-soft); text-decoration:none; }
+    color:var(--clr-fg);
+    transition:border-color .18s ease, transform .15s ease, box-shadow .2s ease; }
+  .card:hover, .card:focus-visible { border-color:var(--clr-primary-soft); text-decoration:none;
+    transform:translateY(-3px); box-shadow:rgba(17,24,39,.08) 0 14px 40px; }
+  :focus-visible { outline:3px solid var(--clr-primary-soft); outline-offset:3px; }
+  @media (prefers-reduced-motion: reduce) {
+    .card { transition:none; }
+    .card:hover, .card:focus-visible { transform:none; }
+  }
   .card img { width:100%; aspect-ratio:16/10; object-fit:cover; display:block; background:#fff;
     border-bottom:1px solid var(--clr-border); }
   .card .body { padding:16px 18px 18px; }
@@ -54,6 +61,13 @@
 <h1>Research</h1>
 <p class="lead">Hardware-verified quantum experiments and symmetry-aware machine learning. Every number comes from a completed, logged run — controls, matched parameters, and error bars; negatives included.</p>
 <div class="grid">
+  <a class="card" href="/research/hexlife/">
+    <img src="/research/hexlife_crossover_locking.png" alt="The lattice's teeth: when the substrate owns the pattern">
+    <div class="body">
+      <h2>The lattice's teeth: when the substrate owns the pattern</h2>
+      <p>The same pattern-forming physics on square vs hexagonal lattices, matched density and paired seeds: substrate-indifferent at normal scales — until, below ~3 lattice constants, the substrate sets the symmetry and locks orientation to its axes.</p>
+    </div>
+  </a>
   <a class="card" href="/research/braiding/">
     <img src="/research/kitaev_topological_order.png" alt="Anyon braiding on three quantum computers">
     <div class="body">
