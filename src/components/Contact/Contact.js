@@ -7,7 +7,12 @@ const Contact = () => {
         <p className="eyebrow">Contact</p>
         <h2 className="section_title">Let&apos;s talk about the next build</h2>
         <p className="contact__copy">
-          Based in Auckland and taking on AI and full-stack projects.
+          Based in Auckland and taking on AI and full-stack projects. For custom
+          websites and online stores, I run{" "}
+          <a href="https://olliverweb.co.nz" target="_blank" rel="noreferrer">
+            Olliver Web
+          </a>
+          .
         </p>
       </div>
       <div className="contact__actions">
