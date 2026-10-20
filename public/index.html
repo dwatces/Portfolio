@@ -1,30 +1,626 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" sizes="48x48" />
-    <link rel="icon" type="image/png" sizes="96x96" href="%PUBLIC_URL%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#256f8f" />
-    <meta
-      name="description"
-      content="Daniel Olliver is an Auckland developer building AI systems and full-stack web applications, with research results verified on real quantum hardware."
-    />
-    <meta property="og:title" content="Daniel Olliver | AI & Software Developer" />
-    <meta
-      property="og:description"
-      content="Hardware-verified quantum research, an interactive anyon playground, and a live full-stack delivery record."
-    />
-    <meta property="og:type" content="website" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daniel Olliver: AI research in machine learning and quantum computing</title>
+<meta name="description" content="Daniel Olliver, Auckland. Evidence-first AI research in geometric machine learning and quantum computing: two preprints, seven research notes, and anyon braiding reproduced on three IBM quantum processors.">
+<link rel="canonical" href="https://danielolliver.com/">
+<meta name="theme-color" content="#f7f5ef">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://danielolliver.com/">
+<meta property="og:site_name" content="Daniel Olliver">
+<meta property="og:title" content="Daniel Olliver: AI research in machine learning and quantum computing">
+<meta property="og:description" content="Two preprints, seven research notes and playable demos. Symmetry-aware neural networks and quantum experiments on real IBM hardware, with controls and error bars.">
+<meta property="og:image" content="https://danielolliver.com/research/kitaev_topological_order.png">
+<meta property="og:image:alt" content="Bar charts of anyon braiding, plaquette flux and a localised anyon measured on IBM quantum hardware, with error bars">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Daniel Olliver: AI research in machine learning and quantum computing">
+<meta name="twitter:description" content="Two preprints, seven research notes and playable demos. Symmetry-aware neural networks and quantum experiments on real IBM hardware, with controls and error bars.">
+<meta name="twitter:image" content="https://danielolliver.com/research/kitaev_topological_order.png">
+<meta name="twitter:image:alt" content="Bar charts of anyon braiding, plaquette flux and a localised anyon measured on IBM quantum hardware, with error bars">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="preload" href="/static/media/font.e7663f1a.ttf" as="font" type="font/ttf" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://danielolliver.com/#daniel",
+      "name": "Daniel Olliver",
+      "url": "https://danielolliver.com/",
+      "jobTitle": "Independent researcher in AI, machine learning and quantum computing",
+      "knowsAbout": ["Artificial intelligence", "Machine learning", "Geometric machine learning", "Equivariant neural networks", "Quantum error correction", "Quantum computing"],
+      "address": { "@type": "PostalAddress", "addressLocality": "Auckland", "addressCountry": "NZ" },
+      "alumniOf": [
+        { "@type": "CollegeOrUniversity", "name": "Auckland University of Technology" },
+        { "@type": "CollegeOrUniversity", "name": "University of Auckland" }
+      ],
+      "sameAs": ["https://github.com/dwatces", "https://www.linkedin.com/in/danielolliver"]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Circuit-level equivariance is code-dependent: obstruction in the surface code, exactness in the honeycomb Floquet code, and consequences for neural decoders",
+      "headline": "Circuit-level equivariance is code-dependent",
+      "datePublished": "2026-06-16",
+      "author": { "@id": "https://danielolliver.com/#daniel" },
+      "publisher": { "@type": "Organization", "name": "Zenodo" },
+      "identifier": "https://doi.org/10.5281/zenodo.20715320",
+      "url": "https://doi.org/10.5281/zenodo.20715320"
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "The lattice's teeth: primitive reciprocal axes govern which Fourier components neural cellular automata can grow",
+      "headline": "The lattice's teeth",
+      "datePublished": "2026-07-27",
+      "author": { "@id": "https://danielolliver.com/#daniel" },
+      "publisher": { "@type": "Organization", "name": "Zenodo" },
+      "identifier": "https://doi.org/10.5281/zenodo.21614035",
+      "url": "https://doi.org/10.5281/zenodo.21614035"
+    }
+  ]
+}
+</script>
+<style>
+@font-face { font-family:"Work Sans"; src:local("Work Sans"), url(/static/media/font.e7663f1a.ttf) format("truetype");
+  font-weight:100 900; font-display:swap; }
+:root {
+  --paper:#f7f5ef; --band:#efebe1; --plate:#fffefa; --ink:#1a2025; --ink-2:#38434b;
+  --muted:#5b666e; --rule:#d8d2c4; --rule-2:#c7c0af;
+  --accent:#1d6680; --accent-ink:#164f63; --mark:#a8402b; --night:#0d111a;
+  --serif:"Iowan Old Style","Charter","Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  --sans:"Work Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:ui-monospace,"SFMono-Regular","SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --gut:16px; --max:1180px; --sec:52px;
+  --t-body:1rem; --t-cap:.88rem; --t-data:.8rem; --t-label:.75rem;
+}
+*,*::before,*::after { box-sizing:border-box; }
+* { margin:0; padding:0; }
+html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+@media (prefers-reduced-motion:no-preference) { html { scroll-behavior:smooth; } }
+body { background:var(--paper); color:var(--ink-2); font:16.5px/1.65 var(--sans);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+img { display:block; max-width:100%; height:auto; }
+a { color:var(--accent); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
+a:hover { color:var(--accent-ink); text-decoration-thickness:2px; }
+:focus-visible { outline:3px solid var(--accent); outline-offset:3px; border-radius:2px; }
+.skip { position:absolute; left:-999px; top:8px; background:var(--ink); color:#fff; padding:12px 16px; z-index:10; }
+.skip:focus { left:var(--gut); }
+.wrap { max-width:var(--max); margin:0 auto; padding:0 var(--gut); }
+.d { font-family:var(--mono); font-size:.88em; letter-spacing:-.01em; white-space:nowrap; color:var(--ink); }
+.kicker { font-family:var(--mono); font-size:var(--t-label); letter-spacing:.05em; text-transform:uppercase; color:var(--muted); line-height:1.5; }
 
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+/* masthead */
+.mast { border-bottom:1px solid var(--rule); }
+.mast .wrap { display:flex; align-items:center; justify-content:space-between; gap:0 20px; min-height:60px; }
+.brand { font-family:var(--serif); font-size:1.12rem; font-weight:700; color:var(--ink); text-decoration:none;
+  display:inline-flex; align-items:center; min-height:44px; white-space:nowrap; }
+.brand:hover { color:var(--ink); text-decoration:none; }
+.mast nav { flex:0 1 auto; }
+.nav { display:flex; list-style:none; margin:0 -10px; }
+.nav a { display:inline-flex; align-items:center; justify-content:center; min-height:44px; min-width:44px; padding:0 10px;
+  color:var(--ink-2); text-decoration:none; font-size:.95rem; }
+.nav a:hover { color:var(--accent); text-decoration:underline; }
+@media (max-width:539px) {
+  .brand { display:none; }
+  .mast nav { flex:1 1 auto; }
+  .nav { justify-content:space-between; margin:0 -6px; }
+  .nav a { padding:0 6px; font-size:.92rem; }
+}
 
-    <title>Daniel Olliver | AI & Software Developer</title>
-    <script defer src="/ga.js"></script>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+/* hero */
+.hero { padding:36px 0 var(--sec); }
+.hero .wrap { display:grid; gap:36px; }
+.hero h1 { font-family:var(--serif); font-weight:700; color:var(--ink); font-size:clamp(2.5rem,7.5vw,4.4rem);
+  line-height:1.02; letter-spacing:-.02em; margin:12px 0 18px; }
+.dek { font-family:var(--serif); font-size:clamp(1.22rem,2.6vw,1.55rem); line-height:1.4; color:var(--ink); max-width:34ch; }
+.rule-note { margin-top:16px; max-width:52ch; }
+.tally { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin:26px 0 28px; border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule); list-style:none; max-width:560px; }
+.tally li { padding:12px 12px 12px 0; font-size:.9rem; line-height:1.35; color:var(--ink); }
+.tally li + li { padding-left:14px; border-left:1px solid var(--rule); }
+.tally b { display:block; font-family:var(--serif); font-size:2rem; line-height:1.1; font-weight:700; color:var(--mark); margin-bottom:2px; }
+.tally small { display:block; font-family:var(--mono); font-size:.7rem; color:var(--muted); margin-top:4px; line-height:1.45; }
+@media (max-width:479px) {
+  .tally { grid-template-columns:1fr; }
+  .tally li, .tally li + li { display:grid; grid-template-columns:2.2rem 1fr; align-items:baseline; gap:0 12px; padding:10px 0; border-left:0; }
+  .tally li + li { border-top:1px solid var(--rule); }
+  .tally b { grid-row:span 2; margin:0; font-size:1.8rem; }
+  .tally small { margin-top:0; }
+}
+.actions { display:flex; flex-wrap:wrap; gap:12px; }
+.actions .btn { flex:1 1 auto; }
+@media (min-width:520px) { .actions .btn { flex:0 0 auto; } }
+.btn { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 22px; border-radius:3px;
+  font-weight:600; font-size:.98rem; text-decoration:none; border:1.5px solid var(--ink); }
+.btn-ink { background:var(--ink); color:#fff; }
+.btn-ink:hover { background:#000; color:#fff; text-decoration:none; }
+.btn-line { color:var(--ink); background:transparent; }
+.btn-line:hover { background:var(--plate); color:var(--ink); text-decoration:none; }
+
+/* figures */
+.plate { background:var(--plate); border:1px solid var(--rule); padding:12px; }
+.plate.night { background:var(--night); border-color:var(--night); }
+@media (max-width:699px) { .plate { padding:8px; } }
+.crop { position:relative; overflow:hidden; background:#fff; width:100%; min-width:0; }
+.crop img { position:absolute; left:0; top:0; max-width:none; height:auto; }
+/* kitaev_topological_order.png is 2100x644: three 700px panels, cropped from y=96 */
+.c-k { aspect-ratio:700/548; }
+.c-k img { width:300%; top:-17.52%; }
+.c-k.p2 img { left:-100.71%; }
+.c-k.p3 img { left:-200%; }
+.pair { display:grid; gap:8px; }
+@media (max-width:599px) { .pair .p2 { display:none; } }
+@media (min-width:600px) { .pair { grid-template-columns:1fr 1fr; gap:0; } .fig-note { display:none; } }
+figure { margin:0; }
+figcaption { font-size:var(--t-cap); line-height:1.55; color:var(--muted); margin-top:10px; }
+figcaption .fig { font-family:var(--mono); font-size:var(--t-label); color:var(--mark); letter-spacing:.04em; margin-right:6px; text-transform:uppercase; }
+.hero figure { max-width:600px; }
+.hero figcaption { color:var(--ink-2); }
+.hero figcaption a { display:inline-flex; align-items:center; min-height:44px; font-weight:600; }
+
+/* sections */
+section { padding:var(--sec) 0; }
+.band { background:var(--band); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+.sec-head { margin-bottom:24px; }
+.sec-head h2 { font-family:var(--serif); font-size:clamp(1.75rem,3.6vw,2.2rem); line-height:1.12; color:var(--ink); font-weight:700; letter-spacing:-.01em; }
+.sec-head p { margin-top:10px; max-width:40ch; color:var(--muted); }
+
+/* links: one secondary style, one primary (DOI) style */
+.links { display:flex; flex-wrap:wrap; align-items:center; gap:0 22px; margin-top:14px; list-style:none; }
+.links a { display:inline-flex; align-items:center; min-height:44px; }
+.doi { display:inline-flex; flex-wrap:wrap; align-items:center; gap:6px 12px; min-height:52px; padding:9px 18px 9px 14px; max-width:100%;
+  background:var(--ink); color:#fff; border-radius:4px; text-decoration:none; }
+.doi:hover { background:var(--accent-ink); color:#fff; text-decoration:none; }
+.doi .k { font-family:var(--mono); font-size:.68rem; letter-spacing:.08em; padding:1px 6px; border:1px solid rgba(255,255,255,.5); border-radius:3px; }
+.doi .v { font-family:var(--mono); font-size:.88rem; overflow-wrap:anywhere; }
+.doi .hint { font-size:.92rem; font-weight:600; padding-left:12px; border-left:1px solid rgba(255,255,255,.35); }
+@media (max-width:479px) {
+  .doi { display:flex; width:100%; }
+  .doi .hint { flex-basis:100%; padding:6px 0 0; border-left:0; border-top:1px solid rgba(255,255,255,.25); }
+}
+@media (max-width:359px) { .doi .v { font-size:.82rem; } }
+
+/* papers */
+.refs { list-style:none; }
+.ref { display:grid; grid-template-columns:1fr; padding:28px 0 22px; border-top:1px solid var(--rule-2); scroll-margin-top:16px; }
+.ref:first-child { padding-top:0; border-top:0; }
+.ref + .ref { margin-top:4px; }
+.ref-n { display:none; }
+.ref-n-in { color:var(--mark); margin-right:10px; }
+.ref-meta { font-family:var(--mono); font-size:var(--t-data); color:var(--muted); }
+.ref h3 { font-family:var(--serif); font-size:clamp(1.22rem,2.4vw,1.45rem); line-height:1.3; color:var(--ink); margin:6px 0 12px; font-weight:700; max-width:46ch; }
+.ref p { max-width:66ch; }
+.ref .data { margin-top:12px; font-family:var(--mono); font-size:var(--t-data); color:var(--ink); display:flex; flex-wrap:wrap; gap:4px 16px; list-style:none; }
+.ref .data li::before { content:"· "; color:var(--mark); }
+.ref .doi { margin-top:18px; }
+.ref .links { margin-top:6px; }
+.cite { margin-top:6px; border-top:1px solid var(--rule); }
+.cite summary { display:inline-flex; align-items:center; gap:8px; min-height:44px; cursor:pointer; list-style:none;
+  font-family:var(--mono); font-size:var(--t-label); letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+.cite summary::-webkit-details-marker { display:none; }
+.cite summary::before { content:"+"; font-size:1rem; width:1ch; color:var(--accent); }
+.cite[open] summary::before { content:"−"; }
+.cite summary:hover { color:var(--ink); }
+.cite p { font-family:var(--mono); font-size:var(--t-data); line-height:1.65; color:var(--ink-2); background:var(--plate);
+  border:1px solid var(--rule); border-radius:3px; padding:12px 14px; margin-bottom:6px; overflow-wrap:anywhere; max-width:none; }
+.more-li { margin-top:6px; padding-top:6px; border-top:1px solid var(--rule-2); }
+.more-li a { display:inline-flex; align-items:center; min-height:44px; }
+
+/* research notes: two full entries */
+.entry { padding:0 0 36px; margin-bottom:36px; border-bottom:1px solid var(--rule); }
+.entry-tag { display:flex; flex-wrap:wrap; gap:2px 14px; align-items:baseline; margin-bottom:6px; }
+.no { font-family:var(--mono); font-size:var(--t-label); color:var(--mark); font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+.entry h3 { font-family:var(--serif); font-size:clamp(1.3rem,2.6vw,1.5rem); line-height:1.25; color:var(--ink); font-weight:700; max-width:36ch; margin-bottom:18px; }
+.entry-body { display:grid; gap:20px; }
+.entry-body figure { max-width:640px; }
+.result { margin-top:16px; padding:2px 0 2px 16px; border-left:3px solid var(--accent); color:var(--ink); }
+.result .kicker { display:block; margin-bottom:2px; color:var(--accent-ink); }
+.entry .links { margin-top:10px; }
+
+/* research notes: compact figure cards */
+.notes { display:grid; gap:16px; list-style:none; }
+.note { display:flex; flex-direction:column; height:100%; min-width:0; background:var(--plate); border:1px solid var(--rule); border-radius:3px;
+  overflow:hidden; color:var(--ink-2); text-decoration:none; }
+.note:hover { border-color:var(--ink); color:var(--ink-2); text-decoration:none; }
+.note:hover h3 { color:var(--accent); }
+.nfig { position:relative; background:var(--night); border-bottom:1px solid var(--rule); }
+.nfig.light { background:#fff; }
+.nfig.std { aspect-ratio:896/588; }
+.nfig.std img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
+.nfig .crop { background:transparent; }
+/* nonabelian_phase.png 2325x690: phones show panel (a) only */
+.c-na { aspect-ratio:760/570; }
+.c-na img { width:305.9%; top:-21.05%; }
+/* hexlife_crossover_locking.png 1495x572: phones show the left panel only */
+.c-hx { aspect-ratio:945/447; }
+.c-hx img { width:158.2%; top:-27.96%; }
+.crop-note { display:block; font-size:var(--t-cap); color:var(--muted); margin:-4px 0 4px; }
+.nbody { padding:16px 18px 18px; display:flex; flex-direction:column; gap:6px; flex:1; }
+.note h3 { font-family:var(--serif); font-size:1.18rem; line-height:1.28; color:var(--ink); font-weight:700; }
+.note .go { margin-top:auto; padding-top:6px; font-weight:600; color:var(--accent); }
+.note:hover .go { text-decoration:underline; }
+@media (min-width:600px) {
+  .c-na { aspect-ratio:2325/690; }
+  .c-na img { width:100%; top:0; }
+  .c-hx { aspect-ratio:1495/572; }
+  .c-hx img { width:100%; top:0; }
+  .crop-note { display:none; }
+  .notes { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .notes .span, .notes .row-card { grid-column:1 / -1; }
+  .notes .row-card .nfig.std { aspect-ratio:auto; min-height:230px; }
+  .notes .row-card .note { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .notes .row-card .nfig { border-bottom:0; border-right:1px solid var(--rule); }
+}
+.all { margin-top:20px; }
+.all a { display:inline-flex; align-items:center; min-height:44px; font-weight:600; }
+
+/* play */
+.play { display:grid; gap:16px; list-style:none; }
+.card { display:flex; flex-direction:column; height:100%; padding:20px 20px 16px; background:var(--plate); border:1px solid var(--rule);
+  color:var(--ink-2); text-decoration:none; border-radius:3px; }
+.card:hover { border-color:var(--ink); color:var(--ink-2); text-decoration:none; }
+.card h3 { font-family:var(--serif); font-size:1.25rem; line-height:1.28; color:var(--ink); margin:6px 0 10px; }
+.card .go { margin-top:auto; padding-top:14px; min-height:44px; display:flex; align-items:flex-end; font-weight:600; color:var(--accent); }
+.card:hover .go { text-decoration:underline; }
+
+/* about */
+.about-grid { display:grid; gap:28px; }
+.about-grid p + p { margin-top:14px; }
+.prose { max-width:64ch; }
+.pull { font-family:var(--serif); font-style:italic; font-size:clamp(1.25rem,2.6vw,1.5rem); line-height:1.35; color:var(--ink);
+  border-top:1px solid var(--rule-2); border-bottom:1px solid var(--rule-2); padding:16px 0; margin:20px 0; }
+.pull cite { display:block; font-style:normal; font-family:var(--mono); font-size:var(--t-label); color:var(--muted); margin-top:8px; letter-spacing:.04em; text-transform:uppercase; }
+.cv dt { margin-bottom:8px; }
+.cv dd { padding:12px 0; border-bottom:1px solid var(--rule-2); color:var(--ink); line-height:1.45; }
+.cv dt + dd { border-top:1px solid var(--ink); }
+.cv dd span { display:block; color:var(--muted); font-size:var(--t-cap); }
+
+/* contact */
+.mail { font-family:var(--serif); font-size:clamp(1.35rem,4.4vw,2.1rem); line-height:1.2; color:var(--ink); overflow-wrap:anywhere;
+  display:inline-flex; min-height:48px; align-items:center; text-decoration-color:var(--rule-2); }
+.mail:hover { color:var(--accent); text-decoration-color:currentColor; }
+.elsewhere { list-style:none; margin-top:22px; border-top:1px solid var(--ink); max-width:640px; }
+.elsewhere li { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:0 16px; border-bottom:1px solid var(--rule-2); padding:2px 0; }
+.elsewhere a { display:inline-flex; align-items:center; min-height:44px; overflow-wrap:anywhere; }
+.elsewhere .m { font-family:var(--mono); font-size:.86rem; }
+@media (max-width:479px) {
+  .elsewhere li { display:block; padding:10px 0 2px; }
+  .elsewhere .kicker { display:block; }
+  .elsewhere a { min-height:44px; }
+}
+
+footer { border-top:1px solid var(--rule); padding:18px 0 30px; font-size:var(--t-cap); color:var(--muted); }
+footer .wrap { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:2px 20px; }
+footer a { display:inline-flex; align-items:center; min-height:44px; color:var(--muted); }
+footer a:hover { color:var(--ink); }
+
+/* tablet and up */
+@media (min-width:700px) {
+  :root { --gut:32px; --sec:72px; }
+  .hero { padding-top:56px; }
+  .play { grid-template-columns:repeat(3,1fr); }
+  .ref { grid-template-columns:2.6rem 1fr; }
+  .ref-n { display:block; font-family:var(--mono); color:var(--mark); font-size:.92rem; padding-top:1px; }
+  .ref-n-in { display:none; }
+  .cv { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); column-gap:24px; }
+  .cv dt { grid-column:1 / -1; }
+  .cv dd { border-top:1px solid var(--ink); }
+  .entry-text { display:grid; grid-template-columns:1fr 1fr; gap:0 40px; align-items:start; }
+  .entry-text .result { margin-top:0; }
+}
+@media (min-width:1000px) {
+  :root { --gut:48px; --sec:80px; }
+  .hero .wrap { grid-template-columns:1.08fr 1fr; gap:64px; align-items:center; }
+  .split { display:grid; grid-template-columns:220px minmax(0,1fr); gap:48px; }
+  .split > .sec-head { position:sticky; top:24px; align-self:start; margin-bottom:0; }
+  .split > .sec-head h2 { font-size:2rem; }
+  .entry-body figure { max-width:none; }
+  .entry.side .entry-body { grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:32px; align-items:start; }
+  .entry.side .entry-text { display:block; }
+  .entry.side .entry-text .result { margin-top:16px; }
+  .notes { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .notes .row-card { grid-column:auto; }
+  .notes .row-card .note { display:flex; }
+  .notes .row-card .nfig { border-right:0; border-bottom:1px solid var(--rule); }
+  .notes .row-card .nfig.std { aspect-ratio:896/588; min-height:0; }
+  .play .card h3 { font-size:1.18rem; }
+}
+@media (min-width:1700px) {
+  body { font-size:17.5px; }
+  :root { --max:1280px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { transition:none !important; animation:none !important; }
+}
+</style>
+<script defer src="/ga.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="mast">
+  <div class="wrap">
+    <a class="brand" href="/">Daniel Olliver</a>
+    <nav aria-label="Sections">
+      <ul class="nav">
+        <li><a href="#papers">Papers</a></li>
+        <li><a href="#notes">Notes</a></li>
+        <li><a href="#play">Play</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <p class="kicker">AI research · machine learning · quantum computing · Auckland, NZ</p>
+      <h1>Daniel Olliver</h1>
+      <p class="dek">I do evidence-first AI research: neural networks that use the exact symmetry of a problem, and quantum experiments on real IBM hardware, with controls and error bars.</p>
+      <p class="rule-note">Every result on this page comes from a completed, logged run, and the negative results stay in.</p>
+      <ul class="tally" aria-label="At a glance">
+        <li><b>2</b>preprints<small>Zenodo, with DOIs</small></li>
+        <li><b>7</b>research notes<small>each with its figure</small></li>
+        <li><b>3</b>IBM quantum processors<small>ibm_marrakesh · ibm_kingston · ibm_fez</small></li>
+      </ul>
+      <div class="actions">
+        <a class="btn btn-ink" href="#papers">Read the papers</a>
+        <a class="btn btn-line" href="/anyons/">Play the Hex demo</a>
+      </div>
+    </div>
+    <figure>
+      <div class="plate">
+        <div class="crop c-k"><img src="/research/kitaev_topological_order.png" width="2100" height="644" decoding="async" fetchpriority="high" alt="Bar chart of the logical observable on IBM hardware: +0.845 ± 0.030 in the vacuum, −0.843 ± 0.035 after the braid, and +0.845 for the control loop, across three devices"></div>
+      </div>
+      <figcaption><span class="fig">Fig. 1</span>Anyon braiding on IBM quantum hardware. Dragging one excitation around another flips the logical observable ⟨Z̄⟩ from <span class="d">+0.845 ± 0.030</span> to <span class="d">−0.843 ± 0.035</span>, while a control loop stays at <span class="d">+0.845</span>. Reproduced on <span class="d">ibm_marrakesh</span>, <span class="d">ibm_kingston</span> and <span class="d">ibm_fez</span>.
+        <br><a href="/research/braiding/">Read the note</a></figcaption>
+    </figure>
+  </div>
+</div>
+
+<section id="papers" class="band" aria-labelledby="papers-h">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="papers-h">Papers</h2>
+      <p>Two preprints on Zenodo. The DOI opens the full text.</p>
+    </div>
+    <div>
+      <ol class="refs">
+        <li class="ref" id="paper-1">
+          <span class="ref-n" aria-hidden="true">[1]</span>
+          <div>
+            <p class="ref-meta"><span class="ref-n-in" aria-hidden="true">[1]</span>Olliver, D. · Preprint · Zenodo · 16 June 2026</p>
+            <h3>Circuit-level equivariance is code-dependent: obstruction in the surface code, exactness in the honeycomb Floquet code, and consequences for neural decoders</h3>
+            <p>Whether exact (twisted) equivariance survives at circuit level depends on the code. It is obstructed for surface-code extraction circuits and exact for the honeycomb Floquet code, whose C3 rotation mixes the logical qubits. Tying that symmetry into the decoder flips the honeycomb task from unlearnable to learned.</p>
+            <ul class="data" aria-label="Key numbers">
+              <li>999 spacetime maps</li>
+              <li>1,728 schedules</li>
+              <li>≥256× sample-efficiency separation</li>
+              <li>116-check audit</li>
+            </ul>
+            <a class="doi" href="https://doi.org/10.5281/zenodo.20715320" aria-label="Read the preprint: DOI 10.5281/zenodo.20715320"><span class="k">DOI</span><span class="v">10.5281/zenodo.20715320</span><span class="hint">Read the preprint</span></a>
+            <ul class="links">
+              <li><a href="https://github.com/dwatces/equivariant-quantum-ml">Code on GitHub</a></li>
+              <li><a href="https://pypi.org/project/demsym/">pip install demsym</a></li>
+              <li><a href="/anyons/decoder/">Play against the trained net</a></li>
+              <li><a href="https://www.linkedin.com/feed/update/urn:li:activity:7472739252942901248/">Discussed on LinkedIn</a></li>
+            </ul>
+            <details class="cite"><summary>Cite</summary><p>Olliver, D. (2026). Circuit-level equivariance is code-dependent: obstruction in the surface code, exactness in the honeycomb Floquet code, and consequences for neural decoders [Preprint]. Zenodo. https://doi.org/10.5281/zenodo.20715320</p></details>
+          </div>
+        </li>
+        <li class="ref" id="paper-2">
+          <span class="ref-n" aria-hidden="true">[2]</span>
+          <div>
+            <p class="ref-meta"><span class="ref-n-in" aria-hidden="true">[2]</span>Olliver, D. · Preprint · Zenodo · 27 July 2026</p>
+            <h3>The lattice’s teeth: primitive reciprocal axes govern which Fourier components neural cellular automata can grow</h3>
+            <p>Neural cellular automata are trained on square grids by default; this paper treats the lattice as an experimental variable. An apparent advantage of hexagonal over square grids turned out to be a normalisation artefact in cross-lattice comparisons, and the paper documents and retracts it. The second result was put to a pre-registered, out-of-sample test, and the paper reports the outcome.</p>
+            <a class="doi" href="https://doi.org/10.5281/zenodo.21614035" aria-label="Read the preprint: DOI 10.5281/zenodo.21614035"><span class="k">DOI</span><span class="v">10.5281/zenodo.21614035</span><span class="hint">Read the preprint</span></a>
+            <ul class="links">
+              <li><a href="/research/hexlife/">Separate note: Lenia-class patterns on square and hex lattices</a></li>
+            </ul>
+            <details class="cite"><summary>Cite</summary><p>Olliver, D. (2026). The lattice’s teeth: primitive reciprocal axes govern which Fourier components neural cellular automata can grow [Preprint]. Zenodo. https://doi.org/10.5281/zenodo.21614035</p></details>
+          </div>
+        </li>
+      </ol>
+      <p class="more-li">More on LinkedIn: <a href="https://www.linkedin.com/feed/update/urn:li:activity:7470646053034455040/">another research post</a></p>
+    </div>
+  </div>
+</section>
+
+<section id="notes" aria-labelledby="notes-h">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="notes-h">Research notes</h2>
+      <p>Seven short write-ups, each with its figure and the result it supports.</p>
+    </div>
+    <div>
+      <article class="entry">
+        <p class="entry-tag"><span class="no">Note 01</span><span class="kicker">Quantum hardware · 3 devices</span></p>
+        <h3>Anyon braiding on three quantum computers</h3>
+        <div class="entry-body">
+          <figure>
+            <div class="plate">
+              <div class="pair">
+                <div class="crop c-k p2"><img src="/research/kitaev_topological_order.png" width="2100" height="644" loading="lazy" decoding="async" alt="Bar chart of plaquette flux: it stays conserved at +0.64 under the Kitaev evolution and drops to +0.12 under the Kitaev-plus-field control"></div>
+                <div class="crop c-k p3"><img src="/research/kitaev_topological_order.png" width="2100" height="644" loading="lazy" decoding="async" alt="Bar chart of a localised anyon: after the local operation the anyon plaquette reads −0.905 ± 0.010 while its neighbour stays at +0.924 ± 0.015"></div>
+              </div>
+            </div>
+            <figcaption><span class="fig">Fig. 2</span>Plaquette flux is conserved by the Kitaev evolution and broken by the field control (first panel); a local operation flips one plaquette and leaves its neighbour untouched (second panel). <span class="fig-note">Only the second panel fits a phone screen; the full figure is in the note.</span></figcaption>
+          </figure>
+          <div class="entry-text">
+            <p>Topological order on the Kitaev honeycomb, measured on superconducting hardware with a matched-depth control beside every claim. Fluxes stayed conserved (<span class="d">+0.64</span>) while a control destroyed them (<span class="d">+0.12</span>). A single anyon flipped its plaquette to <span class="d">−0.905 ± 0.010</span> while the neighbour sat at <span class="d">+0.924 ± 0.015</span>.</p>
+            <div>
+              <p class="result"><span class="kicker">Result</span>The −1 braiding statistics (Fig. 1), reproduced on <span class="d">ibm_marrakesh</span>, <span class="d">ibm_kingston</span> and <span class="d">ibm_fez</span> with error bars. Not new physics: measured by one person, on three independent machines.</p>
+              <ul class="links">
+                <li><a href="/research/braiding/">Read the note</a></li>
+                <li><a href="/anyons/">Braid anyons yourself</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="entry side">
+        <p class="entry-tag"><span class="no">Note 02</span><span class="kicker">Quantum error correction · related: paper [1]</span></p>
+        <h3>Symmetry-tied neural decoders for quantum error correction</h3>
+        <div class="entry-body">
+          <figure>
+            <div class="plate night"><img src="/research/equiv_decoder.png" width="896" height="588" loading="lazy" decoding="async" alt="Decoding accuracy against training samples: the symmetry-tied decoder sits above the plain decoder at every size and approaches the matching-decoder line"></div>
+            <figcaption><span class="fig">Fig. 3</span>Surface code d=3: the same network at an identical <span class="d">21,377</span> parameters, 5 seeds, 200k test shots.</figcaption>
+          </figure>
+          <div class="entry-text">
+            <p>A decoder reads a quantum machine’s error alarms and has to name the fault. Labelled data from real devices is scarce, so the right inductive bias matters more than raw scale.</p>
+            <div>
+              <p class="result"><span class="kicker">Result</span>At identical parameter count, the symmetry-tied decoder wins at every training size, is ~4× more sample-efficient, and reaches the matching-decoder baseline (<span class="d">0.9943</span> vs <span class="d">0.9948</span>). On the honeycomb Floquet code, the identical plain twin never learns the task the symmetry-aware one solves.</p>
+              <ul class="links">
+                <li><a href="/research/decoder/">Read the note</a></li>
+                <li><a href="#paper-1">Paper [1]</a></li>
+                <li><a href="/anyons/decoder/">Play the trained decoder</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <ul class="notes">
+        <li class="span"><a class="note" href="/research/nonabelian/">
+          <div class="nfig light"><div class="crop c-na"><img src="/research/nonabelian_phase.png" width="2325" height="690" loading="lazy" decoding="async" alt="Three panels: the field term gaps the phase into Chern number ±1; a cylinder spectrum with one chiral Majorana edge branch; Majorana zero modes bound to vortices"></div></div>
+          <div class="nbody">
+            <span class="crop-note">Panel (a) of three; full figure in the note.</span>
+            <p class="entry-tag"><span class="no">Note 03</span><span class="kicker">Exact computation</span></p>
+            <h3>The non-Abelian phase, computed end to end</h3>
+            <p>Exchanges that share a vortex refuse to commute (Ivanov-pattern match <span class="d">0.975</span>); disjoint exchanges commute to <span class="d">0.005</span>.</p>
+            <span class="go">Read the note</span>
+          </div></a></li>
+        <li><a class="note" href="/research/qrc/">
+          <div class="nfig std"><img src="/research/qrc_equivariance.png" width="896" height="588" loading="lazy" decoding="async" alt="Test score against training samples for a plain readout and a C3-equivariant readout of a quantum reservoir"></div>
+          <div class="nbody">
+            <p class="entry-tag"><span class="no">Note 04</span><span class="kicker">Quantum machine learning</span></p>
+            <h3>Equivariant readouts for quantum machine learning</h3>
+            <p>A readout with exact C3 commutation (<span class="d">[P,H] error = 0</span>) gives large sample-efficiency gains when data is scarce.</p>
+            <span class="go">Read the note</span>
+          </div></a></li>
+        <li><a class="note" href="/research/chern/">
+          <div class="nfig std"><img src="/research/haldane_chern.png" width="896" height="588" loading="lazy" decoding="async" alt="Chern-phase classification accuracy against training samples per class for no symmetry, the matched C3 prior and the too-large C6 group"></div>
+          <div class="nbody">
+            <p class="entry-tag"><span class="no">Note 05</span><span class="kicker">Materials ML</span></p>
+            <h3>Topological-materials ML: match the symmetry, exactly</h3>
+            <p>The matched C3 prior wins at every scarce size; the larger C6 group, broken by the sublattice mass term, underperforms it everywhere.</p>
+            <span class="go">Read the note</span>
+          </div></a></li>
+        <li class="row-card"><a class="note" href="/research/coldstart/">
+          <div class="nfig std"><img src="/research/coldstart_equivariance.png" width="896" height="588" loading="lazy" decoding="async" alt="Gain of the hex-equivariant model over the directional one against the share of stations with known history, across ten city-seasons"></div>
+          <div class="nbody">
+            <p class="entry-tag"><span class="no">Note 06</span><span class="kicker">Forecasting · real city data</span></p>
+            <h3>The equivariance law, held on real city data</h3>
+            <p>The hex-equivariant model beats the directional one in <span class="d">10 of 10</span> city-seasons, with the gain largest where history is thinnest.</p>
+            <span class="go">Read the note</span>
+          </div></a></li>
+        <li class="span"><a class="note" href="/research/hexlife/">
+          <div class="nfig light"><div class="crop c-hx"><img src="/research/hexlife_crossover_locking.png" width="1495" height="572" loading="lazy" decoding="async" alt="Orientation locking against spot spacing: square arrays unlock by about 6.5 lattice constants, hexagonal arrays keep a weak +0.2 lock; a second panel shows a morphology channel by kernel radius"></div></div>
+          <div class="nbody">
+            <span class="crop-note">Left panel only; full figure in the note.</span>
+            <p class="entry-tag"><span class="no">Note 07</span><span class="kicker">Pattern formation · Lenia-class</span></p>
+            <h3>The lattice’s teeth: when the substrate owns the pattern</h3>
+            <p>At normal scales the patterns don’t care which lattice they grow on. Below ~3 lattice constants the substrate owns them: <span class="d">11,946</span> measured patterns, replicated on independent hardware.</p>
+            <span class="go">Read the note</span>
+          </div></a></li>
+      </ul>
+      <p class="all"><a href="/research/">All seven notes on one page</a></p>
+    </div>
+  </div>
+</section>
+
+<section id="play" class="band" aria-labelledby="play-h">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="play-h">Play and read</h2>
+      <p>Two things that run in your browser, and the essay behind them.</p>
+    </div>
+    <ul class="play">
+      <li><a class="card" href="/anyons/">
+        <span class="kicker">Interactive</span>
+        <h3>Hex: play with real quantum matter</h3>
+        <p>Braid anyons on a torus and watch a logical qubit flip without being touched. The headline interactions were verified on real IBM processors.</p>
+        <span class="go">Play the Hex demo</span></a></li>
+      <li><a class="card" href="/anyons/decoder/">
+        <span class="kicker">Game · a net I trained</span>
+        <h3>The Error-Hunting Game</h3>
+        <p>Read a quantum memory’s alarm bells against a 63,000-parameter neural decoder running live in the page. The classical matching algorithm still wins, and the game says so.</p>
+        <span class="go">Play the game</span></a></li>
+      <li><a class="card" href="/essay/">
+        <span class="kicker">Essay</span>
+        <h3>I spent six years believing hexagons were the key to AI. Then I tested it.</h3>
+        <p>The finding: hexagonal wiring doesn’t help a network learn. Symmetry tying helps, but only when data is scarce and the symmetry is really there.</p>
+        <span class="go">Read the essay</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section id="about" aria-labelledby="about-h">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="about-h">About</h2>
+      <p>Independent research, Auckland.</p>
+    </div>
+    <div class="about-grid">
+      <div class="prose">
+        <p>I’m Daniel Olliver, in Auckland. Through 2025 and 2026 I’ve done independent research in geometric machine learning and quantum computing: more than two dozen controlled experiments on a GTX 1070, free cloud GPUs and three of IBM’s quantum computers.</p>
+        <blockquote class="pull">“No result gets written down before its run completes.”<cite>The one rule, from the essay</cite></blockquote>
+        <p>Early on I caught myself writing numbers for an experiment that was still running. When it finished, reality was backwards from what I’d written. I corrected it and logged the incident: conviction will fabricate evidence if you let it.</p>
+        <p>The idea I set out to prove, that hexagonal wiring helps a network learn, came back cleanly false. What survived is narrower and more useful: symmetry helps a network when it is exactly present and data is scarce, and topology shows up on real quantum hardware.</p>
+      </div>
+      <dl class="cv">
+        <dt class="kicker">Education and teaching</dt>
+        <dd>Postgraduate Certificate in AI (University of Auckland)</dd>
+        <dd>BSc in Computer Science (AUT)</dd>
+        <dd>Graduate teaching assistant<span>University of Auckland, 2024</span></dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="band" aria-labelledby="contact-h">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="contact-h">Contact</h2>
+      <p>Questions about the papers, the code or the runs are welcome.</p>
+    </div>
+    <div>
+      <!--email_off--><a class="mail" href="mailto:daniel@danielolliver.com">daniel@danielolliver.com</a><!--/email_off-->
+      <ul class="elsewhere">
+        <li><span class="kicker">GitHub</span><a href="https://github.com/dwatces">github.com/dwatces</a></li>
+        <li><span class="kicker">LinkedIn</span><a href="https://www.linkedin.com/in/danielolliver">linkedin.com/in/danielolliver</a></li>
+        <li><span class="kicker">Preprint [1] · June 2026</span><a class="m" href="https://doi.org/10.5281/zenodo.20715320">doi.org/10.5281/zenodo.20715320</a></li>
+        <li><span class="kicker">Preprint [2] · July 2026</span><a class="m" href="https://doi.org/10.5281/zenodo.21614035">doi.org/10.5281/zenodo.21614035</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Daniel Olliver · Auckland, New Zealand</span>
+    <a href="/dev/">Software development portfolio</a>
+  </div>
+</footer>
+<script>
+/* Warm up lazy figures when the browser is idle, so a fast scroll never lands on an empty frame. Skipped on Save-Data. */
+(function () {
+  var c = navigator.connection;
+  if (c && c.saveData) return;
+  function warm() { var imgs = document.querySelectorAll('img[loading="lazy"]'); for (var i = 0; i < imgs.length; i++) imgs[i].loading = "eager"; }
+  window.addEventListener("load", function () { (window.requestIdleCallback || function (f) { setTimeout(f, 1200); })(warm); });
+})();
+</script>
+</body>
 </html>
