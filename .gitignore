@@ -22,3 +22,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .claude/
+
+# redesign scratch space and the screenshot tool install
+/work
+/docs/tools/node_modules
+/docs/tools/package-lock.json
+/.firebase
