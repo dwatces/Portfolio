@@ -26,19 +26,22 @@
   .lead { color:var(--dim); font-size:.95rem; margin-bottom:18px; max-width:720px; }
   .boardrow { display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; }
   canvas { background:#0d111a; border:1px solid var(--line); border-radius:10px;
-    touch-action:none; cursor:crosshair; }
-  .meters { min-width:230px; flex:1; }
+    touch-action:none; cursor:crosshair; max-width:100%; height:auto; }
+  /* 480px of board inside a 1px border; shrinks to fit narrow screens */
+  #board { width:482px; }
+  .meters { min-width:min(230px,100%); flex:1; }
   .meter { margin-bottom:14px; padding:12px 14px; border:1px solid var(--line); border-radius:10px; }
   .meter .lab { color:var(--dim); font-size:.8rem; letter-spacing:.4px; }
   .meter .val { font-size:1.7rem; font-weight:700; font-variant-numeric:tabular-nums; }
   .val.plus { color:var(--good); } .val.minus { color:var(--bad); } .val.zero { color:var(--dim); }
   .hint { color:var(--dim); font-size:.86rem; margin-top:10px; }
   button { background:#1b2230; color:var(--text); border:1px solid var(--line);
-    padding:8px 14px; border-radius:8px; font-size:.9rem; cursor:pointer; }
+    padding:8px 14px; border-radius:8px; font-size:.9rem; cursor:pointer; min-height:44px; }
   button:hover { border-color:var(--dim); }
   button:disabled { opacity:.45; cursor:default; }
   .dialrow { display:flex; gap:28px; flex-wrap:wrap; align-items:center; }
-  input[type=range] { width:280px; accent-color:var(--gold); }
+  .dialrow > div { max-width:100%; }
+  input[type=range] { width:280px; max-width:100%; height:44px; accent-color:var(--gold); }
   .mono { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.85rem; }
   table { border-collapse:collapse; width:100%; font-size:.9rem; }
   th,td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); }
@@ -48,14 +51,15 @@
   a { color:var(--cold); text-decoration:none; }
   .roll { margin-top:12px; }
   #branchout { margin-top:10px; min-height:44px; color:var(--dim); font-size:.85rem; }
-  .rgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px; }
+  .rgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:16px; }
   .rcard { border:1px solid var(--line); border-radius:10px; padding:16px; background:#0d111a; display:block; transition:all .2s; cursor:pointer; }
   .rcard:hover { border-color:var(--dim); transform:translateY(-2px); }
   .rcard h3 { font-size:1rem; margin-bottom:8px; color:var(--gold); }
   .rcard p { font-size:.88rem; color:var(--dim); }
   .rcard b { color:var(--text); }
   .rcard img { width:100%; border-radius:6px; margin-top:10px; border:1px solid var(--line); }
-  .topnav { font-size:.85rem; margin-bottom:-30px; padding-top:18px; color:var(--dim); }
+  .topnav { font-size:.85rem; margin-bottom:-41px; padding-top:7px; color:var(--dim); }
+  .topnav a { display:inline-block; line-height:44px; }
   .hw { margin-top:14px; padding:14px; border:1px dashed var(--line); border-radius:10px;
         transition:border-color .25s; }
   .hw .lab { color:var(--dim); font-size:.8rem; letter-spacing:.4px; }
@@ -65,6 +69,14 @@
   .hw button { width:100%; }
   .hw.ready button { border-color:var(--gold); color:var(--gold); }
   .hw .fine { margin-top:10px; font-size:.78rem; color:var(--dim); line-height:1.5; }
+  @media (max-width:420px) {
+    table { font-size:.8rem; }
+    th,td { padding:6px 4px; }
+  }
+  @media (max-width:360px) {
+    .wrap { padding:0 16px; }
+    section { padding:22px 16px; }
+  }
 </style>
   <script defer src="/ga.js"></script>
   </head>
@@ -175,7 +187,7 @@
       <h3>Symmetry makes quantum decoders cheaper</h3>
       <p>A surface-code neural decoder tied to the code’s exact (twisted) symmetry, at
       <b>identical parameter count</b>: wins at every training size, <b>~4× sample
-      efficiency</b>, and reaches the matching-decoder baseline (0.9944 vs 0.9948) where
+      efficiency</b>, and comes within 0.0005 of the matching-decoder baseline (0.9943 vs 0.9948) where
       the plain network still lags. Found en route: naive lattice symmetry mis-ties the
       label — the correct group action carries a syndrome-dependent twist.</p>
     </a>
@@ -205,7 +217,7 @@
         <td class="jobid">3 devices</td></tr>
     <tr><td>Magic dial at 45°</td>
         <td>output on the magic axis, direction overlap <b>0.999</b>, witness <b>0.4150</b> (ideal 0.4150)</td>
-        <td class="jobid">d8kdvb832u0s73f8l200</td></tr>
+        <td class="jobid">d8kdvb832u<wbr>0s73f8l200</td></tr>
   </table>
   <p class="hint" style="margin-top:14px">Want your own braid on that table? Complete a
   loop on the board in section 1 and queue it from the panel beside it — the first

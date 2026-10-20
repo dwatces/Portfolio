@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#256f8f">
 <title>Symmetry-tied neural decoders for quantum error correction — Daniel Olliver</title>
-<meta name="description" content="An ML decoder tied to the surface code’s exact symmetry — at identical parameter count — wins at every training size, is ~4× more sample-efficient, and rea">
+<meta name="description" content="An ML decoder tied to the surface code’s exact symmetry — at identical parameter count — wins at every training size, is ~4× more sample-efficient, and comes within 0.0005 of the matching-decoder baseline.">
 <link rel="icon" href="/favicon.png">
 <style>
   @font-face { font-family:"Work Sans"; src:local("Work Sans"),
@@ -53,7 +53,7 @@
 <p class="crumb"><a href="/">danielolliver.com</a> / <a href="/research/">Research</a></p>
 <h1>Symmetry-tied neural decoders for quantum error correction</h1>
 <div class="fig"><img src="/research/equiv_decoder.png" alt="Symmetry-tied neural decoders for quantum error correction"></div>
-<p class="lead">An ML decoder tied to the surface code’s exact symmetry — at identical parameter count — wins at every training size, is ~4× more sample-efficient, and reaches the matching-decoder baseline (0.9943 vs 0.9948). Found en route: the correct group action carries a syndrome-dependent twist; naive lattice symmetry mis-ties the label.</p>
+<p class="lead">An ML decoder tied to the surface code’s exact symmetry — at identical parameter count — wins at every training size, is ~4× more sample-efficient, and comes within 0.0005 of the matching-decoder baseline (0.9943 vs 0.9948). Found en route: the correct group action carries a syndrome-dependent twist; naive lattice symmetry mis-ties the label.</p>
 <div class="detail">
 <p>A decoder reads a quantum machine’s error alarms and must name the fault — fast, forever. It is a learning job where labelled data from real devices is scarce, so the right inductive bias matters more than raw scale.</p><p>The honeycomb Floquet code keeps its full rotation symmetry <em>exactly</em> under the most naive compilation, and rotating the lattice 120° swaps the two stored qubits — solved mechanism-by-mechanism from the code’s own error model, at two lattice sizes. Building that exact symmetry into the network is a switch, not a speed-up: the identical plain twin never learns the task the symmetry-aware one solves.</p>
 </div>

@@ -12,18 +12,23 @@
 <meta property="og:site_name" content="Daniel Olliver">
 <meta property="og:title" content="Daniel Olliver: AI research in machine learning and quantum computing">
 <meta property="og:description" content="Two preprints, seven research notes and playable demos. Symmetry-aware neural networks and quantum experiments on real IBM hardware, with controls and error bars.">
-<meta property="og:image" content="https://danielolliver.com/research/kitaev_topological_order.png">
-<meta property="og:image:alt" content="Bar charts of anyon braiding, plaquette flux and a localised anyon measured on IBM quantum hardware, with error bars">
+<meta property="og:image" content="https://danielolliver.com/og-home-20261020.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Daniel Olliver: evidence-first AI research. Beside the name, a bar chart of anyon braiding on IBM quantum hardware: the logical observable reads +0.845 in the vacuum, −0.843 after the braid and +0.845 for the control loop">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Daniel Olliver: AI research in machine learning and quantum computing">
 <meta name="twitter:description" content="Two preprints, seven research notes and playable demos. Symmetry-aware neural networks and quantum experiments on real IBM hardware, with controls and error bars.">
-<meta name="twitter:image" content="https://danielolliver.com/research/kitaev_topological_order.png">
-<meta name="twitter:image:alt" content="Bar charts of anyon braiding, plaquette flux and a localised anyon measured on IBM quantum hardware, with error bars">
+<meta name="twitter:image" content="https://danielolliver.com/og-home-20261020.png">
+<meta name="twitter:image:alt" content="Daniel Olliver: evidence-first AI research. Beside the name, a bar chart of anyon braiding on IBM quantum hardware: the logical observable reads +0.845 in the vacuum, −0.843 after the braid and +0.845 for the control loop">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/manifest.json">
-<link rel="preload" href="/static/media/font.e7663f1a.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="/static/media/work-sans-20261020.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/static/media/source-serif-4-latin-700-20261020.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/static/media/source-serif-4-latin-400-20261020.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -66,13 +71,31 @@
 }
 </script>
 <style>
-@font-face { font-family:"Work Sans"; src:local("Work Sans"), url(/static/media/font.e7663f1a.ttf) format("truetype");
+@font-face { font-family:"Work Sans"; src:local("Work Sans"), url(/static/media/work-sans-20261020.woff2) format("woff2"), url(/static/media/font.e7663f1a.ttf) format("truetype");
   font-weight:100 900; font-display:swap; }
+/* Source Serif 4 (Adobe), Latin subset from @fontsource/source-serif-4 5.3.1. Licence: SIL Open Font License 1.1 (OFL-1.1). */
+@font-face { font-family:"Source Serif 4"; src:url(/static/media/source-serif-4-latin-400-20261020.woff2) format("woff2");
+  font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"Source Serif 4"; src:url(/static/media/source-serif-4-latin-700-20261020.woff2) format("woff2");
+  font-weight:700; font-style:normal; font-display:swap; }
+@font-face { font-family:"Source Serif 4"; src:url(/static/media/source-serif-4-latin-400-italic-20261020.woff2) format("woff2");
+  font-weight:400; font-style:italic; font-display:swap; }
+/* Metric-matched local fallbacks, so the swap to Source Serif 4 doesn't shift layout.
+   Georgia figures were measured on Gelasio and Times New Roman figures on Tinos (both metric-compatible),
+   then checked against this page's text. Serif max-widths below are in em, not ch, for the same reason. */
+@font-face { font-family:"Source Serif 4 Fallback"; src:local("Georgia"); font-weight:400;
+  size-adjust:108.41%; ascent-override:95.56%; descent-override:30.9%; line-gap-override:0%; }
+@font-face { font-family:"Source Serif 4 Fallback"; src:local("Georgia Bold"), local("Georgia-Bold"); font-weight:700;
+  size-adjust:95.8%; ascent-override:108.14%; descent-override:34.97%; line-gap-override:0%; }
+@font-face { font-family:"Source Serif 4 Fallback T"; src:local("Times New Roman"), local("TimesNewRomanPSMT"), local("Liberation Serif"), local("LiberationSerif"); font-weight:400;
+  size-adjust:120.5%; ascent-override:85.98%; descent-override:27.8%; line-gap-override:0%; }
+@font-face { font-family:"Source Serif 4 Fallback T"; src:local("Times New Roman Bold"), local("TimesNewRomanPS-BoldMT"), local("Liberation Serif Bold"), local("LiberationSerif-Bold"); font-weight:700;
+  size-adjust:115.12%; ascent-override:89.99%; descent-override:29.1%; line-gap-override:0%; }
 :root {
   --paper:#f7f5ef; --band:#efebe1; --plate:#fffefa; --ink:#1a2025; --ink-2:#38434b;
   --muted:#5b666e; --rule:#d8d2c4; --rule-2:#c7c0af;
   --accent:#1d6680; --accent-ink:#164f63; --mark:#a8402b; --night:#0d111a;
-  --serif:"Iowan Old Style","Charter","Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  --serif:"Source Serif 4","Source Serif 4 Fallback","Source Serif 4 Fallback T","Iowan Old Style","Charter","Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
   --sans:"Work Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   --mono:ui-monospace,"SFMono-Regular","SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
   --gut:16px; --max:1180px; --sec:52px;
@@ -93,6 +116,7 @@ a:hover { color:var(--accent-ink); text-decoration-thickness:2px; }
 .wrap { max-width:var(--max); margin:0 auto; padding:0 var(--gut); }
 .d { font-family:var(--mono); font-size:.88em; letter-spacing:-.01em; white-space:nowrap; color:var(--ink); }
 .kicker { font-family:var(--mono); font-size:var(--t-label); letter-spacing:.05em; text-transform:uppercase; color:var(--muted); line-height:1.5; }
+.nw { white-space:nowrap; }
 
 /* masthead */
 .mast { border-bottom:1px solid var(--rule); }
@@ -117,9 +141,9 @@ a:hover { color:var(--accent-ink); text-decoration-thickness:2px; }
 .hero .wrap { display:grid; gap:36px; }
 .hero h1 { font-family:var(--serif); font-weight:700; color:var(--ink); font-size:clamp(2.5rem,7.5vw,4.4rem);
   line-height:1.02; letter-spacing:-.02em; margin:12px 0 18px; }
-.dek { font-family:var(--serif); font-size:clamp(1.22rem,2.6vw,1.55rem); line-height:1.4; color:var(--ink); max-width:34ch; }
+.dek { font-family:var(--serif); font-size:clamp(1.22rem,2.6vw,1.55rem); line-height:1.4; color:var(--ink); max-width:18.7em; }
 .rule-note { margin-top:16px; max-width:52ch; }
-.tally { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin:26px 0 28px; border-top:1px solid var(--rule);
+.tally { display:grid; grid-template-columns:auto auto minmax(0,1fr); margin:26px 0 28px; border-top:1px solid var(--rule);
   border-bottom:1px solid var(--rule); list-style:none; max-width:560px; }
 .tally li { padding:12px 12px 12px 0; font-size:.9rem; line-height:1.35; color:var(--ink); }
 .tally li + li { padding-left:14px; border-left:1px solid var(--rule); }
@@ -158,8 +182,8 @@ a:hover { color:var(--accent-ink); text-decoration-thickness:2px; }
 .c-k.p2 img { left:-100.71%; }
 .c-k.p3 img { left:-200%; }
 .pair { display:grid; gap:8px; }
-@media (max-width:599px) { .pair .p2 { display:none; } }
-@media (min-width:600px) { .pair { grid-template-columns:1fr 1fr; gap:0; } .fig-note { display:none; } }
+@media (max-width:599px) { .pair .p2, .cap-wide { display:none; } }
+@media (min-width:600px) { .pair { grid-template-columns:1fr 1fr; gap:0; } .cap-phone { display:none; } }
 figure { margin:0; }
 figcaption { font-size:var(--t-cap); line-height:1.55; color:var(--muted); margin-top:10px; }
 figcaption .fig { font-family:var(--mono); font-size:var(--t-label); color:var(--mark); letter-spacing:.04em; margin-right:6px; text-transform:uppercase; }
@@ -197,12 +221,15 @@ section { padding:var(--sec) 0; }
 .ref-n { display:none; }
 .ref-n-in { color:var(--mark); margin-right:10px; }
 .ref-meta { font-family:var(--mono); font-size:var(--t-data); color:var(--muted); }
-.ref h3 { font-family:var(--serif); font-size:clamp(1.22rem,2.4vw,1.45rem); line-height:1.3; color:var(--ink); margin:6px 0 12px; font-weight:700; max-width:46ch; }
+.ref h3 { font-family:var(--serif); font-size:clamp(1.22rem,2.4vw,1.45rem); line-height:1.3; color:var(--ink); margin:6px 0 12px; font-weight:700; max-width:26.2em; }
 .ref p { max-width:66ch; }
 .ref .data { margin-top:12px; font-family:var(--mono); font-size:var(--t-data); color:var(--ink); display:flex; flex-wrap:wrap; gap:4px 16px; list-style:none; }
+.ref .data li { padding-left:2ch; text-indent:-2ch; }
 .ref .data li::before { content:"· "; color:var(--mark); }
 .ref .doi { margin-top:18px; }
 .ref .links { margin-top:6px; }
+.ref .links .rel { padding-top:10px; }
+.ref .links .rel .kicker { display:block; }
 .cite { margin-top:6px; border-top:1px solid var(--rule); }
 .cite summary { display:inline-flex; align-items:center; gap:8px; min-height:44px; cursor:pointer; list-style:none;
   font-family:var(--mono); font-size:var(--t-label); letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
@@ -219,7 +246,7 @@ section { padding:var(--sec) 0; }
 .entry { padding:0 0 36px; margin-bottom:36px; border-bottom:1px solid var(--rule); }
 .entry-tag { display:flex; flex-wrap:wrap; gap:2px 14px; align-items:baseline; margin-bottom:6px; }
 .no { font-family:var(--mono); font-size:var(--t-label); color:var(--mark); font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
-.entry h3 { font-family:var(--serif); font-size:clamp(1.3rem,2.6vw,1.5rem); line-height:1.25; color:var(--ink); font-weight:700; max-width:36ch; margin-bottom:18px; }
+.entry h3 { font-family:var(--serif); font-size:clamp(1.3rem,2.6vw,1.5rem); line-height:1.25; color:var(--ink); font-weight:700; max-width:20.5em; margin-bottom:18px; }
 .entry-body { display:grid; gap:20px; }
 .entry-body figure { max-width:640px; }
 .result { margin-top:16px; padding:2px 0 2px 16px; border-left:3px solid var(--accent); color:var(--ink); }
@@ -246,6 +273,7 @@ section { padding:var(--sec) 0; }
 .crop-note { display:block; font-size:var(--t-cap); color:var(--muted); margin:-4px 0 4px; }
 .nbody { padding:16px 18px 18px; display:flex; flex-direction:column; gap:6px; flex:1; }
 .note h3 { font-family:var(--serif); font-size:1.18rem; line-height:1.28; color:var(--ink); font-weight:700; }
+.note .entry-tag, .note .entry-tag .kicker { display:block; }
 .note .go { margin-top:auto; padding-top:6px; font-weight:600; color:var(--accent); }
 .note:hover .go { text-decoration:underline; }
 @media (min-width:600px) {
@@ -338,6 +366,8 @@ footer a:hover { color:var(--ink); }
 @media (min-width:1000px) {
   :root { --gut:48px; --sec:80px; }
   .hero .wrap { grid-template-columns:1.08fr 1fr; gap:64px; align-items:center; }
+  /* keep the name on one line in the narrower two-column hero (1000-1085px) */
+  .hero h1 { font-size:min(4.4rem, calc((100vw - 160px) * .076)); }
   .split { display:grid; grid-template-columns:220px minmax(0,1fr); gap:48px; }
   .split > .sec-head { position:sticky; top:24px; align-self:start; margin-bottom:0; }
   .split > .sec-head h2 { font-size:2rem; }
@@ -345,13 +375,15 @@ footer a:hover { color:var(--ink); }
   .entry.side .entry-body { grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:32px; align-items:start; }
   .entry.side .entry-text { display:block; }
   .entry.side .entry-text .result { margin-top:16px; }
+  .start-grid { grid-template-columns:minmax(0,1.15fr) repeat(2,minmax(0,1fr)); }
+  .start-grid .essay-li { grid-column:auto; }
+}
+@media (min-width:1200px) {
   .notes { grid-template-columns:repeat(3,minmax(0,1fr)); }
   .notes .row-card { grid-column:auto; }
   .notes .row-card .note { display:flex; }
   .notes .row-card .nfig { border-right:0; border-bottom:1px solid var(--rule); }
   .notes .row-card .nfig.std { aspect-ratio:896/588; min-height:0; }
-  .start-grid { grid-template-columns:minmax(0,1.15fr) repeat(2,minmax(0,1fr)); }
-  .start-grid .essay-li { grid-column:auto; }
 }
 @media (min-width:1700px) {
   body { font-size:17.5px; }
@@ -385,14 +417,14 @@ footer a:hover { color:var(--ink); }
 <div class="hero">
   <div class="wrap">
     <div>
-      <p class="kicker">AI research · machine learning · quantum computing · Auckland, NZ</p>
+      <p class="kicker"><span class="nw">AI research</span> · <span class="nw">machine learning</span> · <span class="nw">quantum computing</span> · <span class="nw">Auckland, NZ</span></p>
       <h1>Daniel Olliver</h1>
-      <p class="dek">I do evidence-first AI research: neural networks that use the exact symmetry of a problem, and quantum experiments on real IBM hardware, with controls and error bars.</p>
+      <p class="dek">I do evidence-first AI research: neural networks that use the exact symmetry of a problem, and quantum experiments on real IBM hardware, with controls and error&nbsp;bars.</p>
       <p class="rule-note">Every result on this page comes from a completed, logged run, and the negative results stay in.</p>
       <ul class="tally" aria-label="At a glance">
         <li class="has-link"><a class="tally-link" href="#papers"><b>2</b>preprints<small>Zenodo, with DOIs</small></a></li>
         <li><b>7</b>research notes<small>each with its figure</small></li>
-        <li><b>3</b>IBM quantum processors<small>ibm_marrakesh · ibm_kingston · ibm_fez</small></li>
+        <li><b>3</b>IBM quantum processors<small>with error bars</small></li>
       </ul>
       <div class="actions">
         <a class="btn btn-ink" href="/essay/">Read the essay</a>
@@ -453,7 +485,7 @@ footer a:hover { color:var(--ink); }
         <li class="ref" id="paper-1">
           <span class="ref-n" aria-hidden="true">[1]</span>
           <div>
-            <p class="ref-meta"><span class="ref-n-in" aria-hidden="true">[1]</span>Olliver, D. · Preprint · Zenodo · 16 June 2026</p>
+            <p class="ref-meta"><span class="ref-n-in" aria-hidden="true">[1]</span><span class="nw">Olliver, D.</span> · Preprint · Zenodo · <span class="nw">16 June 2026</span></p>
             <h3>Circuit-level equivariance is code-dependent: obstruction in the surface code, exactness in the honeycomb Floquet code, and consequences for neural decoders</h3>
             <p>Whether exact (twisted) equivariance survives at circuit level depends on the code. It is obstructed for surface-code extraction circuits and exact for the honeycomb Floquet code, whose C3 rotation mixes the logical qubits. Tying that symmetry into the decoder flips the honeycomb task from unlearnable to learned.</p>
             <ul class="data" aria-label="Key numbers">
@@ -475,12 +507,18 @@ footer a:hover { color:var(--ink); }
         <li class="ref" id="paper-2">
           <span class="ref-n" aria-hidden="true">[2]</span>
           <div>
-            <p class="ref-meta"><span class="ref-n-in" aria-hidden="true">[2]</span>Olliver, D. · Preprint · Zenodo · 27 July 2026</p>
+            <p class="ref-meta"><span class="ref-n-in" aria-hidden="true">[2]</span><span class="nw">Olliver, D.</span> · Preprint · Zenodo · <span class="nw">27 July 2026</span></p>
             <h3>The lattice’s teeth: primitive reciprocal axes govern which Fourier components neural cellular automata can grow</h3>
-            <p>Neural cellular automata are trained on square grids by default; this paper treats the lattice as an experimental variable. An apparent advantage of hexagonal over square grids turned out to be a normalisation artefact in cross-lattice comparisons, and the paper documents and retracts it. The second result was put to a pre-registered, out-of-sample test, and the paper reports the outcome.</p>
+            <p>Neural cellular automata are trained on square grids by default; this paper treats the lattice as an experimental variable. An apparent advantage of hexagonal over square grids turned out to be a normalisation artefact in cross-lattice comparisons, and the paper documents and retracts it. The second result is a primitive-axis rule: a trained NCA grows only the Fourier components whose wavevectors lie on a primitive reciprocal-lattice axis of its grid. A pre-registered out-of-sample test partially refuted that rule as stated. What survives is the gate itself: growth stays direction-selective and no geometry-forbidden component grows, so the constraint is real and soft, not sharp.</p>
+            <ul class="data" aria-label="Key numbers">
+              <li>primitive-axis recovery <span class="nw">0.55–0.88</span> <span class="nw">(restart means)</span></li>
+              <li>all others <span class="nw">≤ 0.11</span> <span class="nw">(restart means)</span></li>
+              <li>96 out-of-sample trainings</li>
+              <li>decider R² −0.39 <span class="nw">(needed ≥ 0.8)</span></li>
+            </ul>
             <a class="doi" href="https://doi.org/10.5281/zenodo.21614035" aria-label="Read the preprint: DOI 10.5281/zenodo.21614035"><span class="k">DOI</span><span class="v">10.5281/zenodo.21614035</span><span class="hint">Read the preprint</span></a>
             <ul class="links">
-              <li><a href="/research/hexlife/">Separate note: Lenia-class patterns on square and hex lattices</a></li>
+              <li class="rel"><span class="kicker"><span class="nw">Different study</span> · <span class="nw">Lenia-class patterns, not NCA</span></span><a href="/research/hexlife/">The lattice’s teeth: when the substrate owns the pattern</a></li>
             </ul>
             <details class="cite"><summary>Cite</summary><p>Olliver, D. (2026). The lattice’s teeth: primitive reciprocal axes govern which Fourier components neural cellular automata can grow [Preprint]. Zenodo. https://doi.org/10.5281/zenodo.21614035</p></details>
           </div>
@@ -509,7 +547,7 @@ footer a:hover { color:var(--ink); }
                 <div class="crop c-k p3"><img src="/research/kitaev_topological_order.png" width="2100" height="644" loading="lazy" decoding="async" alt="Bar chart of a localised anyon: after the local operation the anyon plaquette reads −0.905 ± 0.010 while its neighbour stays at +0.924 ± 0.015"></div>
               </div>
             </div>
-            <figcaption><span class="fig">Fig. 2</span>Plaquette flux is conserved by the Kitaev evolution and broken by the field control (first panel); a local operation flips one plaquette and leaves its neighbour untouched (second panel). <span class="fig-note">Only the second panel fits a phone screen; the full figure is in the note.</span></figcaption>
+            <figcaption><span class="fig">Fig. 2</span><span class="cap-wide">Plaquette flux is conserved by the Kitaev evolution and broken by the field control (first panel); a local operation flips one plaquette and leaves its neighbour untouched (second panel).</span><span class="cap-phone">A local operation flips one plaquette to <span class="d">−0.905 ± 0.010</span> and leaves its neighbour at <span class="d">+0.924 ± 0.015</span>. The flux panel is in the full figure in the note.</span></figcaption>
           </figure>
           <div class="entry-text">
             <p>Topological order on the Kitaev honeycomb, measured on superconducting hardware with a matched-depth control beside every claim. Fluxes stayed conserved (<span class="d">+0.64</span>) while a control destroyed them (<span class="d">+0.12</span>). A single anyon flipped its plaquette to <span class="d">−0.905 ± 0.010</span> while the neighbour sat at <span class="d">+0.924 ± 0.015</span>.</p>
@@ -525,17 +563,17 @@ footer a:hover { color:var(--ink); }
       </article>
 
       <article class="entry side">
-        <p class="entry-tag"><span class="no">Note 02</span><span class="kicker">Quantum error correction · related: paper [1]</span></p>
+        <p class="entry-tag"><span class="no">Note 02</span><span class="kicker"><span class="nw">Quantum error correction</span> · <span class="nw">related: paper [1]</span></span></p>
         <h3>Symmetry-tied neural decoders for quantum error correction</h3>
         <div class="entry-body">
           <figure>
             <div class="plate night"><img src="/research/equiv_decoder.png" width="896" height="588" loading="lazy" decoding="async" alt="Decoding accuracy against training samples: the symmetry-tied decoder sits above the plain decoder at every size and approaches the matching-decoder line"></div>
-            <figcaption><span class="fig">Fig. 3</span>Surface code d=3: the same network at an identical <span class="d">21,377</span> parameters, 5 seeds, 200k test shots.</figcaption>
+            <figcaption><span class="fig">Fig. 3</span>Surface code d=3 under phenomenological noise (<span class="d">p = 0.008</span>): the same network at an identical <span class="d">21,377</span> parameters, 5 seeds, 200k test shots.</figcaption>
           </figure>
           <div class="entry-text">
             <p>A decoder reads a quantum machine’s error alarms and has to name the fault. Labelled data from real devices is scarce, so the right inductive bias matters more than raw scale.</p>
             <div>
-              <p class="result"><span class="kicker">Result</span>At identical parameter count, the symmetry-tied decoder wins at every training size, is ~4× more sample-efficient, and reaches the matching-decoder baseline (<span class="d">0.9943</span> vs <span class="d">0.9948</span>). On the honeycomb Floquet code, the identical plain twin never learns the task the symmetry-aware one solves.</p>
+              <p class="result"><span class="kicker">Result</span>On the surface code under phenomenological noise, at identical parameter count, the symmetry-tied decoder wins at every training size, is ~4× more sample-efficient, and comes within <span class="d">0.0005</span> of the matching-decoder baseline (<span class="d">0.9943</span> vs <span class="d">0.9948</span>). On the honeycomb Floquet code, the identical plain twin stays at the majority-class baseline through <span class="d">64,000</span> training samples while the symmetry-tied one reaches <span class="d">0.744</span> at that size, and the tied net trained on <span class="d">1,000</span> samples beats the plain one trained on <span class="d">256,000</span>.</p>
               <ul class="links">
                 <li><a href="/research/decoder/">Read the note</a></li>
                 <li><a href="#paper-1">Paper [1]</a></li>
@@ -550,10 +588,10 @@ footer a:hover { color:var(--ink); }
         <li class="span"><a class="note" href="/research/nonabelian/">
           <div class="nfig light"><div class="crop c-na"><img src="/research/nonabelian_phase.png" width="2325" height="690" loading="lazy" decoding="async" alt="Three panels: the field term gaps the phase into Chern number ±1; a cylinder spectrum with one chiral Majorana edge branch; Majorana zero modes bound to vortices"></div></div>
           <div class="nbody">
-            <span class="crop-note">Panel (a) of three; full figure in the note.</span>
+            <span class="crop-note">Panel (a) of three: the field term gaps the phase into Chern number ±1. Full figure in the note.</span>
             <p class="entry-tag"><span class="no">Note 03</span><span class="kicker">Exact computation</span></p>
             <h3>The non-Abelian phase, computed end to end</h3>
-            <p>Exchanges that share a vortex refuse to commute (Ivanov-pattern match <span class="d">0.975</span>); disjoint exchanges commute to <span class="d">0.005</span>.</p>
+            <p>Computed exactly: Chern number ±1, one chiral Majorana edge mode and Majorana zero modes bound to vortices. Braided numerically, exchanges that share a vortex refuse to commute (Ivanov-pattern match <span class="d">0.975</span>); disjoint exchanges commute to <span class="d">0.005</span>.</p>
             <span class="go">Read the note</span>
           </div></a></li>
         <li><a class="note" href="/research/qrc/">
@@ -577,7 +615,7 @@ footer a:hover { color:var(--ink); }
           <div class="nbody">
             <p class="entry-tag"><span class="no">Note 06</span><span class="kicker">Forecasting · real city data</span></p>
             <h3>The equivariance law, held on real city data</h3>
-            <p>The hex-equivariant model beats the directional one in <span class="d">10 of 10</span> city-seasons, with the gain largest where history is thinnest.</p>
+            <p>The hex-equivariant model beats the directional one in <span class="d">10 of 10</span> <span class="nw">city-seasons</span>; the gain holds while few stations have history and shrinks once most do.</p>
             <span class="go">Read the note</span>
           </div></a></li>
         <li class="span"><a class="note" href="/research/hexlife/">
@@ -599,11 +637,11 @@ footer a:hover { color:var(--ink); }
   <div class="wrap split">
     <div class="sec-head">
       <h2 id="about-h">About</h2>
-      <p>Independent research, Auckland.</p>
+      <p>Independent research, 2025–2026.</p>
     </div>
     <div class="about-grid">
       <div class="prose">
-        <p>I’m Daniel Olliver, in Auckland. Through 2025 and 2026 I’ve done independent research in geometric machine learning and quantum computing: more than two dozen controlled experiments on a GTX 1070, free cloud GPUs and three of IBM’s quantum computers.</p>
+        <p>I’m Daniel Olliver. Through 2025 and 2026 I’ve done independent research in geometric machine learning and quantum computing: more than two dozen controlled experiments on a GTX 1070, free cloud GPUs and three of IBM’s quantum computers.</p>
         <blockquote class="pull">“No result gets written down before its run completes.”<cite>The one rule, from the essay</cite></blockquote>
         <p>Early on I caught myself writing numbers for an experiment that was still running. When it finished, reality was backwards from what I’d written. I corrected it and logged the incident: conviction will fabricate evidence if you let it.</p>
         <p>The idea I set out to prove, that hexagonal wiring helps a network learn, came back cleanly false. What survived is narrower and more useful: symmetry helps a network when it is exactly present and data is scarce, and topology shows up on real quantum hardware.</p>
@@ -639,18 +677,9 @@ footer a:hover { color:var(--ink); }
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Daniel Olliver · Auckland, New Zealand</span>
+    <span><span class="nw">© 2026 Daniel Olliver</span> · <span class="nw">Auckland, New Zealand</span></span>
     <a href="/dev/">Software development portfolio</a>
   </div>
 </footer>
-<script>
-/* Warm up lazy figures when the browser is idle, so a fast scroll never lands on an empty frame. Skipped on Save-Data. */
-(function () {
-  var c = navigator.connection;
-  if (c && c.saveData) return;
-  function warm() { var imgs = document.querySelectorAll('img[loading="lazy"]'); for (var i = 0; i < imgs.length; i++) imgs[i].loading = "eager"; }
-  window.addEventListener("load", function () { (window.requestIdleCallback || function (f) { setTimeout(f, 1200); })(warm); });
-})();
-</script>
 </body>
 </html>
