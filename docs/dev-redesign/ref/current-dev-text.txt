@@ -1,0 +1,227 @@
+ 
+[a] Daniel Olliver 
+[a] Work 
+[a] Experience 
+[a] Skills 
+[a] Contact 
+[p] 
+[a] Work 
+[a] Experience 
+[a] Skills 
+[a] Contact 
+[p] 
+ Full-Stack Developer Auckland, NZ 
+[h1] 
+ Daniel Olliver builds full-stack web apps that ship.
+[p] 
+ Four years of professional full-stack development across the
+ JavaScript stack — React, Next.js, TypeScript, Node, Express,
+ and MongoDB / Supabase. I take products from the first commit to
+ production: authentication, REST APIs, Stripe payments, third-party
+ integrations, and deployment. I’ve delivered a production
+ patient-assessment platform for a UK healthcare provider, shipped
+ features inside a live scheduling product, and built and deployed a
+ handful of full-stack apps you can open right now.
+ 4 years professional delivery 
+ Production healthcare platform 
+ MERN · Next.js · TypeScript 
+ Idea → deployed 
+[a] Email Me 
+[a] Résumé (PDF) 
+[a] GitHub 
+ What I do 
+ Full-stack web apps — front end, API, database, and
+ deployment — built to ship and maintained in production.
+ Available for contract & freelance work
+[p] Selected work 
+[h2] Shipped, in production 
+[p] 
+ Commercial client builds plus live apps you can open and click
+ through right now — accounts, APIs, data, and deployment.
+[a] 
+[p] Production 
+[h3] ADHD Assessment Platform 
+ UK healthcare provider 
+[p] 
+ A patient-facing ADHD assessment platform delivered for a UK
+ healthcare provider — a real clinical workflow running in
+ commercial production.
+[li] 
+ Full-stack build: React frontend, Node / Express backend, and
+ Supabase (PostgreSQL) for patient data
+[li] 
+ Delivered over a three-month contract and deployed to production
+ under strict reliability requirements
+[li] React 
+[li] Node.js 
+[li] Express 
+[li] Supabase 
+[li] PostgreSQL 
+[p] Private client product — walkthrough on request. 
+[a] 
+[p] Live 
+[h3] Back to Nature Tours 
+ Webflow · client site 
+[p] 
+ A full website migration for a Dunedin tour operator (est. 1997)
+ — moved a dated WordPress / Wix site onto a fast,
+ client-editable Webflow build, now live at backtonaturetours.co.nz.
+[li] 
+ Rebuilt in Webflow with a native-element + CMS architecture
+ (Tours & Testimonials) so the owner self-edits content
+ without touching the layout
+[li] 
+ FareHarbor booking integration and a full SEO migration —
+ preserved URLs, 301 redirects, and structured data
+ (LocalBusiness, Product, FAQ)
+[li] Webflow 
+[li] CMS 
+[li] JavaScript 
+[li] SEO 
+[li] FareHarbor 
+[a] Live Site 
+[a] 
+[p] Live 
+[h3] Scenic 
+ Vercel · MongoDB Atlas 
+[p] 
+ A full-stack image-sharing app where users register,
+ authenticate, upload scenes, and browse community posts.
+[li] 
+ React client and Express / MongoDB API, both deployed serverless
+ on Vercel
+[li] Account flows, JWT authorization, and image upload handling 
+[li] React 
+[li] Node.js 
+[li] Express 
+[li] MongoDB 
+[li] JWT 
+[a] Code 
+[a] Live Site 
+[a] 
+[p] Live 
+[h3] NZ Camps 
+ Vercel · MongoDB Atlas 
+[p] 
+ A campground review platform for New Zealand with accounts,
+ campground CRUD, reviews, and location geocoding. Recently
+ modernized (mongoose 5→8) and redeployed serverless.
+[li] Server-rendered Express app using EJS, MongoDB, and RESTful routes 
+[li] Auth, data modelling, maps, and deployment trade-offs 
+[li] Node.js 
+[li] Express 
+[li] MongoDB 
+[li] EJS 
+[li] Passport 
+[a] Code 
+[a] Live Site 
+[a] 
+[p] Live 
+[h3] Eon Candles 
+ Next.js · Vercel 
+[p] 
+ A brand and shop site for Eon, a New Zealand candle label pairing
+ hand-poured soy candles with a calm, wellness-led identity.
+[li] Multi-page Next.js build spanning home, shop, and about views 
+[li] Responsive product layout and brand storytelling, deployed on Vercel 
+[li] Next.js 
+[li] React 
+[li] JavaScript 
+[li] CSS 
+[li] Vercel 
+[a] Code 
+[a] Live Site 
+[p] Experience 
+[h2] Where I’ve worked 
+[p] 
+ Intern to full-time to independent — four years shipping
+ production web software.
+[a] 
+ Freelance Full-Stack Developer
+ · Independent 
+ 2024 – present 
+[p] 
+ Delivered a production ADHD patient-assessment platform for a UK
+ healthcare provider (three-month contract — React / Node /
+ Express / Supabase). Built and maintained WordPress sites for
+ international clients across hosting, DNS, CRM integrations, and
+ GA4 / GTM analytics, and integrated Stripe and Facebook Ads across
+ e-commerce projects. Recently migrated a Dunedin tour
+ operator’s site (backtonaturetours.co.nz) to a
+ client-editable Webflow CMS with FareHarbor booking and a full SEO
+ migration.
+[a] 
+ Developer
+ · 3PM 
+ 2022 – 2024 
+[p] 
+ Delivered a React / Node.js resource-scheduling platform for
+ construction trades on a three-month contract, then brought on
+ full-time. Shipped production MERN features in an Agile team with
+ sprint cycles, code reviews, and cross-functional work.
+[a] 
+ Graduate Teaching Assistant
+ · University of Auckland 
+ 2024 
+[p] 
+ Supported teaching and student work across computer-science
+ coursework.
+[a] 
+ Full-Stack Developer Intern & Scrum Master
+ · OutPace 
+ 2021 
+[p] 
+ Designed and built a responsive full-stack application working
+ directly with company directors, and led Agile ceremonies —
+ standups, retrospectives, and weekly demos.
+[p] Toolbox 
+[h2] Full-stack, end to end 
+[h3] Frontend 
+[li] React 
+[li] Next.js 
+[li] TypeScript 
+[li] JavaScript 
+[li] HTML 
+[li] CSS 
+[h3] Backend & Data 
+[li] Node.js 
+[li] Express 
+[li] MongoDB 
+[li] Supabase 
+[li] REST APIs 
+[li] EJS 
+[h3] Integrations 
+[li] Stripe 
+[li] Google APIs 
+[li] WordPress 
+[li] Webflow 
+[li] Auth / JWT 
+[li] AI / LLM (RAG) 
+[h3] Delivery 
+[li] Git 
+[li] Vercel 
+[li] Firebase 
+[li] Heroku 
+[li] Agile 
+[p] Education 
+[h2] Background 
+ Postgraduate Certificate in Artificial Intelligence 
+ University of Auckland · 2024 
+ BSc, Computer Science 
+ Auckland University of Technology · 2021 
+[p] Contact 
+[h2] Let’s build the next one. 
+[p] 
+ Based in Auckland and available for contract and freelance
+ full-stack development — locally and remote. For
+ small-business websites and online stores I also run
+[a] Olliver Web .
+[a] Email Me 
+[a] Résumé (PDF) 
+[a] GitHub 
+ © 2026 Daniel Olliver · Auckland, New Zealand 
+ Websites & online stores —
+[a] olliverweb.co.nz 
+ · AI & research —
+[a] danielolliver.com/ai 
+

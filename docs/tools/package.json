@@ -1,0 +1,9 @@
+{
+  "name": "danielolliver-shoot",
+  "private": true,
+  "type": "module",
+  "description": "Screenshot and layout probe used by the /dev and homepage redesign workflows",
+  "dependencies": {
+    "playwright": "1.48.2"
+  }
+}
