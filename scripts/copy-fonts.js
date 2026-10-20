@@ -9,6 +9,7 @@ const fonts = [
   ["@fontsource-variable/newsreader", [
     "newsreader-latin-wght-normal.woff2",
     "newsreader-latin-ext-wght-normal.woff2",
+    "newsreader-latin-wght-italic.woff2",
   ]],
   ["@fontsource-variable/instrument-sans", [
     "instrument-sans-latin-wght-normal.woff2",

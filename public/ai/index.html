@@ -174,6 +174,23 @@
     transition:opacity .25s ease,transform .25s ease;z-index:99;max-width:92vw;text-align:center;}
   #mail-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 </style>
+<link rel="preload" href="/static/fonts/v5.3.0/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<style>
+  /* 2026 redesign: the type and palette of danielolliver.com, layered over the original styles */
+  @font-face{font-family:"Newsreader";font-style:normal;font-weight:200 800;font-display:swap;src:url(/static/fonts/v5.3.0/newsreader-latin-wght-normal.woff2) format("woff2");}
+  @font-face{font-family:"Instrument Sans";font-style:normal;font-weight:400 700;font-display:swap;src:url(/static/fonts/v5.3.0/instrument-sans-latin-wght-normal.woff2) format("woff2");}
+  :root{
+    --bg:#f5f2ec;--bg-alt:#fbfaf7;--fg:#1b2630;--head:#1b2630;--muted:#5a6570;
+    --teal:#1b2630;--teal-soft:#a3412a;--accent:#a3412a;--border:#d6d0c4;--chip:#ece8df;
+    --ok:#2f6b52;--ok-soft:#e3eee6;--info-soft:#ece8df;--info:#1b2630;
+    --shadow:rgba(27,38,48,.1) 0 14px 40px;color-scheme:light;
+  }
+  body{font-family:"Instrument Sans",Arial,sans-serif;}
+  h1,h2,h3{font-family:"Newsreader",Georgia,serif;font-weight:500;letter-spacing:-.01em;}
+  h1{font-weight:450;letter-spacing:-.02em;}
+  :focus-visible{outline-color:#a3412a;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*,*::before,*::after{transition:none!important;animation:none!important;}}
+</style>
   <script defer src="/ga.js"></script>
   </head>
 <body>
