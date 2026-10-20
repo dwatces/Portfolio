@@ -53,9 +53,9 @@
 <p class="crumb"><a href="/">danielolliver.com</a> / <a href="/research/">Research</a></p>
 <h1>The equivariance law, held on real city data</h1>
 <div class="fig"><img src="/research/coldstart_equivariance.png" alt="The equivariance law, held on real city data"></div>
-<p class="lead">Equivariant models pay exactly when the symmetry is present and data is scarce. New-station demand forecasting across five cities × two seasons: the hex-equivariant model beats the directional one in 10 of 10 city-seasons, with the gain largest where history is thinnest.</p>
+<p class="lead">Equivariant models pay exactly when the symmetry is present and data is scarce. New-station demand forecasting across five cities × two seasons: the hex-equivariant model beats the directional one in 10 of 10 city-seasons; the gain holds while few stations have history and shrinks once most do.</p>
 <div class="detail">
-<p>In cold-start forecasting a brand-new station has no history of its own, so the spatial operator <em>is</em> the whole model — exactly where a symmetry prior can pay.</p><p>It does, in 10 of 10 real point-level bike-share city-seasons, and only there: the gain is largest where a cell’s history is thinnest and vanishes once data is abundant. Matched parameters, multiple seeds — equivariance pays if and only if the symmetry is genuinely present.</p>
+<p>In cold-start forecasting a brand-new station has no history of its own, so the spatial operator <em>is</em> the whole model — exactly where a symmetry prior can pay.</p><p>It does, in 10 of 10 real point-level bike-share city-seasons: the mean gain stays roughly level while up to 40% of stations have history, and is much smaller once 80% do. Matched parameters, multiple seeds — equivariance pays if and only if the symmetry is genuinely present.</p>
 </div>
 <div class="cta">
   <a class="btn btn-primary" href="https://github.com/dwatces" target="_blank" rel="noreferrer">Code &amp; logs</a>

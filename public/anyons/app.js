@@ -5,9 +5,14 @@
 
   /* ================================ BRAID BOARD ================================ */
   const L = 4, CELL = 110, PAD = 20;
+  const SIZE = 2 * PAD + L * CELL;           // board size in drawing units
+  // backing store at the screen's pixel density (capped at 2) so the board stays
+  // crisp when CSS scales it down to fit a phone; all drawing stays in SIZE units
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
   const cv = document.getElementById("board");
   const ctx = cv.getContext("2d");
-  cv.width = cv.height = 2 * PAD + L * CELL;
+  cv.width = cv.height = Math.round(SIZE * DPR);
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);    // after the resize, which resets the context
   let code = new ToricCode(L);
   let mover = null;          // [x,y] plaquette of the draggable anyon (UI hint only)
   let trail = [];            // crossed-edge segments for the worldline
@@ -27,7 +32,7 @@
   }
 
   function render() {
-    ctx.clearRect(0, 0, cv.width, cv.height);
+    ctx.clearRect(0, 0, SIZE, SIZE);
     // lattice edges
     ctx.strokeStyle = "#222b3d"; ctx.lineWidth = 1;
     for (let i = 0; i <= L; i++) {
@@ -50,13 +55,13 @@
       const isMover = mover && x === mover[0] && y === mover[1];
       ctx.beginPath(); ctx.arc(cx0, cy0, isMover ? 16 : 12, 0, 7);
       ctx.fillStyle = isMover ? "#ffb066" : "#ff8c42";
-      ctx.shadowColor = "#ff8c42"; ctx.shadowBlur = 18;
+      ctx.shadowColor = "#ff8c42"; ctx.shadowBlur = 18 * DPR;   // blur ignores the transform
       ctx.fill(); ctx.shadowBlur = 0;
     }
     for (const [x, y] of syn.e) {
       const [vx, vy] = vertexPt(x, y);
       ctx.beginPath(); ctx.arc(vx, vy, 8, 0, 7);
-      ctx.fillStyle = "#4cc9f0"; ctx.shadowColor = "#4cc9f0"; ctx.shadowBlur = 14;
+      ctx.fillStyle = "#4cc9f0"; ctx.shadowColor = "#4cc9f0"; ctx.shadowBlur = 14 * DPR;
       ctx.fill(); ctx.shadowBlur = 0;
     }
     // meters
@@ -123,9 +128,10 @@
     return [x, y];
   }
   function pos(ev) {
-    const r = cv.getBoundingClientRect();
-    return [(ev.clientX - r.left) * (cv.width / r.width),
-            (ev.clientY - r.top) * (cv.height / r.height)];
+    // CSS pixels on screen -> drawing units, inside the 1px border
+    const r = cv.getBoundingClientRect(), b = cv.clientLeft;
+    return [(ev.clientX - r.left - b) * (SIZE / (r.width - 2 * b)),
+            (ev.clientY - r.top - b) * (SIZE / (r.height - 2 * b))];
   }
   function isAdjacent(a, b) { return code.sharedEdgeM(a, b) !== null; }
 

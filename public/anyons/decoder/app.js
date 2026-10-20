@@ -17,6 +17,13 @@
   // ---------- honeycomb board ----------
   const cv = document.getElementById("board");
   const ctx = cv.getContext("2d");
+  // drawing units come from the HTML size (480 x 330); the backing store is
+  // scaled to the screen's pixel density (capped at 2) so the board stays crisp
+  // when CSS shrinks it to fit a phone
+  const CW = cv.width, CH = cv.height;
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  cv.width = Math.round(CW * DPR); cv.height = Math.round(CH * DPR);
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);    // after the resize, which resets the context
   const L = META.L, SQ3 = Math.sqrt(3);
   const HEX = 25;
   const centers = {};
@@ -29,8 +36,8 @@
       miny = Math.min(miny, y); maxy = Math.max(maxy, y);
     }
   }
-  const offx = (cv.width - (maxx - minx)) / 2 - minx;
-  const offy = (cv.height - (maxy - miny)) / 2 - miny;
+  const offx = (CW - (maxx - minx)) / 2 - minx;
+  const offy = (CH - (maxy - miny)) / 2 - miny;
   const faceDets = {};   // "i,j" -> [detector ids]
   META.layout.forEach((fij, d) => {
     if (fij[0] < 0) return;
@@ -50,7 +57,7 @@
   }
 
   function drawShot(x, pulse) {
-    ctx.clearRect(0, 0, cv.width, cv.height);
+    ctx.clearRect(0, 0, CW, CH);
     for (let i = 0; i < L; i++) {
       for (let j = 0; j < L; j++) {
         const key = i + "," + j;
