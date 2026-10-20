@@ -130,11 +130,15 @@ a:hover { color:var(--accent-ink); text-decoration-thickness:2px; }
   .tally li, .tally li + li { display:grid; grid-template-columns:2.2rem 1fr; align-items:baseline; gap:0 12px; padding:10px 0; border-left:0; }
   .tally li + li { border-top:1px solid var(--rule); }
   .tally b { grid-row:span 2; margin:0; font-size:1.8rem; }
+  .tally li.has-link { display:block; }
+  .tally .tally-link { display:grid; grid-template-columns:2.2rem 1fr; align-items:baseline; gap:0 12px; }
   .tally small { margin-top:0; }
 }
-.actions { display:flex; flex-wrap:wrap; gap:12px; }
-.actions .btn { flex:1 1 auto; }
-@media (min-width:520px) { .actions .btn { flex:0 0 auto; } }
+.actions { display:grid; gap:12px; max-width:540px; }
+@media (min-width:520px) {
+  .actions { grid-template-columns:1fr 1fr; }
+  .actions .btn-ink { grid-column:1 / -1; }
+}
 .btn { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 22px; border-radius:3px;
   font-weight:600; font-size:.98rem; text-decoration:none; border:1.5px solid var(--ink); }
 .btn-ink { background:var(--ink); color:#fff; }
@@ -259,14 +263,31 @@ section { padding:var(--sec) 0; }
 .all { margin-top:20px; }
 .all a { display:inline-flex; align-items:center; min-height:44px; font-weight:600; }
 
-/* play */
-.play { display:grid; gap:16px; list-style:none; }
-.card { display:flex; flex-direction:column; height:100%; padding:20px 20px 16px; background:var(--plate); border:1px solid var(--rule);
-  color:var(--ink-2); text-decoration:none; border-radius:3px; }
-.card:hover { border-color:var(--ink); color:var(--ink-2); text-decoration:none; }
-.card h3 { font-family:var(--serif); font-size:1.25rem; line-height:1.28; color:var(--ink); margin:6px 0 10px; }
-.card .go { margin-top:auto; padding-top:14px; min-height:44px; display:flex; align-items:flex-end; font-weight:600; color:var(--accent); }
-.card:hover .go { text-decoration:underline; }
+/* start here: the essay and the two things to try */
+.start-grid { display:grid; gap:16px; list-style:none; }
+.essay-card { display:flex; flex-direction:column; gap:14px; height:100%; padding:26px 24px 24px; background:var(--ink); color:#d9d5ca;
+  border-radius:3px; text-decoration:none; }
+.essay-card:hover { background:#0b0f12; color:#ece9e1; text-decoration:none; }
+.essay-card .kicker { color:#b8b2a5; }
+.essay-card h3 { font-family:var(--serif); font-weight:700; font-size:clamp(1.6rem,3.4vw,2.1rem); line-height:1.15; letter-spacing:-.01em; color:#fff; }
+.essay-card p { max-width:46ch; }
+.go-btn { margin-top:auto; align-self:flex-start; display:inline-flex; align-items:center; min-height:48px; padding:0 22px; border-radius:3px;
+  background:var(--paper); color:var(--ink); font-weight:600; }
+.essay-card:hover .go-btn { background:#fff; }
+.try-card { display:flex; flex-direction:column; height:100%; background:var(--plate); border:1px solid var(--rule); border-radius:3px;
+  color:var(--ink-2); text-decoration:none; overflow:hidden; }
+.try-card:hover { border-color:var(--ink); color:var(--ink-2); text-decoration:none; }
+.try-card .shot { display:block; aspect-ratio:1440/709; background:var(--night); border-bottom:1px solid var(--rule); }
+.try-card .shot img { width:100%; height:100%; object-fit:cover; }
+.try-body { display:flex; flex-direction:column; flex:1; padding:18px 20px 14px; }
+.try-card h3 { font-family:var(--serif); font-size:1.45rem; line-height:1.2; color:var(--ink); margin:6px 0 8px; }
+.try-text { display:block; }
+.try-card .go { margin-top:auto; padding-top:12px; min-height:44px; display:flex; align-items:flex-end; font-weight:600; color:var(--accent); }
+.try-card:hover .go { text-decoration:underline; }
+.tally-link { display:block; color:inherit; text-decoration:none; }
+.tally-link:hover { color:var(--accent); text-decoration:none; }
+.tally-link:hover small { color:var(--accent); }
+.hero figcaption .sep { margin:0 10px; color:var(--muted); }
 
 /* about */
 .about-grid { display:grid; gap:28px; }
@@ -303,7 +324,8 @@ footer a:hover { color:var(--ink); }
 @media (min-width:700px) {
   :root { --gut:32px; --sec:72px; }
   .hero { padding-top:56px; }
-  .play { grid-template-columns:repeat(3,1fr); }
+  .start-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .start-grid .essay-li { grid-column:1 / -1; }
   .ref { grid-template-columns:2.6rem 1fr; }
   .ref-n { display:block; font-family:var(--mono); color:var(--mark); font-size:.92rem; padding-top:1px; }
   .ref-n-in { display:none; }
@@ -328,7 +350,8 @@ footer a:hover { color:var(--ink); }
   .notes .row-card .note { display:flex; }
   .notes .row-card .nfig { border-right:0; border-bottom:1px solid var(--rule); }
   .notes .row-card .nfig.std { aspect-ratio:896/588; min-height:0; }
-  .play .card h3 { font-size:1.18rem; }
+  .start-grid { grid-template-columns:minmax(0,1.15fr) repeat(2,minmax(0,1fr)); }
+  .start-grid .essay-li { grid-column:auto; }
 }
 @media (min-width:1700px) {
   body { font-size:17.5px; }
@@ -348,10 +371,10 @@ footer a:hover { color:var(--ink); }
     <a class="brand" href="/">Daniel Olliver</a>
     <nav aria-label="Sections">
       <ul class="nav">
+        <li><a href="/essay/">Essay</a></li>
+        <li><a href="#play">Play</a></li>
         <li><a href="#papers">Papers</a></li>
         <li><a href="#notes">Notes</a></li>
-        <li><a href="#play">Play</a></li>
-        <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -367,13 +390,14 @@ footer a:hover { color:var(--ink); }
       <p class="dek">I do evidence-first AI research: neural networks that use the exact symmetry of a problem, and quantum experiments on real IBM hardware, with controls and error bars.</p>
       <p class="rule-note">Every result on this page comes from a completed, logged run, and the negative results stay in.</p>
       <ul class="tally" aria-label="At a glance">
-        <li><b>2</b>preprints<small>Zenodo, with DOIs</small></li>
+        <li class="has-link"><a class="tally-link" href="#papers"><b>2</b>preprints<small>Zenodo, with DOIs</small></a></li>
         <li><b>7</b>research notes<small>each with its figure</small></li>
         <li><b>3</b>IBM quantum processors<small>ibm_marrakesh · ibm_kingston · ibm_fez</small></li>
       </ul>
       <div class="actions">
-        <a class="btn btn-ink" href="#papers">Read the papers</a>
-        <a class="btn btn-line" href="/anyons/">Play the Hex demo</a>
+        <a class="btn btn-ink" href="/essay/">Read the essay</a>
+        <a class="btn btn-line" href="/anyons/">Braid anyons yourself</a>
+        <a class="btn btn-line" href="/anyons/decoder/">Play the trained decoder</a>
       </div>
     </div>
     <figure>
@@ -381,12 +405,44 @@ footer a:hover { color:var(--ink); }
         <div class="crop c-k"><img src="/research/kitaev_topological_order.png" width="2100" height="644" decoding="async" fetchpriority="high" alt="Bar chart of the logical observable on IBM hardware: +0.845 ± 0.030 in the vacuum, −0.843 ± 0.035 after the braid, and +0.845 for the control loop, across three devices"></div>
       </div>
       <figcaption><span class="fig">Fig. 1</span>Anyon braiding on IBM quantum hardware. Dragging one excitation around another flips the logical observable ⟨Z̄⟩ from <span class="d">+0.845 ± 0.030</span> to <span class="d">−0.843 ± 0.035</span>, while a control loop stays at <span class="d">+0.845</span>. Reproduced on <span class="d">ibm_marrakesh</span>, <span class="d">ibm_kingston</span> and <span class="d">ibm_fez</span>.
-        <br><a href="/research/braiding/">Read the note</a></figcaption>
+        <br><a href="/research/braiding/">Read the note</a><span class="sep" aria-hidden="true">·</span><a href="/anyons/">Braid anyons yourself</a></figcaption>
     </figure>
   </div>
 </div>
 
-<section id="papers" class="band" aria-labelledby="papers-h">
+<section id="play" class="band start" aria-labelledby="play-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="play-h">Start here</h2>
+      <p>The six-year story in one essay, and two things that run in your browser.</p>
+    </div>
+    <ul class="start-grid">
+      <li class="essay-li"><a class="essay-card" href="/essay/">
+        <span class="kicker">Essay · the six-year story</span>
+        <h3>I spent six years believing hexagons were the key to AI. Then I tested it.</h3>
+        <p>The finding: hexagonal wiring doesn’t help a network learn. Symmetry tying helps, but only when data is scarce and the symmetry is really there.</p>
+        <span class="go-btn">Read the essay</span></a></li>
+      <li><a class="try-card" href="/anyons/">
+        <span class="shot"><img src="/assets/home/play-hex-20261020-720.webp" srcset="/assets/home/play-hex-20261020-720.webp 720w, /assets/home/play-hex-20261020-1440.webp 1440w" sizes="(min-width:1000px) 360px, (min-width:700px) 46vw, 92vw" width="1440" height="709" loading="lazy" decoding="async" alt="The Hex demo: a torus grid with a pair of anyons joined by a string, beside the two logical-qubit meters"></span>
+        <span class="try-body">
+          <span class="kicker">Interactive · Hex</span>
+          <h3>Braid anyons yourself</h3>
+          <span class="try-text">Braid anyons on a torus and watch a logical qubit flip without being touched. The headline interactions were verified on real IBM processors.</span>
+          <span class="go">Open the Hex demo</span>
+        </span></a></li>
+      <li><a class="try-card" href="/anyons/decoder/">
+        <span class="shot"><img src="/assets/home/play-decoder-20261020-720.webp" srcset="/assets/home/play-decoder-20261020-720.webp 720w, /assets/home/play-decoder-20261020-1440.webp 1440w" sizes="(min-width:1000px) 360px, (min-width:700px) 46vw, 92vw" width="1440" height="709" loading="lazy" decoding="async" alt="The Error-Hunting Game: a honeycomb of glowing alarm sparks beside the answer buttons"></span>
+        <span class="try-body">
+          <span class="kicker">Game · a net I trained</span>
+          <h3>Play the trained decoder</h3>
+          <span class="try-text">Read a quantum memory’s alarm bells against a 63,000-parameter neural decoder running live in the page. The classical matching algorithm still wins, and the game says so.</span>
+          <span class="go">Play the game</span>
+        </span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section id="papers" aria-labelledby="papers-h">
   <div class="wrap split">
     <div class="sec-head">
       <h2 id="papers-h">Papers</h2>
@@ -536,32 +592,6 @@ footer a:hover { color:var(--ink); }
       </ul>
       <p class="all"><a href="/research/">All seven notes on one page</a></p>
     </div>
-  </div>
-</section>
-
-<section id="play" class="band" aria-labelledby="play-h">
-  <div class="wrap split">
-    <div class="sec-head">
-      <h2 id="play-h">Play and read</h2>
-      <p>Two things that run in your browser, and the essay behind them.</p>
-    </div>
-    <ul class="play">
-      <li><a class="card" href="/anyons/">
-        <span class="kicker">Interactive</span>
-        <h3>Hex: play with real quantum matter</h3>
-        <p>Braid anyons on a torus and watch a logical qubit flip without being touched. The headline interactions were verified on real IBM processors.</p>
-        <span class="go">Play the Hex demo</span></a></li>
-      <li><a class="card" href="/anyons/decoder/">
-        <span class="kicker">Game · a net I trained</span>
-        <h3>The Error-Hunting Game</h3>
-        <p>Read a quantum memory’s alarm bells against a 63,000-parameter neural decoder running live in the page. The classical matching algorithm still wins, and the game says so.</p>
-        <span class="go">Play the game</span></a></li>
-      <li><a class="card" href="/essay/">
-        <span class="kicker">Essay</span>
-        <h3>I spent six years believing hexagons were the key to AI. Then I tested it.</h3>
-        <p>The finding: hexagonal wiring doesn’t help a network learn. Symmetry tying helps, but only when data is scarce and the symmetry is really there.</p>
-        <span class="go">Read the essay</span></a></li>
-    </ul>
   </div>
 </section>
 
