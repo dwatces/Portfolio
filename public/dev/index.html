@@ -98,13 +98,14 @@
 
       /* ---------- header / nav ---------- */
       .header {
-        height: 5rem;
+        min-height: 5rem;
         max-width: 1100px;
         width: 95%;
         margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 1rem;
         position: sticky;
         top: 0;
         z-index: 20;
@@ -115,11 +116,71 @@
         color: var(--clr-heading);
         font-weight: 800;
         font-size: 1.35rem;
+        white-space: nowrap;
       }
       .nav {
         display: flex;
         gap: 1.5rem;
-        flex-wrap: wrap;
+      }
+
+      /* mobile dropdown, shown only on narrow screens */
+      .navmenu {
+        display: none;
+        position: relative;
+      }
+      /* matches the hamburger on danielolliver.com */
+      .navmenu summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.25rem;
+        height: 2.625rem;
+        border: 0;
+        border-radius: 6px;
+        background: var(--clr-bg);
+        color: var(--clr-fg);
+        padding: 0;
+      }
+      .navmenu summary::-webkit-details-marker {
+        display: none;
+      }
+      .navmenu summary svg {
+        display: block;
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+      }
+      .navmenu[open] summary {
+        background: var(--clr-chip);
+        color: var(--clr-primary);
+      }
+      .navmenu nav {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 0.55rem);
+        z-index: 100;
+        display: grid;
+        min-width: 12rem;
+        padding: 0.4rem;
+        background: var(--clr-bg-alt);
+        border: 1px solid var(--clr-border);
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+      }
+      .navmenu nav a {
+        display: block;
+        padding: 0.7rem 0.8rem;
+        border-radius: 7px;
+        color: var(--clr-fg);
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .navmenu nav a:hover,
+      .navmenu nav a:focus {
+        background: var(--clr-chip);
+        color: var(--clr-primary);
       }
       .nav a {
         color: var(--clr-fg);
@@ -584,11 +645,13 @@
           font-size: 1.75rem;
         }
         .header {
-          height: 4rem;
+          min-height: 4rem;
         }
         .nav {
-          gap: 1rem;
-          font-size: 0.95rem;
+          display: none;
+        }
+        .navmenu {
+          display: block;
         }
         .section {
           margin-top: 3rem;
@@ -612,6 +675,19 @@
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
+      <details class="navmenu">
+        <summary aria-label="Open menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+          </svg>
+        </summary>
+        <nav aria-label="Mobile">
+          <a href="#work">Work</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </details>
     </header>
 
     <main id="top">
@@ -1095,10 +1171,29 @@
           >olliverweb.co.nz</a
         >
         &middot; AI &amp; research &mdash;
-        <a href="https://danielolliver.com/ai" target="_blank" rel="noreferrer"
-          >danielolliver.com/ai</a
+        <a href="https://danielolliver.com/" rel="noreferrer"
+          >danielolliver.com</a
         >
       </span>
     </footer>
+
+    <script>
+      // Close the mobile menu after a jump link, or on an outside click.
+      (function () {
+        var menu = document.querySelector(".navmenu");
+        if (!menu) return;
+        menu.querySelectorAll("nav a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            menu.open = false;
+          });
+        });
+        document.addEventListener("click", function (event) {
+          if (menu.open && !menu.contains(event.target)) menu.open = false;
+        });
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && menu.open) menu.open = false;
+        });
+      })();
+    </script>
   </body>
 </html>
