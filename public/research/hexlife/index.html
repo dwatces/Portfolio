@@ -1,12 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#256f8f">
-<title>The lattice's teeth: when the substrate owns the pattern — Daniel Olliver</title>
-<meta name="description" content="Matched-density Lenia on square vs hexagonal lattices — same rule, same parameters, same seeds. At normal scales the patterns don't care; below ~3 lattice constants the substrate sets the packing symmetry and locks orientation to its crystal axes. 11,946 patterns, replicated across hardware.">
-<link rel="icon" href="/favicon.png">
+<title>Lenia-class patterns on square vs hexagonal lattices | Daniel Olliver</title>
+<meta name="description" content="Lenia-class patterns on square and hexagonal lattices at matched density: the lattice doesn't matter at normal scales; below ~3 lattice constants it does.">
+<link rel="canonical" href="https://danielolliver.com/research/hexlife/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Daniel Olliver">
+<meta property="og:locale" content="en_NZ">
+<meta property="og:url" content="https://danielolliver.com/research/hexlife/">
+<meta property="og:title" content="The lattice's teeth: when the substrate owns the pattern">
+<meta property="og:description" content="Lenia-class patterns on square and hexagonal lattices at matched density: the lattice doesn't matter at normal scales; below ~3 lattice constants it does.">
+<meta property="og:image" content="https://danielolliver.com/og-home-20261020.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Daniel Olliver: evidence-first AI research. Beside the name, a bar chart of anyon braiding on IBM quantum hardware: the logical observable reads +0.845 in the vacuum, −0.843 after the braid and +0.845 for the control loop">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://danielolliver.com/research/hexlife/#article",
+      "headline": "The lattice's teeth: when the substrate owns the pattern",
+      "description": "Lenia-class patterns on square and hexagonal lattices at matched density: the lattice doesn't matter at normal scales; below ~3 lattice constants it does.",
+      "url": "https://danielolliver.com/research/hexlife/",
+      "mainEntityOfPage": "https://danielolliver.com/research/hexlife/",
+      "image": "https://danielolliver.com/research/hexlife_crossover_locking.png",
+      "inLanguage": "en-NZ",
+      "author": {
+        "@type": "Person",
+        "@id": "https://danielolliver.com/#daniel",
+        "name": "Daniel Olliver",
+        "url": "https://danielolliver.com/"
+      },
+      "isPartOf": {
+        "@id": "https://danielolliver.com/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "danielolliver.com",
+          "item": "https://danielolliver.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Research",
+          "item": "https://danielolliver.com/research/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "The lattice's teeth: when the substrate owns the pattern"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <style>
   @font-face { font-family:"Work Sans"; src:local("Work Sans"),
     url(/static/media/font.e7663f1a.ttf) format("truetype"); font-display:swap; }
@@ -29,7 +91,7 @@
   .fig { background:var(--clr-bg-alt); border:1px solid var(--clr-border);
     border-radius:12px; overflow:hidden; margin-bottom:24px;
     box-shadow:rgba(17,24,39,.07) 0 12px 34px; }
-  .fig img { width:100%; display:block; background:#fff; }
+  .fig img { width:100%; height:auto; display:block; background:#fff; }
   .lead { font-size:1.12rem; line-height:1.6; color:var(--clr-fg); margin-bottom:24px; }
   .detail p { color:var(--clr-fg); margin-bottom:16px; }
   .detail em { color:var(--clr-accent); font-style:normal; font-weight:600; }
@@ -52,12 +114,13 @@
 <div class="wrap">
 <p class="crumb"><a href="/">danielolliver.com</a> / <a href="/research/">Research</a></p>
 <h1>The lattice's teeth: when the substrate owns the pattern</h1>
-<div class="fig"><img src="/research/hexlife_crossover_locking.png" alt="Orientation locking versus spot spacing: square arrays unlock by ~6.5 lattice constants, hexagonal arrays keep a weak box-invariant lock"></div>
+<div class="fig"><img src="/research/hexlife_crossover_locking.png" width="1495" height="572" fetchpriority="high" alt="Orientation locking versus spot spacing: square arrays unlock by ~6.5 lattice constants, hexagonal arrays keep a weak box-invariant lock"></div>
 <p class="lead">The same continuous pattern-forming system (Lenia-class) run on a square lattice and a hexagonal lattice at exactly matched cell density — same rule, same parameters, same random seeds; only the geometry differs. At normal scales the emergent patterns do not care which lattice they grow on. Below ~3 lattice constants, the substrate owns them — <em>11,946 measured patterns</em>, replicated on independent hardware to the third decimal.</p>
 <div class="detail">
 <p>The method is the story. Five separate &ldquo;discoveries&rdquo; in one night were all measurement artifacts — sheared coordinates, raster contamination, a wrong wrap on a sheared torus, wrong connectivity, a granularity floor. Each looked like a large, significant effect; paired controls killed every one. What survived the hunt is a clean null: at normal scales the patterns even pack <em>hexagonally on the square grid</em> — hexagonal order is what the physics does, on any floor.</p>
 <p>Pushed down toward the lattice scale, the null breaks — cleanly. Below ~3 lattice constants the substrate sets the packing symmetry class and locks the pattern&rsquo;s orientation to its crystal axes (matched-symmetry lock up to <em>|0.94–0.97|</em>, while the wrong-symmetry channel sits at zero), and the locking direction flips with the ratio of pattern spacing to lattice spacing — textbook commensuration physics, the same class as atoms adsorbed on crystal surfaces. Pushed bigger, the locking rings through sign flips and dies on the square lattice by about 6.5 lattice constants. On the hexagonal lattice it never quite dies: a weak <em>+0.2 lock, box-invariant</em> across domain sizes (n=192/256/384), persists as far as measured (8.7a) — because the emergent patterns are themselves hexagonal, and only the hexagonal floor speaks their native symmetry. A second, unplanned observable rode along: a lattice-scale ring/micro-texture morphology channel that the square substrate sustains 2–3× more than hex, each locked in its own symmetry.</p>
 <p>Bounded honestly: in the commensurate regime both substrates imprint their own symmetry with comparable strength — this is geometry transmitting at commensurate scale, and symmetry-matching at long range, not &ldquo;hex wins.&rdquo; The rig — matched-density Bravais lattices with paired controls — is going open source.</p>
+<p>Related preprint, a different study (neural cellular automata, not Lenia): <a href="/papers/lattice-teeth-nca/">The lattice's teeth: primitive reciprocal axes govern which Fourier components neural cellular automata can grow</a></p>
 </div>
 <div class="cta">
   <a class="btn btn-primary" href="https://github.com/dwatces" target="_blank" rel="noreferrer">Code &amp; logs</a>
