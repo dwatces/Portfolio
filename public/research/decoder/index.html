@@ -1,15 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#256f8f">
-<title>Symmetry-tied neural decoders for quantum error correction — Daniel Olliver</title>
-<meta name="description" content="An ML decoder tied to the surface code’s exact symmetry — at identical parameter count — wins at every training size, is ~4× more sample-efficient, and comes within 0.0005 of the matching-decoder baseline.">
-<link rel="icon" href="/favicon.png">
+<title>Symmetry-tied neural decoders for quantum error correction | Daniel Olliver</title>
+<meta name="description" content="A neural decoder tied to the surface code's exact symmetry wins at every training size and comes within 0.0005 of the matching-decoder baseline.">
+<link rel="canonical" href="https://danielolliver.com/research/decoder/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Daniel Olliver">
+<meta property="og:locale" content="en_NZ">
+<meta property="og:url" content="https://danielolliver.com/research/decoder/">
+<meta property="og:title" content="Symmetry-tied neural decoders for quantum error correction">
+<meta property="og:description" content="A neural decoder tied to the surface code's exact symmetry wins at every training size and comes within 0.0005 of the matching-decoder baseline.">
+<meta property="og:image" content="https://danielolliver.com/research/equiv_decoder.png">
+<meta property="og:image:width" content="896">
+<meta property="og:image:height" content="588">
+<meta property="og:image:alt" content="Decoding accuracy against training samples: the symmetry-tied decoder sits above the plain decoder at every size and approaches the matching-decoder line">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://danielolliver.com/research/decoder/#article",
+      "headline": "Symmetry-tied neural decoders for quantum error correction",
+      "description": "A neural decoder tied to the surface code's exact symmetry wins at every training size and comes within 0.0005 of the matching-decoder baseline.",
+      "url": "https://danielolliver.com/research/decoder/",
+      "mainEntityOfPage": "https://danielolliver.com/research/decoder/",
+      "image": "https://danielolliver.com/research/equiv_decoder.png",
+      "inLanguage": "en-NZ",
+      "author": {
+        "@type": "Person",
+        "@id": "https://danielolliver.com/#daniel",
+        "name": "Daniel Olliver",
+        "url": "https://danielolliver.com/"
+      },
+      "isPartOf": {
+        "@id": "https://danielolliver.com/#website"
+      },
+      "citation": {
+        "@id": "https://doi.org/10.5281/zenodo.20715320"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "danielolliver.com",
+          "item": "https://danielolliver.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Research",
+          "item": "https://danielolliver.com/research/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Symmetry-tied neural decoders for quantum error correction"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <style>
-  @font-face { font-family:"Work Sans"; src:local("Work Sans"),
-    url(/static/media/font.e7663f1a.ttf) format("truetype"); font-display:swap; }
+  @font-face { font-family:"Work Sans"; src:url(/static/media/work-sans-20261020.woff2) format("woff2"), url(/static/media/font.e7663f1a.ttf) format("truetype"); font-weight:100 900; font-display:swap; }
+  @font-face { font-family:"Work Sans"; src:url(/static/media/work-sans-sym-20261020.woff2) format("woff2"); unicode-range:U+0304,U+2082,U+2212,U+2264-2265,U+27E8-27E9; font-weight:100 900; font-display:swap; }
   :root {
     --clr-bg:#f7f8f5; --clr-bg-alt:#fff; --clr-fg:#24313a; --clr-heading:#111827;
     --clr-muted:#64717d; --clr-primary:#256f8f; --clr-primary-soft:#8fc7d8;
@@ -29,7 +94,7 @@
   .fig { background:var(--clr-bg-alt); border:1px solid var(--clr-border);
     border-radius:12px; overflow:hidden; margin-bottom:24px;
     box-shadow:rgba(17,24,39,.07) 0 12px 34px; }
-  .fig img { width:100%; display:block; background:#fff; }
+  .fig img { width:100%; height:auto; display:block; background:#fff; }
   .lead { font-size:1.12rem; line-height:1.6; color:var(--clr-fg); margin-bottom:24px; }
   .detail p { color:var(--clr-fg); margin-bottom:16px; }
   .detail em { color:var(--clr-accent); font-style:normal; font-weight:600; }
@@ -52,15 +117,17 @@
 <div class="wrap">
 <p class="crumb"><a href="/">danielolliver.com</a> / <a href="/research/">Research</a></p>
 <h1>Symmetry-tied neural decoders for quantum error correction</h1>
-<div class="fig"><img src="/research/equiv_decoder.png" alt="Symmetry-tied neural decoders for quantum error correction"></div>
+<div class="fig"><img src="/research/equiv_decoder.png" width="896" height="588" fetchpriority="high" alt="Decoding accuracy against training samples: the symmetry-tied decoder sits above the plain decoder at every size and approaches the matching-decoder line"></div>
 <p class="lead">An ML decoder tied to the surface code’s exact symmetry — at identical parameter count — wins at every training size, is ~4× more sample-efficient, and comes within 0.0005 of the matching-decoder baseline (0.9943 vs 0.9948). Found en route: the correct group action carries a syndrome-dependent twist; naive lattice symmetry mis-ties the label.</p>
 <div class="detail">
 <p>A decoder reads a quantum machine’s error alarms and must name the fault — fast, forever. It is a learning job where labelled data from real devices is scarce, so the right inductive bias matters more than raw scale.</p><p>The honeycomb Floquet code keeps its full rotation symmetry <em>exactly</em> under the most naive compilation, and rotating the lattice 120° swaps the two stored qubits — solved mechanism-by-mechanism from the code’s own error model, at two lattice sizes. Building that exact symmetry into the network is a switch, not a speed-up: the identical plain twin never learns the task the symmetry-aware one solves.</p>
+<p>Paper: <a href="/papers/circuit-level-equivariance/">Circuit-level equivariance is code-dependent</a> (preprint, Zenodo, June 2026). DOI: <a href="https://doi.org/10.5281/zenodo.20715320">10.5281/zenodo.20715320</a></p>
 </div>
 <div class="cta">
   <a class="btn btn-primary" href="/anyons/decoder/">Play the trained decoder</a>
+  <a class="btn btn-outline" href="/papers/circuit-level-equivariance/">Read the paper</a>
   <a class="btn btn-outline" href="https://pypi.org/project/demsym/" target="_blank" rel="noreferrer">pip install demsym</a>
-  <a class="btn btn-plain" href="https://github.com/dwatces" target="_blank" rel="noreferrer">Code &amp; logs</a>
+  <a class="btn btn-plain" href="https://github.com/dwatces/equivariant-quantum-ml" target="_blank" rel="noreferrer">Code &amp; logs</a>
 </div>
 <p class="foot">Every number above is from a completed, logged run — controls, matched parameters, and error bars; negatives included. <a href="/research/">← all research</a> &nbsp;·&nbsp; next: <a href="/research/qrc/">equivariant quantum readouts →</a></p>
 </div>

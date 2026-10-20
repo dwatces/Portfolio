@@ -1,15 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#256f8f">
-<title>Equivariant readouts for quantum machine learning — Daniel Olliver</title>
-<meta name="description" content="A quantum reservoir with a symmetry-tied readout (exact C3 commutation, [P,H] error = 0): large sample-efficiency gains in the scarce-data regime — the sam">
-<link rel="icon" href="/favicon.png">
+<title>Equivariant readouts for quantum reservoir computing | Daniel Olliver</title>
+<meta name="description" content="A quantum reservoir whose readout commutes exactly with C3 symmetry ([P,H] error = 0) gives large sample-efficiency gains when training data is scarce.">
+<link rel="canonical" href="https://danielolliver.com/research/qrc/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Daniel Olliver">
+<meta property="og:locale" content="en_NZ">
+<meta property="og:url" content="https://danielolliver.com/research/qrc/">
+<meta property="og:title" content="Equivariant readouts for quantum machine learning">
+<meta property="og:description" content="A quantum reservoir whose readout commutes exactly with C3 symmetry ([P,H] error = 0) gives large sample-efficiency gains when training data is scarce.">
+<meta property="og:image" content="https://danielolliver.com/research/qrc_equivariance.png">
+<meta property="og:image:width" content="896">
+<meta property="og:image:height" content="588">
+<meta property="og:image:alt" content="Test score against training samples for a plain readout and a C3-equivariant readout of a quantum reservoir">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://danielolliver.com/research/qrc/#article",
+      "headline": "Equivariant readouts for quantum machine learning",
+      "description": "A quantum reservoir whose readout commutes exactly with C3 symmetry ([P,H] error = 0) gives large sample-efficiency gains when training data is scarce.",
+      "url": "https://danielolliver.com/research/qrc/",
+      "mainEntityOfPage": "https://danielolliver.com/research/qrc/",
+      "image": "https://danielolliver.com/research/qrc_equivariance.png",
+      "inLanguage": "en-NZ",
+      "author": {
+        "@type": "Person",
+        "@id": "https://danielolliver.com/#daniel",
+        "name": "Daniel Olliver",
+        "url": "https://danielolliver.com/"
+      },
+      "isPartOf": {
+        "@id": "https://danielolliver.com/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "danielolliver.com",
+          "item": "https://danielolliver.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Research",
+          "item": "https://danielolliver.com/research/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Equivariant readouts for quantum machine learning"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <style>
-  @font-face { font-family:"Work Sans"; src:local("Work Sans"),
-    url(/static/media/font.e7663f1a.ttf) format("truetype"); font-display:swap; }
+  @font-face { font-family:"Work Sans"; src:url(/static/media/work-sans-20261020.woff2) format("woff2"), url(/static/media/font.e7663f1a.ttf) format("truetype"); font-weight:100 900; font-display:swap; }
+  @font-face { font-family:"Work Sans"; src:url(/static/media/work-sans-sym-20261020.woff2) format("woff2"); unicode-range:U+0304,U+2082,U+2212,U+2264-2265,U+27E8-27E9; font-weight:100 900; font-display:swap; }
   :root {
     --clr-bg:#f7f8f5; --clr-bg-alt:#fff; --clr-fg:#24313a; --clr-heading:#111827;
     --clr-muted:#64717d; --clr-primary:#256f8f; --clr-primary-soft:#8fc7d8;
@@ -29,7 +91,7 @@
   .fig { background:var(--clr-bg-alt); border:1px solid var(--clr-border);
     border-radius:12px; overflow:hidden; margin-bottom:24px;
     box-shadow:rgba(17,24,39,.07) 0 12px 34px; }
-  .fig img { width:100%; display:block; background:#fff; }
+  .fig img { width:100%; height:auto; display:block; background:#fff; }
   .lead { font-size:1.12rem; line-height:1.6; color:var(--clr-fg); margin-bottom:24px; }
   .detail p { color:var(--clr-fg); margin-bottom:16px; }
   .detail em { color:var(--clr-accent); font-style:normal; font-weight:600; }
@@ -52,7 +114,7 @@
 <div class="wrap">
 <p class="crumb"><a href="/">danielolliver.com</a> / <a href="/research/">Research</a></p>
 <h1>Equivariant readouts for quantum machine learning</h1>
-<div class="fig"><img src="/research/qrc_equivariance.png" alt="Equivariant readouts for quantum machine learning"></div>
+<div class="fig"><img src="/research/qrc_equivariance.png" width="896" height="588" fetchpriority="high" alt="Test score against training samples for a plain readout and a C3-equivariant readout of a quantum reservoir"></div>
 <p class="lead">A quantum reservoir with a symmetry-tied readout (exact C3 commutation, [P,H] error = 0): large sample-efficiency gains in the scarce-data regime — the same commutant mathematics that makes equivariant quantum neural networks trainable at all.</p>
 <div class="detail">
 <p>The classical equivariance gift, carried into quantum machine learning: a reservoir whose readout commutes exactly with the symmetry ([P,H] error = 0).</p><p>The same commutant mathematics is what lets equivariant quantum neural networks train at all — the structure that avoids the barren plateaus stalling generic quantum models — and on real qubits the symmetry survives to within hardware noise against a broken control many times larger.</p>

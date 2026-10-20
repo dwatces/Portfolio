@@ -1,15 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#256f8f">
-<title>The equivariance law, held on real city data — Daniel Olliver</title>
-<meta name="description" content="Equivariant models pay exactly when the symmetry is present and data is scarce. New-station demand forecasting across five cities × two seasons: the hex-eq">
-<link rel="icon" href="/favicon.png">
+<title>Equivariant cold-start forecasting on real city data | Daniel Olliver</title>
+<meta name="description" content="New-station demand forecasting in five cities over two seasons: the hex-equivariant model beats the directional one in 10 of 10 city-seasons.">
+<link rel="canonical" href="https://danielolliver.com/research/coldstart/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Daniel Olliver">
+<meta property="og:locale" content="en_NZ">
+<meta property="og:url" content="https://danielolliver.com/research/coldstart/">
+<meta property="og:title" content="The equivariance law, held on real city data">
+<meta property="og:description" content="New-station demand forecasting in five cities over two seasons: the hex-equivariant model beats the directional one in 10 of 10 city-seasons.">
+<meta property="og:image" content="https://danielolliver.com/research/coldstart_equivariance.png">
+<meta property="og:image:width" content="896">
+<meta property="og:image:height" content="588">
+<meta property="og:image:alt" content="Gain of the hex-equivariant model over the directional one against the share of stations with known history, across ten city-seasons">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://danielolliver.com/research/coldstart/#article",
+      "headline": "The equivariance law, held on real city data",
+      "description": "New-station demand forecasting in five cities over two seasons: the hex-equivariant model beats the directional one in 10 of 10 city-seasons.",
+      "url": "https://danielolliver.com/research/coldstart/",
+      "mainEntityOfPage": "https://danielolliver.com/research/coldstart/",
+      "image": "https://danielolliver.com/research/coldstart_equivariance.png",
+      "inLanguage": "en-NZ",
+      "author": {
+        "@type": "Person",
+        "@id": "https://danielolliver.com/#daniel",
+        "name": "Daniel Olliver",
+        "url": "https://danielolliver.com/"
+      },
+      "isPartOf": {
+        "@id": "https://danielolliver.com/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "danielolliver.com",
+          "item": "https://danielolliver.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Research",
+          "item": "https://danielolliver.com/research/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "The equivariance law, held on real city data"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <style>
-  @font-face { font-family:"Work Sans"; src:local("Work Sans"),
-    url(/static/media/font.e7663f1a.ttf) format("truetype"); font-display:swap; }
+  @font-face { font-family:"Work Sans"; src:url(/static/media/work-sans-20261020.woff2) format("woff2"), url(/static/media/font.e7663f1a.ttf) format("truetype"); font-weight:100 900; font-display:swap; }
+  @font-face { font-family:"Work Sans"; src:url(/static/media/work-sans-sym-20261020.woff2) format("woff2"); unicode-range:U+0304,U+2082,U+2212,U+2264-2265,U+27E8-27E9; font-weight:100 900; font-display:swap; }
   :root {
     --clr-bg:#f7f8f5; --clr-bg-alt:#fff; --clr-fg:#24313a; --clr-heading:#111827;
     --clr-muted:#64717d; --clr-primary:#256f8f; --clr-primary-soft:#8fc7d8;
@@ -29,7 +91,7 @@
   .fig { background:var(--clr-bg-alt); border:1px solid var(--clr-border);
     border-radius:12px; overflow:hidden; margin-bottom:24px;
     box-shadow:rgba(17,24,39,.07) 0 12px 34px; }
-  .fig img { width:100%; display:block; background:#fff; }
+  .fig img { width:100%; height:auto; display:block; background:#fff; }
   .lead { font-size:1.12rem; line-height:1.6; color:var(--clr-fg); margin-bottom:24px; }
   .detail p { color:var(--clr-fg); margin-bottom:16px; }
   .detail em { color:var(--clr-accent); font-style:normal; font-weight:600; }
@@ -52,7 +114,7 @@
 <div class="wrap">
 <p class="crumb"><a href="/">danielolliver.com</a> / <a href="/research/">Research</a></p>
 <h1>The equivariance law, held on real city data</h1>
-<div class="fig"><img src="/research/coldstart_equivariance.png" alt="The equivariance law, held on real city data"></div>
+<div class="fig"><img src="/research/coldstart_equivariance.png" width="896" height="588" fetchpriority="high" alt="Gain of the hex-equivariant model over the directional one against the share of stations with known history, across ten city-seasons"></div>
 <p class="lead">Equivariant models pay exactly when the symmetry is present and data is scarce. New-station demand forecasting across five cities × two seasons: the hex-equivariant model beats the directional one in 10 of 10 city-seasons; the gain holds while few stations have history and shrinks once most do.</p>
 <div class="detail">
 <p>In cold-start forecasting a brand-new station has no history of its own, so the spatial operator <em>is</em> the whole model — exactly where a symmetry prior can pay.</p><p>It does, in 10 of 10 real point-level bike-share city-seasons: the mean gain stays roughly level while up to 40% of stations have history, and is much smaller once 80% do. Matched parameters, multiple seeds — equivariance pays if and only if the symmetry is genuinely present.</p>

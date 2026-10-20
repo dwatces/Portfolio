@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The lattice's teeth: neural cellular automata preprint | Daniel Olliver</title>
+<meta name="description" content="Preprint by Daniel Olliver (Zenodo, July 2026): lattice geometry in neural cellular automata, with a retracted artefact and a pre-registered test.">
+<link rel="canonical" href="https://danielolliver.com/papers/lattice-teeth-nca/">
+<meta name="theme-color" content="#f7f5ef">
+
+<!-- Google Scholar (Highwire Press) -->
+<meta name="citation_title" content="The lattice's teeth: primitive reciprocal axes govern which Fourier components neural cellular automata can grow">
+<meta name="citation_author" content="Olliver, Daniel">
+<meta name="citation_publication_date" content="2026/7/27">
+<meta name="citation_doi" content="10.5281/zenodo.21614035">
+<meta name="citation_publisher" content="Zenodo">
+<meta name="citation_language" content="en">
+<meta name="citation_pdf_url" content="https://danielolliver.com/papers/lattice-teeth-nca/olliver-2026-lattice-teeth-nca.pdf">
+<meta name="citation_abstract_html_url" content="https://danielolliver.com/papers/lattice-teeth-nca/">
+<meta name="citation_keywords" content="neural cellular automata">
+<meta name="citation_keywords" content="lattice">
+<meta name="citation_keywords" content="reciprocal lattice">
+<meta name="citation_keywords" content="pattern formation">
+<meta name="citation_keywords" content="spectral bias">
+<meta name="citation_keywords" content="pre-registration">
+<meta name="citation_keywords" content="reproducibility">
+<meta name="citation_keywords" content="hexagonal">
+<meta name="citation_keywords" content="artificial life">
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Daniel Olliver">
+<meta property="og:locale" content="en_NZ">
+<meta property="og:url" content="https://danielolliver.com/papers/lattice-teeth-nca/">
+<meta property="og:title" content="The lattice's teeth: primitive reciprocal axes govern which Fourier components neural cellular automata can grow">
+<meta property="og:description" content="Preprint by Daniel Olliver (Zenodo, July 2026). The lattice as an experimental variable: an apparent hexagon advantage traced to a normalisation artefact and retracted, a primitive-axis rule, and a pre-registered out-of-sample test that partly refuted it.">
+<meta property="article:published_time" content="2026-07-27">
+<meta property="og:image" content="https://danielolliver.com/og-home-20261020.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Daniel Olliver: evidence-first AI research. Beside the name, a bar chart of anyon braiding on IBM quantum hardware: the logical observable reads +0.845 in the vacuum, −0.843 after the braid and +0.845 for the control loop">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The lattice's teeth: neural cellular automata preprint">
+<meta name="twitter:description" content="Preprint by Daniel Olliver (Zenodo, July 2026). Abstract, PDF, code and citation.">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="preload" href="/static/media/source-serif-4-latin-700-20261020.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://doi.org/10.5281/zenodo.21614035",
+      "name": "The lattice's teeth: primitive reciprocal axes govern which Fourier components neural cellular automata can grow",
+      "headline": "The lattice's teeth: primitive reciprocal axes govern which Fourier components neural cellular automata can grow",
+      "url": "https://danielolliver.com/papers/lattice-teeth-nca/",
+      "mainEntityOfPage": {
+        "@id": "https://danielolliver.com/papers/lattice-teeth-nca/"
+      },
+      "sameAs": [
+        "https://zenodo.org/records/21614035"
+      ],
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "DOI",
+        "value": "10.5281/zenodo.21614035",
+        "url": "https://doi.org/10.5281/zenodo.21614035"
+      },
+      "author": {
+        "@id": "https://danielolliver.com/#daniel"
+      },
+      "datePublished": "2026-07-27",
+      "inLanguage": "en",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Zenodo",
+        "url": "https://zenodo.org/"
+      },
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "isAccessibleForFree": true,
+      "keywords": [
+        "neural cellular automata",
+        "lattice",
+        "reciprocal lattice",
+        "pattern formation",
+        "spectral bias",
+        "pre-registration",
+        "reproducibility",
+        "hexagonal",
+        "artificial life"
+      ],
+      "abstract": "Neural cellular automata (NCA) are trained on square grids by default. This preprint treats the lattice as an experimental variable and reports two results, together with the outcome of a pre-registered out-of-sample test of the second one. 1. A normalization artifact in cross-lattice comparisons, documented and retracted. Snapping periodic wave targets independently per wavevector onto each lattice's reciprocal box, then min-max normalizing, sets a three-wave target's variance to one of two narrow classes (near 1.5/36 or 1.5/20.25) depending on whether rounding preserves the wave set's closure. In a 310-training study this produced a 44% \"advantage\" of hexagonal over square substrates that reproduced in 12/12 restarts and survived an operator-conditioning control — while, apart from twelve trainings in a single panel that had genuinely learned, every wave training on every lattice had in fact converged to the predict-the-mean solution or stopped short of it (test error 0.97 to 1.62 times its own target variance, never explaining more than 3% of it). The advantage was the ratio of the two variances. The paper documents the failure, the diagnostic (per-condition loss/variance) and the repair. 2. A primitive-axis constraint on learnability. With closure enforced and a per-component readout, a trained NCA grows those Fourier components of its target whose wavevectors lie on a primitive reciprocal-lattice axis of its substrate — amplitude recovery 0.55 to 0.88 in restart means, per-restart minimum 0.50 — and fails to grow all others, recovery at most 0.11 in restart means (per-restart maximum 0.21), including components exactly representable along non-primitive (diagonal) directions. In the tested family, a substrate hosts a full pattern class only if its point-group symmetry admits the class. 3. Pre-registered falsification of the frozen quantitative form. An out-of-sample battery of 96 trainings (honeycomb, grid-size and wavelength, learned-kernel, misalignment and data-budget panels), with predictions frozen before the first training, partially refuted the constraint as stated: the pre-registered decider — predicted-versus-measured R² of at least 0.8 — failed, at R² = -0.39. The tooth has an angular half-width near 6 degrees rather than the calibrated 0.5, its snap-strain clause is inert, aligned recovery is graded by data budget and by the target's mode order rather than fixed, and the honeycomb gates on its embedding box's reciprocal axes rather than on its six-fold stencil symmetry. What survives out-of-sample is the gate itself: growth stays direction-selective, no geometry-forbidden component grows, and far-off-axis components remain dead (recovery 0.00); the exactly-representable-diagonal cell is a calibration result the battery did not re-probe. The constraint is real and soft, not sharp. Scripts and per-training JSONL records accompany the paper. The frozen prediction table and the analysis verdict (printing the R² and the per-record violation count) are read-only entry points that reproduce the section-5 result from the completed records.",
+      "encoding": [
+        {
+          "@type": "MediaObject",
+          "encodingFormat": "application/pdf",
+          "contentUrl": "https://danielolliver.com/papers/lattice-teeth-nca/olliver-2026-lattice-teeth-nca.pdf",
+          "contentSize": "1.2 MB"
+        },
+        {
+          "@type": "MediaObject",
+          "encodingFormat": "application/pdf",
+          "contentUrl": "https://zenodo.org/records/21614035/files/main.pdf",
+          "contentSize": "1.2 MB"
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://danielolliver.com/papers/lattice-teeth-nca/",
+      "url": "https://danielolliver.com/papers/lattice-teeth-nca/",
+      "name": "The lattice's teeth: neural cellular automata preprint",
+      "isPartOf": {
+        "@id": "https://danielolliver.com/#website"
+      },
+      "mainEntity": {
+        "@id": "https://doi.org/10.5281/zenodo.21614035"
+      },
+      "breadcrumb": {
+        "@id": "https://danielolliver.com/papers/lattice-teeth-nca/#breadcrumb"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://danielolliver.com/#daniel",
+      "name": "Daniel Olliver",
+      "url": "https://danielolliver.com/",
+      "sameAs": [
+        "https://github.com/dwatces",
+        "https://www.linkedin.com/in/danielolliver"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://danielolliver.com/papers/lattice-teeth-nca/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "danielolliver.com",
+          "item": "https://danielolliver.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Papers",
+          "item": "https://danielolliver.com/papers/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "The lattice's teeth (neural cellular automata)"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+@font-face { font-family:"Work Sans"; src:url(/static/media/work-sans-20261020.woff2) format("woff2"), url(/static/media/font.e7663f1a.ttf) format("truetype"); font-weight:100 900; font-display:swap; }
+  @font-face { font-family:"Work Sans"; src:url(/static/media/work-sans-sym-20261020.woff2) format("woff2"); unicode-range:U+0304,U+2082,U+2212,U+2264-2265,U+27E8-27E9; font-weight:100 900; font-display:swap; }
+/* Source Serif 4 (Adobe), Latin subset from @fontsource/source-serif-4 5.3.1. Licence: SIL Open Font License 1.1 (OFL-1.1). */
+@font-face { font-family:"Source Serif 4"; src:url(/static/media/source-serif-4-latin-400-20261020.woff2) format("woff2");
+  font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"Source Serif 4"; src:url(/static/media/source-serif-4-latin-700-20261020.woff2) format("woff2");
+  font-weight:700; font-style:normal; font-display:swap; }
+@font-face { font-family:"Source Serif 4"; src:url(/static/media/source-serif-4-latin-400-italic-20261020.woff2) format("woff2");
+  font-weight:400; font-style:italic; font-display:swap; }
+/* Metric-matched local fallbacks, so the swap to Source Serif 4 doesn't shift layout.
+   Georgia figures were measured on Gelasio and Times New Roman figures on Tinos (both metric-compatible),
+   then checked against this page's text. Serif max-widths below are in em, not ch, for the same reason. */
+@font-face { font-family:"Source Serif 4 Fallback"; src:local("Georgia"); font-weight:400;
+  size-adjust:108.41%; ascent-override:95.56%; descent-override:30.9%; line-gap-override:0%; }
+@font-face { font-family:"Source Serif 4 Fallback"; src:local("Georgia Bold"), local("Georgia-Bold"); font-weight:700;
+  size-adjust:95.8%; ascent-override:108.14%; descent-override:34.97%; line-gap-override:0%; }
+@font-face { font-family:"Source Serif 4 Fallback T"; src:local("Times New Roman"), local("TimesNewRomanPSMT"), local("Liberation Serif"), local("LiberationSerif"); font-weight:400;
+  size-adjust:120.5%; ascent-override:85.98%; descent-override:27.8%; line-gap-override:0%; }
+@font-face { font-family:"Source Serif 4 Fallback T"; src:local("Times New Roman Bold"), local("TimesNewRomanPS-BoldMT"), local("Liberation Serif Bold"), local("LiberationSerif-Bold"); font-weight:700;
+  size-adjust:115.12%; ascent-override:89.99%; descent-override:29.1%; line-gap-override:0%; }
+:root {
+  --paper:#f7f5ef; --band:#efebe1; --plate:#fffefa; --ink:#1a2025; --ink-2:#38434b;
+  --muted:#5b666e; --rule:#d8d2c4; --rule-2:#c7c0af;
+  --accent:#1d6680; --accent-ink:#164f63; --mark:#a8402b; --night:#0d111a;
+  --serif:"Source Serif 4","Source Serif 4 Fallback","Source Serif 4 Fallback T","Iowan Old Style","Charter","Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  --sans:"Work Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:ui-monospace,"SFMono-Regular","SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --gut:16px; --max:1180px; --sec:52px;
+  --t-body:1rem; --t-cap:.88rem; --t-data:.8rem; --t-label:.75rem;
+}
+*,*::before,*::after { box-sizing:border-box; }
+* { margin:0; padding:0; }
+html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+@media (prefers-reduced-motion:no-preference) { html { scroll-behavior:smooth; } }
+body { background:var(--paper); color:var(--ink-2); font:16.5px/1.65 var(--sans);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+img { display:block; max-width:100%; height:auto; }
+a { color:var(--accent); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
+a:hover { color:var(--accent-ink); text-decoration-thickness:2px; }
+:focus-visible { outline:3px solid var(--accent); outline-offset:3px; border-radius:2px; }
+.skip { position:absolute; left:-999px; top:8px; background:var(--ink); color:#fff; padding:12px 16px; z-index:10; }
+.skip:focus { left:var(--gut); }
+.wrap { max-width:var(--max); margin:0 auto; padding:0 var(--gut); }
+.d { font-family:var(--mono); font-size:.88em; letter-spacing:-.01em; white-space:nowrap; color:var(--ink); }
+.kicker { font-family:var(--mono); font-size:var(--t-label); letter-spacing:.05em; text-transform:uppercase; color:var(--muted); line-height:1.5; }
+.nw { white-space:nowrap; }
+
+
+/* masthead */
+.mast { border-bottom:1px solid var(--rule); }
+.mast .wrap { display:flex; align-items:center; justify-content:space-between; gap:0 20px; min-height:60px; }
+.brand { font-family:var(--serif); font-size:1.12rem; font-weight:700; color:var(--ink); text-decoration:none;
+  display:inline-flex; align-items:center; min-height:44px; white-space:nowrap; }
+.brand:hover { color:var(--ink); text-decoration:none; }
+.mast nav { flex:0 1 auto; }
+.nav { display:flex; list-style:none; margin:0 -10px; }
+.nav a { display:inline-flex; align-items:center; justify-content:center; min-height:44px; min-width:44px; padding:0 10px;
+  color:var(--ink-2); text-decoration:none; font-size:.95rem; }
+.nav a:hover { color:var(--accent); text-decoration:underline; }
+@media (max-width:539px) {
+  .brand { display:none; }
+  .mast nav { flex:1 1 auto; }
+  .nav { justify-content:space-between; margin:0 -6px; }
+  .nav a { padding:0 6px; font-size:.92rem; }
+}
+
+/* links: one secondary style, one primary (DOI) style */
+.links { display:flex; flex-wrap:wrap; align-items:center; gap:0 22px; margin-top:14px; list-style:none; }
+.links a { display:inline-flex; align-items:center; min-height:44px; }
+.doi { display:inline-flex; flex-wrap:wrap; align-items:center; gap:6px 12px; min-height:52px; padding:9px 18px 9px 14px; max-width:100%;
+  background:var(--ink); color:#fff; border-radius:4px; text-decoration:none; }
+.doi:hover { background:var(--accent-ink); color:#fff; text-decoration:none; }
+.doi .k { font-family:var(--mono); font-size:.68rem; letter-spacing:.08em; padding:1px 6px; border:1px solid rgba(255,255,255,.5); border-radius:3px; }
+.doi .v { font-family:var(--mono); font-size:.88rem; overflow-wrap:anywhere; }
+.doi .hint { font-size:.92rem; font-weight:600; padding-left:12px; border-left:1px solid rgba(255,255,255,.35); }
+@media (max-width:479px) {
+  .doi { display:flex; width:100%; }
+  .doi .hint { flex-basis:100%; padding:6px 0 0; border-left:0; border-top:1px solid rgba(255,255,255,.25); }
+}
+@media (max-width:359px) { .doi .v { font-size:.82rem; } }
+/* paper pages */
+.paper { padding:28px 0 var(--sec); }
+.col { max-width:46rem; }
+.crumb { font-size:var(--t-cap); color:var(--muted); margin-bottom:14px; }
+h1 { font-family:var(--serif); font-weight:700; color:var(--ink); font-size:clamp(1.35rem,3vw,1.75rem); line-height:1.25; max-width:34em; margin:6px 0 10px; }
+.byline { color:var(--ink); }
+.paper h2 { font-family:var(--serif); font-size:1.3rem; line-height:1.25; color:var(--ink); font-weight:700;
+  margin-top:34px; padding-top:20px; border-top:1px solid var(--rule-2); }
+.paper .abs h2 { margin-top:18px; padding-top:14px; }
+.abs p { max-width:66ch; margin-top:10px; }
+.paper .doi { margin-top:16px; }
+.cite .kicker { margin-top:14px; }
+.cite p.box, .cite pre { font-family:var(--mono); font-size:var(--t-data); line-height:1.65; color:var(--ink-2); background:var(--plate);
+  border:1px solid var(--rule); border-radius:3px; padding:12px 14px; margin-top:6px; overflow-wrap:anywhere; }
+.cite pre { white-space:pre-wrap; }
+.related { list-style:none; margin-top:12px; border-top:1px solid var(--ink); }
+.related li { padding:8px 0 12px; border-bottom:1px solid var(--rule-2); }
+.related a { display:inline-flex; align-items:center; min-height:44px; font-family:var(--serif); font-weight:700; font-size:1.08rem; line-height:1.3; }
+.related .kicker { display:block; padding-top:6px; }
+.related .cap { display:block; color:var(--muted); font-size:var(--t-cap); line-height:1.45; }
+.back { margin-top:28px; }
+.back a { display:inline-flex; align-items:center; min-height:44px; }
+/* papers index */
+.paper h1.big { font-size:clamp(1.75rem,3.6vw,2.2rem); line-height:1.12; letter-spacing:-.01em; margin-bottom:8px; }
+.lede { color:var(--muted); }
+.refs { list-style:none; margin-top:26px; }
+.ref { padding:24px 0 22px; border-top:1px solid var(--rule-2); }
+.paper .ref h2 { font-size:clamp(1.22rem,2.4vw,1.45rem); line-height:1.3; margin:6px 0 12px; padding:0; border:0; max-width:26.2em; }
+.ref h2 a { color:var(--ink); text-decoration-color:var(--rule-2); }
+.ref h2 a:hover { color:var(--accent); text-decoration-color:currentColor; }
+.ref p { max-width:66ch; }
+
+footer { border-top:1px solid var(--rule); padding:18px 0 30px; font-size:var(--t-cap); color:var(--muted); }
+footer .wrap { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:2px 20px; }
+footer a { display:inline-flex; align-items:center; min-height:44px; color:var(--muted); }
+footer a:hover { color:var(--ink); }
+/* tablet and up */
+@media (min-width:700px) {
+  :root { --gut:32px; --sec:72px; }
+  .paper { padding-top:40px; }
+}
+@media (min-width:1000px) {
+  :root { --gut:48px; --sec:80px; }
+}
+@media (min-width:1700px) {
+  body { font-size:17.5px; }
+  :root { --max:1280px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { transition:none !important; animation:none !important; }
+}
+</style>
+<script defer src="/ga.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="mast">
+  <div class="wrap">
+    <a class="brand" href="/">Daniel Olliver</a>
+    <nav aria-label="Sections">
+      <ul class="nav">
+        <li><a href="/essay/">Essay</a></li>
+        <li><a href="/#play">Play</a></li>
+        <li><a href="/papers/">Papers</a></li>
+        <li><a href="/#notes">Notes</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<article class="paper">
+  <div class="wrap">
+    <div class="col">
+      <p class="crumb"><a href="/">danielolliver.com</a> / <a href="/papers/">Papers</a> / The lattice's teeth</p>
+      <p class="kicker">Preprint · Zenodo · <span class="nw">27 July 2026</span></p>
+      <h1>The lattice's teeth: primitive reciprocal axes govern which Fourier components neural cellular automata can grow</h1>
+      <p class="byline"><a href="/">Daniel Olliver</a> · Independent researcher, Auckland, New Zealand</p>
+
+      <section class="abs" aria-labelledby="abstract-h">
+        <h2 id="abstract-h">Abstract</h2>
+<p>Neural cellular automata (NCA) are trained on square grids by default.
+This preprint treats the lattice as an experimental variable and reports two
+results, together with the outcome of a pre-registered out-of-sample test of
+the second one.</p>
+
+<p><strong>1. A normalization artifact in cross-lattice comparisons, documented
+and retracted.</strong> Snapping periodic wave targets independently per
+wavevector onto each lattice's reciprocal box, then min-max normalizing, sets a
+three-wave target's variance to one of two narrow classes (near 1.5/36 or
+1.5/20.25) depending on whether rounding preserves the wave set's closure. In a
+310-training study this produced a 44% "advantage" of hexagonal over square
+substrates that reproduced in 12/12 restarts and survived an
+operator-conditioning control &mdash; while, apart from twelve trainings in a
+single panel that had genuinely learned, every wave training on every lattice
+had in fact converged to the predict-the-mean solution or stopped short of it
+(test error 0.97 to 1.62 times its own target variance, never explaining more
+than 3% of it). The advantage was the ratio of the two variances. The paper
+documents the failure, the diagnostic (per-condition loss/variance) and the
+repair.</p>
+
+<p><strong>2. A primitive-axis constraint on learnability.</strong> With
+closure enforced and a per-component readout, a trained NCA grows those Fourier
+components of its target whose wavevectors lie on a primitive
+reciprocal-lattice axis of its substrate &mdash; amplitude recovery 0.55 to
+0.88 in restart means, per-restart minimum 0.50 &mdash; and fails to grow all
+others, recovery at most 0.11 in restart means (per-restart maximum 0.21),
+including components exactly representable along non-primitive (diagonal)
+directions. In the tested family, a substrate hosts a full pattern class only
+if its point-group symmetry admits the class.</p>
+
+<p><strong>3. Pre-registered falsification of the frozen quantitative
+form.</strong> An out-of-sample battery of 96 trainings (honeycomb, grid-size
+and wavelength, learned-kernel, misalignment and data-budget panels), with
+predictions frozen before the first training, partially refuted the
+constraint as stated: the pre-registered decider &mdash; predicted-versus-measured
+R<sup>2</sup> of at least 0.8 &mdash; failed, at R<sup>2</sup> = -0.39. The
+tooth has an angular half-width near 6 degrees rather than the calibrated 0.5,
+its snap-strain clause is inert, aligned recovery is graded by data budget and
+by the target's mode order rather than fixed, and the honeycomb gates on its
+embedding box's reciprocal axes rather than on its six-fold stencil symmetry.
+What survives out-of-sample is the gate itself: growth stays
+direction-selective, no geometry-forbidden component grows, and far-off-axis
+components remain dead (recovery 0.00); the exactly-representable-diagonal cell
+is a calibration result the battery did not re-probe. The constraint is real
+and soft, not sharp.</p>
+
+<p>Scripts and per-training JSONL records accompany the paper. The frozen
+prediction table and the analysis verdict (printing the R<sup>2</sup> and the
+per-record violation count) are read-only entry points that reproduce the
+section-5 result from the completed records.</p>
+      </section>
+
+      <section aria-labelledby="read-h">
+        <h2 id="read-h">Read and reuse</h2>
+        <a class="doi" href="https://doi.org/10.5281/zenodo.21614035" aria-label="Read the preprint: DOI 10.5281/zenodo.21614035"><span class="k">DOI</span><span class="v">10.5281/zenodo.21614035</span><span class="hint">Read the preprint</span></a>
+        <ul class="links">
+        <li><a href="olliver-2026-lattice-teeth-nca.pdf" type="application/pdf">PDF, 1.2 MB (same file as on Zenodo)</a></li>
+        <li><a href="https://zenodo.org/records/21614035/files/lattice_teeth_code.zip?download=1">Code and records (lattice_teeth_code.zip, on Zenodo)</a></li>
+        </ul>
+      </section>
+
+      <section class="cite" aria-labelledby="cite-h">
+        <h2 id="cite-h">Cite</h2>
+        <p class="kicker">APA</p>
+        <p class="box">Olliver, D. (2026). The lattice’s teeth: primitive reciprocal axes govern which Fourier components neural cellular automata can grow [Preprint]. Zenodo. https://doi.org/10.5281/zenodo.21614035</p>
+        <p class="kicker">BibTeX</p>
+        <pre>@misc{olliver_2026_21614035,
+  author    = {Olliver, Daniel},
+  title     = {The lattice's teeth: primitive reciprocal axes govern which Fourier components neural cellular automata can grow},
+  month     = jul,
+  year      = 2026,
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.21614035},
+  url       = {https://doi.org/10.5281/zenodo.21614035},
+}</pre>
+      </section>
+
+      <section aria-labelledby="related-h">
+        <h2 id="related-h">Related on this site</h2>
+        <ul class="related">
+        <li><span class="kicker"><span class="nw">Different study</span> · <span class="nw">Lenia-class patterns, not NCA</span></span><a href="/research/hexlife/">The lattice’s teeth: when the substrate owns the pattern</a></li>
+        <li><a href="/essay/">I spent six years believing hexagons were the key to AI. Then I tested it.</a><span class="cap">Essay: the six-year story</span></li>
+        </ul>
+        <p class="back"><a href="/papers/">All papers</a></p>
+      </section>
+    </div>
+  </div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><span class="nw">© 2026 Daniel Olliver</span> · <span class="nw">Auckland, New Zealand</span></span>
+    <a href="/dev/">Software development portfolio</a>
+  </div>
+</footer>
+</body>
+</html>

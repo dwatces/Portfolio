@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Error-Hunting Game — can you decode a quantum memory?</title>
-<meta name="description" content="A real neural network learned to catch quantum-memory errors. It runs live in your browser. Try to beat it.">
+<title>The Error-Hunting Game: quantum error correction you can play | Daniel Olliver</title>
+<meta name="description" content="Read a simulated quantum memory's error alarms against a 63,000-parameter neural decoder that runs live in your browser. Can you beat it?">
+<link rel="canonical" href="https://danielolliver.com/anyons/decoder/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Daniel Olliver">
+<meta property="og:locale" content="en_NZ">
+<meta property="og:url" content="https://danielolliver.com/anyons/decoder/">
+<meta property="og:title" content="The Error-Hunting Game: quantum error correction you can play">
+<meta property="og:description" content="Read a simulated quantum memory's error alarms against a 63,000-parameter neural decoder that runs live in your browser. Can you beat it?">
+<meta property="og:image" content="https://danielolliver.com/og-home-20261020.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Daniel Olliver: evidence-first AI research. Beside the name, a bar chart of anyon braiding on IBM quantum hardware: the logical observable reads +0.845 in the vacuum, −0.843 after the braid and +0.845 for the control loop">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://danielolliver.com/anyons/decoder/#page",
+      "url": "https://danielolliver.com/anyons/decoder/",
+      "name": "The Error-Hunting Game",
+      "inLanguage": "en-NZ",
+      "author": {
+        "@id": "https://danielolliver.com/#daniel"
+      },
+      "isPartOf": {
+        "@id": "https://danielolliver.com/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "danielolliver.com",
+          "item": "https://danielolliver.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Hex",
+          "item": "https://danielolliver.com/anyons/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "The Error-Hunting Game"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <style>
   :root {
     --bg:#0b0e14; --panel:#11151f; --line:#1e2533; --text:#dde3ee; --dim:#8a93a6;
@@ -109,8 +166,9 @@
     <a href="https://github.com/dwatces/equivariant-quantum-ml">github</a>
     <a href="https://pypi.org/project/demsym/">pip install demsym</a>
   </div>
-  <h1>The error-hunting game<br><span class="gold">you vs. a 63,000-parameter brain</span></h1>
-  <p class="sub">A quantum computer's memory is guarded by an endless stream of parity
+  <h1>The error-hunting game<br>
+  <span class="gold">you vs. a 63,000-parameter brain</span></h1>
+  <p class="sub">A quantum computer's memory is guarded by error correction: an endless stream of parity
   checks. When checks light up, something went wrong inside — and someone has to work
   out <i>what</i>, fast, or the stored information is lost. Below: checks from a
   simulated honeycomb quantum memory, and a real neural network that learned to read
@@ -227,7 +285,7 @@
   p3 space group of the detector error model with a GL(2,F₂) twist that mixes the logical qubits —
   solved, verified and shipped via <a href="https://pypi.org/project/demsym/">demsym</a>
   (<span class="mono">pip install demsym</span>); preprint:
-  <a href="https://doi.org/10.5281/zenodo.20715320">doi.org/10.5281/zenodo.20715320</a>.</p>
+  <a href="https://doi.org/10.5281/zenodo.20715320">doi.org/10.5281/zenodo.20715320</a> (<a href="/papers/circuit-level-equivariance/">abstract and citation</a>).</p>
 </section>
 
 <section>

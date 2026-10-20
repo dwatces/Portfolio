@@ -1,6 +1,6 @@
 {
   "short_name": "Daniel Olliver",
-  "name": "Daniel Olliver Portfolio Website",
+  "name": "Daniel Olliver",
   "icons": [
     {
       "src": "favicon.png",
@@ -12,9 +12,8 @@
       "type": "image/png",
       "sizes": "180x180"
     }
-
   ],
-  "start_url": "index.html",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#256f8f",
   "background_color": "#f7f8f5"

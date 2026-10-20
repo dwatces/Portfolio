@@ -1,15 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#256f8f">
-<title>Anyon braiding on three quantum computers — Daniel Olliver</title>
-<meta name="description" content="Topological order on the Kitaev honeycomb, measured on real hardware: conserved fluxes, a localized anyon, and the −1 braiding statistics — ⟨Z̄⟩ +0.845 ± 0">
-<link rel="icon" href="/favicon.png">
+<title>Anyon braiding on three IBM quantum computers | Daniel Olliver</title>
+<meta name="description" content="Anyon braiding on three IBM quantum processors: the braid flips the logical observable from +0.845 to −0.843 while a control loop stays at +0.845.">
+<link rel="canonical" href="https://danielolliver.com/research/braiding/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Daniel Olliver">
+<meta property="og:locale" content="en_NZ">
+<meta property="og:url" content="https://danielolliver.com/research/braiding/">
+<meta property="og:title" content="Anyon braiding on three quantum computers">
+<meta property="og:description" content="Anyon braiding on three IBM quantum processors: the braid flips the logical observable from +0.845 to −0.843 while a control loop stays at +0.845.">
+<meta property="og:image" content="https://danielolliver.com/og-home-20261020.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Daniel Olliver: evidence-first AI research. Beside the name, a bar chart of anyon braiding on IBM quantum hardware: the logical observable reads +0.845 in the vacuum, −0.843 after the braid and +0.845 for the control loop">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://danielolliver.com/research/braiding/#article",
+      "headline": "Anyon braiding on three quantum computers",
+      "description": "Anyon braiding on three IBM quantum processors: the braid flips the logical observable from +0.845 to −0.843 while a control loop stays at +0.845.",
+      "url": "https://danielolliver.com/research/braiding/",
+      "mainEntityOfPage": "https://danielolliver.com/research/braiding/",
+      "image": "https://danielolliver.com/research/kitaev_topological_order.png",
+      "inLanguage": "en-NZ",
+      "author": {
+        "@type": "Person",
+        "@id": "https://danielolliver.com/#daniel",
+        "name": "Daniel Olliver",
+        "url": "https://danielolliver.com/"
+      },
+      "isPartOf": {
+        "@id": "https://danielolliver.com/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "danielolliver.com",
+          "item": "https://danielolliver.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Research",
+          "item": "https://danielolliver.com/research/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Anyon braiding on three quantum computers"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <style>
-  @font-face { font-family:"Work Sans"; src:local("Work Sans"),
-    url(/static/media/font.e7663f1a.ttf) format("truetype"); font-display:swap; }
+  @font-face { font-family:"Work Sans"; src:url(/static/media/work-sans-20261020.woff2) format("woff2"), url(/static/media/font.e7663f1a.ttf) format("truetype"); font-weight:100 900; font-display:swap; }
+  @font-face { font-family:"Work Sans"; src:url(/static/media/work-sans-sym-20261020.woff2) format("woff2"); unicode-range:U+0304,U+2082,U+2212,U+2264-2265,U+27E8-27E9; font-weight:100 900; font-display:swap; }
   :root {
     --clr-bg:#f7f8f5; --clr-bg-alt:#fff; --clr-fg:#24313a; --clr-heading:#111827;
     --clr-muted:#64717d; --clr-primary:#256f8f; --clr-primary-soft:#8fc7d8;
@@ -29,7 +91,7 @@
   .fig { background:var(--clr-bg-alt); border:1px solid var(--clr-border);
     border-radius:12px; overflow:hidden; margin-bottom:24px;
     box-shadow:rgba(17,24,39,.07) 0 12px 34px; }
-  .fig img { width:100%; display:block; background:#fff; }
+  .fig img { width:100%; height:auto; display:block; background:#fff; }
   .lead { font-size:1.12rem; line-height:1.6; color:var(--clr-fg); margin-bottom:24px; }
   .detail p { color:var(--clr-fg); margin-bottom:16px; }
   .detail em { color:var(--clr-accent); font-style:normal; font-weight:600; }
@@ -52,7 +114,7 @@
 <div class="wrap">
 <p class="crumb"><a href="/">danielolliver.com</a> / <a href="/research/">Research</a></p>
 <h1>Anyon braiding on three quantum computers</h1>
-<div class="fig"><img src="/research/kitaev_topological_order.png" alt="Anyon braiding on three quantum computers"></div>
+<div class="fig"><img src="/research/kitaev_topological_order.png" width="2100" height="644" fetchpriority="high" alt="Three bar charts from IBM hardware: the braid flips the logical observable from +0.845 to −0.843 against a +0.845 control loop; plaquette flux reads +0.64 after two Kitaev steps against +0.12 for the field control; a localised anyon reads −0.905 beside a neighbour at +0.924"></div>
 <p class="lead">Topological order on the Kitaev honeycomb, measured on real hardware: conserved fluxes, a localized anyon, and the −1 braiding statistics — ⟨Z̄⟩ +0.845 ± 0.030 → −0.843 ± 0.035 against a +0.845 control — reproduced on ibm_marrakesh, ibm_kingston and ibm_fez with error bars.</p>
 <div class="detail">
 <p>Most topological-walk experiments use a single particle; most many-body experiments aren’t topological. This measures both at once, on superconducting hardware, simulator-gated before every submission, with a matched-depth random control beside every claim.</p><p>The minus sign — ⟨Z̄⟩ flipping from +0.845 to −0.843 while a control loop does nothing — is anyon exchange statistics, the primitive topological quantum computing is built on. Not new physics; measured by one person, honestly, on three independent machines.</p>

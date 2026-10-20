@@ -1,15 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#256f8f">
-<title>Topological-materials ML: match the symmetry, exactly — Daniel Olliver</title>
-<meta name="description" content="Classifying Chern phases of the Haldane model: the physically matched C3 prior wins at every scarce size, while the too-large C6 group — broken by the mass">
-<link rel="icon" href="/favicon.png">
+<title>Classifying Haldane-model Chern phases with symmetry priors | Daniel Olliver</title>
+<meta name="description" content="Chern phases of the Haldane model: the matched C3 symmetry prior wins at every scarce size; the larger, broken C6 group underperforms it everywhere.">
+<link rel="canonical" href="https://danielolliver.com/research/chern/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Daniel Olliver">
+<meta property="og:locale" content="en_NZ">
+<meta property="og:url" content="https://danielolliver.com/research/chern/">
+<meta property="og:title" content="Topological-materials ML: match the symmetry, exactly">
+<meta property="og:description" content="Chern phases of the Haldane model: the matched C3 symmetry prior wins at every scarce size; the larger, broken C6 group underperforms it everywhere.">
+<meta property="og:image" content="https://danielolliver.com/research/haldane_chern.png">
+<meta property="og:image:width" content="896">
+<meta property="og:image:height" content="588">
+<meta property="og:image:alt" content="Chern-phase classification accuracy against training samples per class for no symmetry, the matched C3 prior and the too-large C6 group">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://danielolliver.com/research/chern/#article",
+      "headline": "Topological-materials ML: match the symmetry, exactly",
+      "description": "Chern phases of the Haldane model: the matched C3 symmetry prior wins at every scarce size; the larger, broken C6 group underperforms it everywhere.",
+      "url": "https://danielolliver.com/research/chern/",
+      "mainEntityOfPage": "https://danielolliver.com/research/chern/",
+      "image": "https://danielolliver.com/research/haldane_chern.png",
+      "inLanguage": "en-NZ",
+      "author": {
+        "@type": "Person",
+        "@id": "https://danielolliver.com/#daniel",
+        "name": "Daniel Olliver",
+        "url": "https://danielolliver.com/"
+      },
+      "isPartOf": {
+        "@id": "https://danielolliver.com/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "danielolliver.com",
+          "item": "https://danielolliver.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Research",
+          "item": "https://danielolliver.com/research/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Topological-materials ML: match the symmetry, exactly"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <style>
-  @font-face { font-family:"Work Sans"; src:local("Work Sans"),
-    url(/static/media/font.e7663f1a.ttf) format("truetype"); font-display:swap; }
+  @font-face { font-family:"Work Sans"; src:url(/static/media/work-sans-20261020.woff2) format("woff2"), url(/static/media/font.e7663f1a.ttf) format("truetype"); font-weight:100 900; font-display:swap; }
+  @font-face { font-family:"Work Sans"; src:url(/static/media/work-sans-sym-20261020.woff2) format("woff2"); unicode-range:U+0304,U+2082,U+2212,U+2264-2265,U+27E8-27E9; font-weight:100 900; font-display:swap; }
   :root {
     --clr-bg:#f7f8f5; --clr-bg-alt:#fff; --clr-fg:#24313a; --clr-heading:#111827;
     --clr-muted:#64717d; --clr-primary:#256f8f; --clr-primary-soft:#8fc7d8;
@@ -29,7 +91,7 @@
   .fig { background:var(--clr-bg-alt); border:1px solid var(--clr-border);
     border-radius:12px; overflow:hidden; margin-bottom:24px;
     box-shadow:rgba(17,24,39,.07) 0 12px 34px; }
-  .fig img { width:100%; display:block; background:#fff; }
+  .fig img { width:100%; height:auto; display:block; background:#fff; }
   .lead { font-size:1.12rem; line-height:1.6; color:var(--clr-fg); margin-bottom:24px; }
   .detail p { color:var(--clr-fg); margin-bottom:16px; }
   .detail em { color:var(--clr-accent); font-style:normal; font-weight:600; }
@@ -52,7 +114,7 @@
 <div class="wrap">
 <p class="crumb"><a href="/">danielolliver.com</a> / <a href="/research/">Research</a></p>
 <h1>Topological-materials ML: match the symmetry, exactly</h1>
-<div class="fig"><img src="/research/haldane_chern.png" alt="Topological-materials ML: match the symmetry, exactly"></div>
+<div class="fig"><img src="/research/haldane_chern.png" width="896" height="588" fetchpriority="high" alt="Chern-phase classification accuracy against training samples per class for no symmetry, the matched C3 prior and the too-large C6 group"></div>
 <p class="lead">Classifying Chern phases of the Haldane model: the physically matched C3 prior wins at every scarce size, while the too-large C6 group — broken by the mass term — underperforms it everywhere. Built-in mismatch control; the law cuts both ways.</p>
 <div class="detail">
 <p>Materials ML bakes in E(3) or SO(3) symmetry, but nobody bakes in the honeycomb’s crystallographic C6/C3 point group — graphene’s own symmetry. That is an unclaimed corner, and a clean test of the equivariance law.</p><p>Classifying Chern phases of the Haldane model: the physically matched C3 prior is sample-efficient at every scarce size, while the larger C6 group — broken by the sublattice mass term — underperforms it everywhere. A built-in mismatch control; the law cuts both ways.</p>

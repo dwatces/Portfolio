@@ -1,15 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#256f8f">
-<title>Research — Daniel Olliver</title>
-<meta name="description" content="Hardware-verified quantum research and symmetry-aware machine learning: anyon braiding on three quantum computers, the non-Abelian phase end to end, equivariant decoders and readouts — every claim from completed, logged runs.">
-<link rel="icon" href="/favicon.png">
+<title>Research notes: quantum hardware and equivariant ML | Daniel Olliver</title>
+<meta name="description" content="Seven research notes on quantum hardware and symmetry-aware machine learning, from anyon braiding on IBM processors to symmetry-tied neural decoders.">
+<link rel="canonical" href="https://danielolliver.com/research/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Daniel Olliver">
+<meta property="og:locale" content="en_NZ">
+<meta property="og:url" content="https://danielolliver.com/research/">
+<meta property="og:title" content="Research notes: quantum hardware and equivariant ML">
+<meta property="og:description" content="Seven research notes on quantum hardware and symmetry-aware machine learning, from anyon braiding on IBM processors to symmetry-tied neural decoders.">
+<meta property="og:image" content="https://danielolliver.com/og-home-20261020.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Daniel Olliver: evidence-first AI research. Beside the name, a bar chart of anyon braiding on IBM quantum hardware: the logical observable reads +0.845 in the vacuum, −0.843 after the braid and +0.845 for the control loop">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://danielolliver.com/research/#page",
+      "url": "https://danielolliver.com/research/",
+      "name": "Research notes",
+      "inLanguage": "en-NZ",
+      "isPartOf": {
+        "@id": "https://danielolliver.com/#website"
+      },
+      "author": {
+        "@id": "https://danielolliver.com/#daniel"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "danielolliver.com",
+          "item": "https://danielolliver.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Research"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <style>
-  @font-face { font-family:"Work Sans"; src:local("Work Sans"),
-    url(/static/media/font.e7663f1a.ttf) format("truetype"); font-display:swap; }
+  @font-face { font-family:"Work Sans"; src:url(/static/media/work-sans-20261020.woff2) format("woff2"), url(/static/media/font.e7663f1a.ttf) format("truetype"); font-weight:100 900; font-display:swap; }
+  @font-face { font-family:"Work Sans"; src:url(/static/media/work-sans-sym-20261020.woff2) format("woff2"); unicode-range:U+0304,U+2082,U+2212,U+2264-2265,U+27E8-27E9; font-weight:100 900; font-display:swap; }
   :root {
     --clr-bg:#f7f8f5; --clr-bg-alt:#fff; --clr-fg:#24313a; --clr-heading:#111827;
     --clr-muted:#64717d; --clr-primary:#256f8f; --clr-primary-soft:#8fc7d8;
@@ -38,7 +88,7 @@
     .card { transition:none; }
     .card:hover, .card:focus-visible { transform:none; }
   }
-  .card img { width:100%; aspect-ratio:16/10; object-fit:cover; display:block; background:#fff;
+  .card img { width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; display:block; background:#fff;
     border-bottom:1px solid var(--clr-border); }
   .card .body { padding:16px 18px 18px; }
   .card h2 { font-size:1.05rem; line-height:1.35; color:var(--clr-heading); margin-bottom:8px; }
@@ -61,51 +111,52 @@
 <p class="crumb"><a href="/">danielolliver.com</a> / Research</p>
 <h1>Research</h1>
 <p class="lead">Hardware-verified quantum experiments and symmetry-aware machine learning. Every number comes from a completed, logged run — controls, matched parameters, and error bars; negatives included.</p>
+<p class="lead">Papers: <a href="/papers/circuit-level-equivariance/">Circuit-level equivariance is code-dependent</a> (June 2026) and <a href="/papers/lattice-teeth-nca/">The lattice's teeth (neural cellular automata)</a> (July 2026), both preprints on Zenodo. <a href="/papers/">All papers</a></p>
 <div class="grid">
   <a class="card" href="/research/hexlife/">
-    <img src="/research/hexlife_crossover_locking.png" alt="The lattice's teeth: when the substrate owns the pattern">
+    <img src="/research/hexlife_crossover_locking.png" width="1495" height="572" alt="Orientation locking versus spot spacing: square arrays unlock by ~6.5 lattice constants, hexagonal arrays keep a weak box-invariant lock">
     <div class="body">
       <h2>The lattice's teeth: when the substrate owns the pattern</h2>
       <p>The same pattern-forming physics on square vs hexagonal lattices, matched density and paired seeds: substrate-indifferent at normal scales — until, below ~3 lattice constants, the substrate sets the symmetry and locks orientation to its axes.</p>
     </div>
   </a>
   <a class="card" href="/research/braiding/">
-    <img src="/research/kitaev_topological_order.png" alt="Anyon braiding on three quantum computers">
+    <img src="/research/kitaev_topological_order.png" width="2100" height="644" alt="Three bar charts from IBM hardware: the braid flips the logical observable from +0.845 to −0.843 against a +0.845 control loop; plaquette flux reads +0.64 after two Kitaev steps against +0.12 for the field control; a localised anyon reads −0.905 beside a neighbour at +0.924">
     <div class="body">
       <h2>Anyon braiding on three quantum computers</h2>
       <p>Topological order on the Kitaev honeycomb, measured on real hardware — the −1 braiding statistics reproduced on ibm_marrakesh, ibm_kingston and ibm_fez with error bars.</p>
     </div>
   </a>
   <a class="card" href="/research/nonabelian/">
-    <img src="/research/nonabelian_phase.png" alt="The non-Abelian phase, computed end to end">
+    <img src="/research/nonabelian_phase.png" width="2325" height="690" loading="lazy" decoding="async" alt="Three panels: the field term gaps the phase into Chern number ±1; a cylinder spectrum with one chiral Majorana edge branch; Majorana zero modes bound to vortices">
     <div class="body">
       <h2>The non-Abelian phase, computed end to end</h2>
       <p>Kitaev + field, exactly: Chern number ±1, one chiral Majorana edge mode, and Majorana zero modes bound to vortices.</p>
     </div>
   </a>
   <a class="card" href="/research/decoder/">
-    <img src="/research/equiv_decoder.png" alt="Symmetry-tied neural decoders for quantum error correction">
+    <img src="/research/equiv_decoder.png" width="896" height="588" loading="lazy" decoding="async" alt="Decoding accuracy against training samples: the symmetry-tied decoder sits above the plain decoder at every size and approaches the matching-decoder line">
     <div class="body">
       <h2>Symmetry-tied neural decoders for quantum error correction</h2>
       <p>An ML decoder tied to the surface code's exact symmetry — at identical parameter count — wins at every training size and is ~4× more sample-efficient.</p>
     </div>
   </a>
   <a class="card" href="/research/qrc/">
-    <img src="/research/qrc_equivariance.png" alt="Equivariant readouts for quantum machine learning">
+    <img src="/research/qrc_equivariance.png" width="896" height="588" loading="lazy" decoding="async" alt="Test score against training samples for a plain readout and a C3-equivariant readout of a quantum reservoir">
     <div class="body">
       <h2>Equivariant readouts for quantum machine learning</h2>
       <p>A quantum reservoir with a symmetry-tied readout (exact C3 commutation): large sample-efficiency gains in the scarce-data regime.</p>
     </div>
   </a>
   <a class="card" href="/research/chern/">
-    <img src="/research/haldane_chern.png" alt="Topological-materials ML: match the symmetry, exactly">
+    <img src="/research/haldane_chern.png" width="896" height="588" loading="lazy" decoding="async" alt="Chern-phase classification accuracy against training samples per class for no symmetry, the matched C3 prior and the too-large C6 group">
     <div class="body">
       <h2>Topological-materials ML: match the symmetry, exactly</h2>
       <p>Classifying Chern phases of the Haldane model: the physically matched C3 prior wins at every scarce size, while the too-large C6 group loses.</p>
     </div>
   </a>
   <a class="card" href="/research/coldstart/">
-    <img src="/research/coldstart_equivariance.png" alt="The equivariance law, held on real city data">
+    <img src="/research/coldstart_equivariance.png" width="896" height="588" loading="lazy" decoding="async" alt="Gain of the hex-equivariant model over the directional one against the share of stations with known history, across ten city-seasons">
     <div class="body">
       <h2>The equivariance law, held on real city data</h2>
       <p>New-station demand forecasting across five cities × two seasons: equivariant models pay exactly when the symmetry is present and data is scarce.</p>
