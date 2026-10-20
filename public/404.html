@@ -1,49 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#256f8f">
+<meta name="theme-color" content="#f5f2ec">
 <title>Page not found — Daniel Olliver</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.png">
 <style>
-  @font-face { font-family:"Work Sans"; src:local("Work Sans"),
-    url(/static/media/font.e7663f1a.ttf) format("truetype"); font-display:swap; }
-  :root {
-    --clr-bg:#f7f8f5; --clr-fg:#24313a; --clr-heading:#111827;
-    --clr-muted:#64717d; --clr-primary:#256f8f; --clr-primary-soft:#8fc7d8;
-    --clr-border:#d8ded8;
-  }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body { background:var(--clr-bg); color:var(--clr-fg);
-    font:16px/1.65 "Work Sans",Arial,sans-serif; -webkit-font-smoothing:antialiased; }
-  a { color:var(--clr-primary); text-decoration:none; }
-  a:hover { text-decoration:underline; }
-  .wrap { max-width:760px; margin:0 auto; padding:80px 22px; }
-  h1 { font-size:2.1rem; line-height:1.15; letter-spacing:-.4px;
-       color:var(--clr-heading); margin-bottom:14px; }
-  p { color:var(--clr-muted); margin-bottom:26px; }
-  .cta { display:flex; flex-wrap:wrap; gap:10px; }
-  .btn { display:inline-block; padding:9px 16px; border-radius:8px; font-size:.92rem;
-    font-weight:500; border:1px solid transparent; }
-  .btn:hover { text-decoration:none; }
-  .btn-primary { background:var(--clr-primary); color:#fff; }
-  .btn-primary:hover { background:#1f5d78; }
-  .btn-outline { background:#fff; border-color:var(--clr-border); color:var(--clr-primary); }
-  .btn-outline:hover { border-color:var(--clr-primary-soft); }
+  @font-face { font-family: "Newsreader"; font-style: normal; font-weight: 200 800; font-display: swap;
+    src: url(/static/fonts/v5.3.0/newsreader-latin-wght-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Instrument Sans"; font-style: normal; font-weight: 400 700; font-display: swap;
+    src: url(/static/fonts/v5.3.0/instrument-sans-latin-wght-normal.woff2) format("woff2"); }
+  :root { --paper: #f5f2ec; --card: #fbfaf7; --ink: #1b2630; --muted: #5f6a74; --accent: #a3412a; color-scheme: light; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.6 "Instrument Sans", Arial, sans-serif; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 80px 16px; }
+  h1 { font: 450 clamp(2.4rem, 8vw, 3.6rem)/1.1 "Newsreader", Georgia, serif; letter-spacing: -0.02em; margin-bottom: 14px; }
+  p { color: var(--muted); margin-bottom: 26px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { display: inline-flex; align-items: center; min-height: 48px; padding: 12px 20px; border-radius: 8px;
+    font-weight: 600; text-decoration: none; border: 1.5px solid var(--ink); color: var(--ink); }
+  .btn:hover { background: var(--card); }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: #2e3d4a; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 </style>
   <script defer src="/ga.js"></script>
   </head>
 <body>
-<div class="wrap">
+<main class="wrap">
 <h1>Page not found</h1>
 <p>That page doesn't exist — it may have moved.</p>
 <div class="cta">
   <a class="btn btn-primary" href="/">danielolliver.com</a>
-  <a class="btn btn-outline" href="/research/">Research</a>
-  <a class="btn btn-outline" href="/anyons/">Anyon playground</a>
+  <a class="btn" href="/research/">Research</a>
+  <a class="btn" href="/anyons/">Anyon playground</a>
 </div>
-</div>
+</main>
 </body>
 </html>
