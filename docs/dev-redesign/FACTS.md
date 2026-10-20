@@ -11,6 +11,7 @@ Every claim on the new page must trace to a line below. Add no new facts, no new
 - /dev covers development work only. His AI and research work lives on the main site, https://danielolliver.com/. One small link to it is fine (for example "AI and research: danielolliver.com" in the footer). Don't describe research results on /dev. Never link `/ai/` or `/law/`.
 - Availability: "Available for contract and freelance work", locally and remote.
 - He also runs **Olliver Web** (https://olliverweb.co.nz), his web design and development service for small-business websites, online stores and web applications. "Olliver Web is just me." Don't put Olliver Web prices on /dev.
+- Olliver Web also does website redesigns: https://olliverweb.co.nz/website-redesign-auckland. Don't put its prices on /dev.
 
 ## Contact (all already public)
 - Email: daniel@danielolliver.com. Wrap mailto links in `<!--email_off-->…<!--/email_off-->`.
