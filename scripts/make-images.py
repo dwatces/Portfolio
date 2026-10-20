@@ -42,6 +42,11 @@ def main():
         h = round(w * crop.height / crop.width)
         save_pair(crop.resize((w, h), Image.LANCZOS), f"daniel-{w}")
 
+    # Square version for /dev, matching its CSS (object-fit: cover; object-position: center 25%).
+    top = round((src.height - src.width) * 0.25)
+    square = src.crop((0, top, src.width, top + src.width)).resize((600, 600), Image.LANCZOS)
+    save_pair(square, "daniel-square-600")
+
     (OUT / "research").mkdir(exist_ok=True)
     for name in RESEARCH:
         im = Image.open(PUBLIC / "research" / f"{name}.png").convert("RGB")

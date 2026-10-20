@@ -9,6 +9,7 @@
       content="Daniel Olliver — full-stack web developer in Auckland, New Zealand. React, Next.js, TypeScript, Node, Express, MongoDB. Production apps from first commit to deployment. Available for contract and freelance work."
     />
     <link rel="icon" href="favicon.png" />
+    <link rel="canonical" href="https://danielolliver.com/dev/" />
     <meta property="og:title" content="Daniel Olliver — Full-Stack Developer" />
     <meta
       property="og:description"
@@ -98,13 +99,14 @@
 
       /* ---------- header / nav ---------- */
       .header {
-        height: 5rem;
+        min-height: 5rem;
         max-width: 1100px;
         width: 95%;
         margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 1rem;
         position: sticky;
         top: 0;
         z-index: 20;
@@ -115,11 +117,71 @@
         color: var(--clr-heading);
         font-weight: 800;
         font-size: 1.35rem;
+        white-space: nowrap;
       }
       .nav {
         display: flex;
         gap: 1.5rem;
-        flex-wrap: wrap;
+      }
+
+      /* mobile dropdown, shown only on narrow screens */
+      .navmenu {
+        display: none;
+        position: relative;
+      }
+      /* matches the hamburger on danielolliver.com */
+      .navmenu summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.25rem;
+        height: 2.625rem;
+        border: 0;
+        border-radius: 6px;
+        background: var(--clr-bg);
+        color: var(--clr-fg);
+        padding: 0;
+      }
+      .navmenu summary::-webkit-details-marker {
+        display: none;
+      }
+      .navmenu summary svg {
+        display: block;
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+      }
+      .navmenu[open] summary {
+        background: var(--clr-chip);
+        color: var(--clr-primary);
+      }
+      .navmenu nav {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 0.55rem);
+        z-index: 100;
+        display: grid;
+        min-width: 12rem;
+        padding: 0.4rem;
+        background: var(--clr-bg-alt);
+        border: 1px solid var(--clr-border);
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+      }
+      .navmenu nav a {
+        display: block;
+        padding: 0.7rem 0.8rem;
+        border-radius: 7px;
+        color: var(--clr-fg);
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .navmenu nav a:hover,
+      .navmenu nav a:focus {
+        background: var(--clr-chip);
+        color: var(--clr-primary);
       }
       .nav a {
         color: var(--clr-fg);
@@ -584,11 +646,13 @@
           font-size: 1.75rem;
         }
         .header {
-          height: 4rem;
+          min-height: 4rem;
         }
         .nav {
-          gap: 1rem;
-          font-size: 0.95rem;
+          display: none;
+        }
+        .navmenu {
+          display: block;
         }
         .section {
           margin-top: 3rem;
@@ -599,6 +663,50 @@
         .hero__name {
           max-width: none;
         }
+      }
+    </style>
+    <link rel="preload" href="/static/fonts/v5.3.0/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <style>
+      /* 2026 redesign: the type and palette of danielolliver.com, layered over the original styles */
+      @font-face { font-family: "Newsreader"; font-style: normal; font-weight: 200 800; font-display: swap;
+        src: url(/static/fonts/v5.3.0/newsreader-latin-wght-normal.woff2) format("woff2"); }
+      @font-face { font-family: "Instrument Sans"; font-style: normal; font-weight: 400 700; font-display: swap;
+        src: url(/static/fonts/v5.3.0/instrument-sans-latin-wght-normal.woff2) format("woff2"); }
+      :root {
+        --clr-bg: #f5f2ec;
+        --clr-bg-alt: #fbfaf7;
+        --clr-fg: #1b2630;
+        --clr-heading: #1b2630;
+        --clr-muted: #5f6a74;
+        --clr-primary: #1b2630;
+        --clr-primary-soft: #a3412a;
+        --clr-accent: #a3412a;
+        --clr-border: #d6d0c4;
+        --clr-chip: #ece8df;
+        --clr-success: #2f6b52;
+        --clr-success-strong: #24563f;
+        --clr-success-soft: #e3eee6;
+        --clr-info-strong: #1b2630;
+        --clr-info-soft: #ece8df;
+        --shadow: rgba(27, 38, 48, 0.1) 0 14px 40px;
+        color-scheme: light;
+      }
+      body { font-family: "Instrument Sans", Arial, sans-serif; }
+      h1, h2, h3, .brand, .section_title, .hero__name {
+        font-family: "Newsreader", Georgia, serif; font-weight: 500; letter-spacing: -0.01em;
+      }
+      .hero__name { font-weight: 450; letter-spacing: -0.02em; }
+      .brand { font-weight: 600; }
+      .header, main, footer { width: min(1100px, calc(100% - 32px)); }
+      .nav a { font-weight: 500; }
+      .eyebrow { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+      :focus-visible { outline-color: #a3412a; }
+      .btn-primary { background: #1b2630; color: #f5f2ec; }
+      .btn-primary:hover { background: #2e3d4a; }
+      main a:not(.btn), footer a { text-decoration: underline; text-decoration-color: #a3412a; text-underline-offset: 0.18em; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { transition: none !important; animation: none !important; }
       }
     </style>
     <script defer src="/ga.js"></script>
@@ -612,6 +720,19 @@
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
+      <details class="navmenu">
+        <summary aria-label="Open menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+          </svg>
+        </summary>
+        <nav aria-label="Mobile">
+          <a href="#work">Work</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </details>
     </header>
 
     <main id="top">
@@ -641,8 +762,7 @@
             <span>Idea &rarr; deployed</span>
           </div>
           <div class="hero__cta">
-            <a href="mailto:daniel@danielolliver.com" class="btn btn-primary"
-              >Email Me</a
+            <a href="mailto:daniel@danielolliver.com" class="btn btn-primary">Email Me</a
             >
             <a
               href="resume.pdf"
@@ -661,13 +781,17 @@
           </div>
         </div>
         <div class="hero__card" aria-label="Profile">
-          <img
-            src="profile.jpg"
-            alt="Daniel Olliver"
-            class="hero__avatar"
-            width="288"
-            height="288"
-          />
+          <picture>
+            <source type="image/webp" srcset="/assets/img/daniel-square-600.webp" />
+            <img
+              src="/assets/img/daniel-square-600.jpg"
+              alt="Daniel Olliver"
+              class="hero__avatar"
+              width="288"
+              height="288"
+              fetchpriority="high"
+            />
+          </picture>
           <div class="hero__focus">
             <span>What I do</span>
             Full-stack web apps &mdash; front end, API, database, and
@@ -1041,11 +1165,11 @@
         </div>
         <div class="edu">
           <div class="edu__item">
-            <strong>Postgraduate Certificate in Artificial Intelligence</strong>
+            <strong>Postgraduate Certificate in AI</strong>
             <span>University of Auckland &middot; 2024</span>
           </div>
           <div class="edu__item">
-            <strong>BSc, Computer Science</strong>
+            <strong>BSc in Computer Science</strong>
             <span>Auckland University of Technology &middot; 2021</span>
           </div>
         </div>
@@ -1065,8 +1189,7 @@
             </p>
           </div>
           <div class="contact__actions">
-            <a href="mailto:daniel@danielolliver.com" class="btn btn-primary"
-              >Email Me</a
+            <a href="mailto:daniel@danielolliver.com" class="btn btn-primary">Email Me</a
             >
             <a
               href="resume.pdf"
@@ -1099,6 +1222,23 @@
           >danielolliver.com/ai</a
         >
       </span>
-    </footer>
+    </footer><script>
+      // Close the mobile menu after a jump link, or on an outside click.
+      (function () {
+        var menu = document.querySelector(".navmenu");
+        if (!menu) return;
+        menu.querySelectorAll("nav a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            menu.open = false;
+          });
+        });
+        document.addEventListener("click", function (event) {
+          if (menu.open && !menu.contains(event.target)) menu.open = false;
+        });
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && menu.open) menu.open = false;
+        });
+      })();
+    </script>
   </body>
 </html>
