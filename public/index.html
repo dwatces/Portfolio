@@ -1,30 +1,657 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" sizes="48x48" />
-    <link rel="icon" type="image/png" sizes="96x96" href="%PUBLIC_URL%/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#256f8f" />
-    <meta
-      name="description"
-      content="Daniel Olliver is an Auckland developer building AI systems and full-stack web applications, with research results verified on real quantum hardware."
-    />
-    <meta property="og:title" content="Daniel Olliver | AI & Software Developer" />
-    <meta
-      property="og:description"
-      content="Hardware-verified quantum research, an interactive anyon playground, and a live full-stack delivery record."
-    />
-    <meta property="og:type" content="website" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daniel Olliver · Web developer in Auckland, and quantum ML researcher</title>
+<meta name="description" content="Daniel Olliver builds and fixes websites for New Zealand small businesses through Olliver Web, and researches machine learning for quantum computing. Auckland. 021 069 9543.">
+<link rel="canonical" href="https://danielolliver.com/">
+<meta name="theme-color" content="#f5f2ec">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://danielolliver.com/">
+<meta property="og:title" content="Daniel Olliver · Web developer in Auckland">
+<meta property="og:description" content="I build and fix websites for New Zealand small businesses, and research machine learning for quantum computing.">
+<meta property="og:image" content="https://danielolliver.com/assets/img/daniel-800.jpg">
+<meta property="og:locale" content="en_NZ">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="preload" href="/static/fonts/v5.3.0/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/static/fonts/v5.3.0/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Daniel Olliver",
+  "jobTitle": "Web developer",
+  "url": "https://danielolliver.com/",
+  "image": "https://danielolliver.com/assets/img/daniel-800.jpg",
+  "email": "mailto:daniel@danielolliver.com",
+  "telephone": "+64 21 069 9543",
+  "address": { "@type": "PostalAddress", "addressLocality": "Auckland", "addressCountry": "NZ" },
+  "worksFor": { "@type": "Organization", "name": "Olliver Web", "url": "https://olliverweb.co.nz/" },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Auckland University of Technology" },
+    { "@type": "CollegeOrUniversity", "name": "University of Auckland" }
+  ],
+  "knowsAbout": ["Web development", "React", "Next.js", "Node.js", "TypeScript", "WordPress", "WooCommerce", "Webflow", "Quantum computing", "Geometric machine learning"],
+  "sameAs": [
+    "https://olliverweb.co.nz/",
+    "https://github.com/dwatces",
+    "https://www.linkedin.com/in/danielolliver"
+  ]
+}
+</script>
+<style>
+@font-face { font-family: "Newsreader"; font-style: normal; font-weight: 200 800; font-display: swap;
+  src: url(/static/fonts/v5.3.0/newsreader-latin-wght-normal.woff2) format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Newsreader"; font-style: normal; font-weight: 200 800; font-display: swap;
+  src: url(/static/fonts/v5.3.0/newsreader-latin-ext-wght-normal.woff2) format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "Instrument Sans"; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url(/static/fonts/v5.3.0/instrument-sans-latin-wght-normal.woff2) format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Instrument Sans"; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url(/static/fonts/v5.3.0/instrument-sans-latin-ext-wght-normal.woff2) format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+/* metric-matched fallbacks, so the swap to the web fonts doesn't shift the layout */
+@font-face { font-family: "Newsreader fallback"; src: local("Georgia"), local("Times New Roman");
+  size-adjust: 96%; ascent-override: 98%; descent-override: 26%; line-gap-override: 0%; }
+@font-face { font-family: "Instrument fallback"; src: local("Arial"), local("Helvetica");
+  size-adjust: 97%; ascent-override: 96%; descent-override: 25%; line-gap-override: 0%; }
 
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+:root {
+  --paper: #f5f2ec;
+  --card: #fbfaf7;
+  --ink: #1b2630;
+  --ink-2: #4a5662;
+  --muted: #5f6a74;
+  --accent: #a3412a;
+  --accent-deep: #8c3522;
+  --rule: #d6d0c4;
+  --rule-strong: #b9b1a3;
+  --night: #1b2630;
+  --night-2: #24323d;
+  --night-text: #e9e5dc;
+  --night-muted: #aab4bd;
+  --night-accent: #e9a48c;
+  --serif: "Newsreader", "Newsreader fallback", Georgia, serif;
+  --sans: "Instrument Sans", "Instrument fallback", Arial, sans-serif;
+  --wrap: 1120px;
+  --gutter: clamp(16px, 4vw, 40px);
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 72px; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+img { max-width: 100%; height: auto; display: block; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.12; margin: 0; letter-spacing: -0.01em; }
+p { margin: 0 0 1rem; }
+a { color: var(--ink); text-decoration-color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { color: var(--accent-deep); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+.skip { position: absolute; left: 8px; top: -60px; z-index: 50; background: var(--ink); color: var(--paper);
+  padding: 10px 14px; border-radius: 6px; text-decoration: none; }
+.skip:focus { top: 8px; color: var(--paper); }
+.label { font: 600 0.78rem/1.3 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.9rem; }
+.label b { color: var(--accent); font-weight: 600; margin-right: 0.6em; }
 
-    <title>Daniel Olliver | AI & Software Developer</title>
-    <script defer src="/ga.js"></script>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+/* header */
+.top { position: sticky; top: 0; z-index: 20; background: rgba(245, 242, 236, 0.94);
+  border-bottom: 1px solid var(--rule); }
+@supports (backdrop-filter: blur(8px)) { .top { background: rgba(245, 242, 236, 0.82); backdrop-filter: blur(8px); } }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 60px; gap: 1rem; }
+.mark { font: 600 1.15rem/1 var(--serif); color: var(--ink); text-decoration: none; letter-spacing: 0; }
+.mark span { color: var(--accent); }
+.nav { display: flex; gap: 0.3rem; align-items: center; }
+.nav a { font-size: 0.95rem; font-weight: 500; text-decoration: none; padding: 8px 10px; border-radius: 6px; color: var(--ink-2); }
+.nav a:hover { color: var(--ink); background: rgba(27, 38, 48, 0.06); }
+.nav .nav-cta { color: var(--paper); background: var(--ink); margin-left: 0.4rem; }
+.nav .nav-cta:hover { color: var(--paper); background: #2e3d4a; }
+.menu { display: none; position: relative; }
+.menu summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 0.45rem;
+  font-weight: 600; font-size: 0.95rem; padding: 9px 12px; border: 1px solid var(--rule-strong); border-radius: 8px; }
+.menu summary::-webkit-details-marker { display: none; }
+.menu summary svg { width: 18px; height: 18px; }
+.menu[open] summary { background: var(--card); }
+.menu nav { position: absolute; right: 0; top: calc(100% + 8px); display: grid; min-width: 13rem; padding: 6px;
+  background: var(--card); border: 1px solid var(--rule); border-radius: 10px; box-shadow: 0 14px 40px rgba(27, 38, 48, 0.14); }
+.menu nav a { padding: 12px 12px; border-radius: 7px; text-decoration: none; font-weight: 500; }
+.menu nav a:hover, .menu nav a:focus-visible { background: var(--paper); }
+
+/* hero */
+.hero { padding: clamp(28px, 6vw, 88px) 0 clamp(40px, 7vw, 96px); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); grid-template-areas: "name photo" "text photo";
+  column-gap: clamp(24px, 6vw, 96px); align-items: start; }
+.hero-name { grid-area: name; align-self: end; }
+.hero-text { grid-area: text; }
+.portrait { grid-area: photo; align-self: center; max-width: 440px; justify-self: end; width: 100%; }
+.hero h1 { font-size: clamp(2.6rem, 6.4vw, 5.6rem); font-weight: 450; letter-spacing: -0.025em; margin-bottom: 0; }
+.hero .line { margin-top: 1.4rem; }
+.hero .line { font: 400 clamp(1.25rem, 2.2vw, 1.6rem)/1.38 var(--serif); color: var(--ink); max-width: 30ch; margin-bottom: 1.6rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1.2rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5em; min-height: 48px;
+  padding: 12px 20px; border-radius: 8px; font: 600 1rem/1.2 var(--sans); text-decoration: none;
+  border: 1.5px solid var(--ink); transition: background-color 0.15s ease, color 0.15s ease; }
+.btn-solid { background: var(--ink); color: var(--paper); }
+.btn-solid:hover { background: #2e3d4a; color: var(--paper); }
+.btn-line { background: transparent; color: var(--ink); }
+.btn-line:hover { background: var(--card); color: var(--ink); }
+.btn .arr { font-family: var(--sans); }
+.reach { display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; font-size: 1rem; margin: 0 0 1.4rem; padding: 0; list-style: none; }
+.reach a { font-weight: 600; }
+.reach span { color: var(--muted); font-weight: 400; margin-right: 0.35em; }
+.hire { font-size: 0.97rem; color: var(--ink-2); margin: 0; }
+.portrait { position: relative; margin: 0; }
+.portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; background: var(--night); }
+
+/* sections */
+.section { padding: clamp(56px, 8vw, 112px) 0; border-top: 1px solid var(--rule); }
+.section-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(16px, 4vw, 64px); margin-bottom: clamp(28px, 4vw, 52px); align-items: end; }
+.section-head h2 { font-size: clamp(2rem, 4.2vw, 3.2rem); }
+.section-head p { color: var(--ink-2); margin: 0; max-width: 58ch; }
+
+/* what I do */
+.services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1.5px solid var(--ink); }
+.service { padding: 22px 24px 8px 0; }
+.service + .service { padding-left: 24px; border-left: 1px solid var(--rule); }
+.service h3 { font-size: 1.45rem; margin-bottom: 0.55rem; }
+.service p { color: var(--ink-2); font-size: 1rem; }
+.ow { margin-top: clamp(28px, 4vw, 44px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 28px;
+  background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 22px 24px; }
+.ow p { margin: 0; max-width: 60ch; color: var(--ink-2); }
+.ow strong { color: var(--ink); font-weight: 600; }
+.ow .links { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* work */
+.work { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid var(--ink); }
+.job { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr) minmax(0, 2.4fr); gap: 12px clamp(16px, 3vw, 40px);
+  padding: 26px 0; border-bottom: 1px solid var(--rule); }
+.job h3 { font-size: 1.6rem; margin-bottom: 0.3rem; }
+.job .where { font-size: 0.92rem; color: var(--muted); margin: 0; }
+.job ul { margin: 0; padding-left: 1.1em; color: var(--ink-2); }
+.job li { margin-bottom: 0.3rem; }
+.job li::marker { color: var(--accent); }
+.job .go { display: flex; flex-direction: column; gap: 0.4rem; align-items: flex-start; font-size: 0.97rem; }
+.job .go a { font-weight: 600; }
+.job .go .note { color: var(--muted); font-size: 0.92rem; }
+.earlier { margin-top: 28px; color: var(--ink-2); font-size: 0.98rem; }
+.earlier h3 { font: 600 0.78rem/1.3 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.7rem; }
+.earlier ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 28px; }
+.earlier li strong { display: block; color: var(--ink); font-weight: 600; }
+
+/* research: its own night band */
+.research { background: var(--night); color: var(--night-text); border-top: 0; }
+.research .label { color: var(--night-muted); }
+.research .label b { color: var(--night-accent); }
+.research .section-head p { color: var(--night-muted); }
+.research a { color: var(--night-text); text-decoration-color: var(--night-accent); }
+.research a:hover { color: #fff; }
+.research :focus-visible { outline-color: var(--night-accent); }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin: 0 0 clamp(32px, 4vw, 48px); padding: 0; list-style: none;
+  border-top: 1px solid rgba(233, 229, 220, 0.25); border-bottom: 1px solid rgba(233, 229, 220, 0.25); }
+.facts li { padding: 18px 20px 18px 0; color: var(--night-muted); font-size: 0.97rem; }
+.facts li + li { padding-left: 20px; border-left: 1px solid rgba(233, 229, 220, 0.18); }
+.facts strong { display: block; font: 500 1.9rem/1.1 var(--serif); color: var(--night-text); margin-bottom: 0.3rem; }
+.feature { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 16px; }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
+.card { position: relative; display: flex; flex-direction: column; height: 100%; background: var(--night-2); border: 1px solid rgba(233, 229, 220, 0.14);
+  border-radius: 10px; overflow: hidden; transition: border-color 0.15s ease; }
+.card:hover, .card:focus-within { border-color: var(--night-accent); }
+.card .fig { position: relative; background: #fff; aspect-ratio: 16 / 9; overflow: hidden; }
+.card .fig.dark { background: #0c111a; }
+.card .fig img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 6px; }
+.hex { aspect-ratio: 16 / 6; border-bottom: 1px solid rgba(233, 229, 220, 0.14);
+  background-color: #202d38;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='72.75' viewBox='0 0 42 72.75'%3E%3Cpath d='M21 0l21 12.125v24.25L21 48.5 0 36.375v-24.25zM21 48.5v24.25M0 36.375L-21 48.5M42 36.375L63 48.5' fill='none' stroke='%23e9a48c' stroke-opacity='.42' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-size: 42px 72.75px; background-position: center; }
+.card:nth-child(2) .hex, .cards .hex { background-position: 10px 20px; }
+.card .body { padding: 16px 18px 20px; display: flex; flex-direction: column; flex: 1; }
+.card .kind { font: 600 0.72rem/1.3 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--night-accent); margin-bottom: 0.5rem; }
+.card h3 { font-size: 1.3rem; line-height: 1.2; margin-bottom: 0.5rem; }
+.card h3 a { text-decoration: none; }
+.card h3 a::after { content: ""; position: absolute; inset: 0; }
+.card p { font-size: 0.95rem; color: var(--night-muted); margin: 0; }
+.card.big { background: var(--night-2); }
+.card.big .body { padding: 22px 24px 24px; }
+.card.big h3 { font-size: 1.7rem; }
+.research .after { margin: clamp(28px, 4vw, 40px) 0 0; color: var(--night-muted); max-width: 70ch; }
+
+/* experience */
+.xp { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(28px, 5vw, 72px); }
+.timeline { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid var(--ink); }
+.timeline li { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 4px 18px; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.timeline .when { font-size: 0.92rem; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 0.25rem; }
+.timeline h3 { font-size: 1.25rem; margin-bottom: 0.2rem; }
+.timeline p { margin: 0; color: var(--ink-2); font-size: 0.98rem; }
+.side h3 { font: 600 0.78rem/1.3 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.8rem; }
+.side .block { border-top: 1.5px solid var(--ink); padding-top: 18px; margin-bottom: 36px; }
+.edu { list-style: none; margin: 0; padding: 0; }
+.edu li { margin-bottom: 0.9rem; }
+.edu strong { display: block; font: 500 1.2rem/1.25 var(--serif); }
+.edu span { color: var(--muted); font-size: 0.95rem; }
+.skills { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.skills li { font-size: 0.92rem; padding: 5px 11px; border: 1px solid var(--rule-strong); border-radius: 999px; color: var(--ink-2); background: var(--card); }
+
+/* CV */
+.cv { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 40px; }
+.cv h2 { font-size: clamp(2rem, 4.2vw, 3.2rem); margin-bottom: 0.6rem; }
+.cv p { color: var(--ink-2); margin: 0; max-width: 52ch; }
+.cv .actions { margin: 0; }
+
+/* contact */
+.contact { background: var(--card); }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
+.contact h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); margin-bottom: 1rem; }
+.contact .intro { color: var(--ink-2); max-width: 46ch; }
+.ways { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid var(--ink); }
+.ways li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 4px 16px; padding: 16px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.ways .k { font-size: 0.9rem; color: var(--muted); }
+.ways a { font: 500 1.3rem/1.3 var(--serif); overflow-wrap: anywhere; }
+
+footer { padding: 32px 0 40px; font-size: 0.92rem; color: var(--muted); }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-content: space-between; }
+footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+footer a { color: var(--ink-2); }
+
+@media (max-width: 960px) {
+  .nav { display: none; }
+  .menu { display: block; }
+  .section-head, .xp, .contact-grid { grid-template-columns: minmax(0, 1fr); }
+  .job { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); }
+  .job .go { grid-column: 2; flex-direction: row; flex-wrap: wrap; gap: 0.4rem 1.2rem; }
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .earlier ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  body { font-size: 1rem; }
+  .hero .wrap { grid-template-columns: minmax(0, 1fr) 7.25rem; grid-template-areas: "name photo" "text text"; gap: 0 16px; align-items: start; }
+  .portrait { max-width: none; align-self: start; }
+  .portrait img { border-radius: 4px; }
+  .hero h1 { font-size: clamp(2.5rem, 12vw, 3.4rem); margin-bottom: 0.2rem; }
+  .hero .label { margin-bottom: 0.6rem; }
+  .hero .line { margin: 1.1rem 0 1.25rem; font-size: 1.28rem; }
+  .actions .btn { flex: 1 1 100%; }
+  .services { grid-template-columns: minmax(0, 1fr); }
+  .service, .service + .service { padding: 20px 0 6px; border-left: 0; }
+  .service + .service { border-top: 1px solid var(--rule); }
+  .job { grid-template-columns: minmax(0, 1fr); }
+  .job .go { grid-column: auto; }
+  .facts { grid-template-columns: minmax(0, 1fr); }
+  .facts li, .facts li + li { padding: 14px 0; border-left: 0; }
+  .facts li + li { border-top: 1px solid rgba(233, 229, 220, 0.18); }
+  .feature, .cards, .earlier ul { grid-template-columns: minmax(0, 1fr); }
+  .feature .hex { display: none; }
+  .timeline li { grid-template-columns: minmax(0, 1fr); }
+  .ways li { grid-template-columns: minmax(0, 1fr); }
+  .ow { padding: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+@media print {
+  .top, .skip, .menu { display: none; }
+  .research { background: #fff; color: #000; }
+}
+</style>
+<script defer src="/ga.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="/" aria-label="Daniel Olliver, home">Daniel Olliver<span>.</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#websites">Websites</a>
+      <a href="#work">Work</a>
+      <a href="#research">Research</a>
+      <a href="#experience">Experience</a>
+      <a href="/resume.pdf">CV</a>
+      <a class="nav-cta" href="#contact">Contact</a>
+    </nav>
+    <details class="menu">
+      <summary aria-label="Menu"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>Menu</summary>
+      <nav aria-label="Main (mobile)">
+        <a href="#websites">Websites</a>
+        <a href="#work">Work</a>
+        <a href="#research">Research</a>
+        <a href="#experience">Experience</a>
+        <a href="/resume.pdf">CV (PDF)</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+
+<section class="hero" aria-labelledby="name">
+  <div class="wrap">
+    <div class="hero-name">
+      <p class="label">Auckland, New Zealand</p>
+      <h1 id="name">Daniel Olliver</h1>
+    </div>
+    <div class="hero-text">
+      <p class="line">I build and fix websites for New&nbsp;Zealand small businesses, and research machine learning for quantum computing.</p>
+      <div class="actions">
+        <a class="btn btn-solid" href="https://olliverweb.co.nz/">See Olliver Web <span class="arr" aria-hidden="true">↗</span></a>
+        <a class="btn btn-line" href="#contact">Contact me</a>
+      </div>
+      <ul class="reach" aria-label="Contact details">
+        <li><span>Mobile</span><a href="tel:+64210699543">021 069 9543</a></li>
+        <li><span>Email</span><a href="mailto:daniel@danielolliver.com">daniel@danielolliver.com</a></li>
+      </ul>
+      <p class="hire">Hiring a developer? <a href="#experience">Experience</a> and <a href="/resume.pdf">CV (PDF)</a>.</p>
+    </div>
+    <figure class="portrait">
+      <picture>
+        <source type="image/webp" srcset="/assets/img/daniel-240.webp 240w, /assets/img/daniel-480.webp 480w, /assets/img/daniel-800.webp 800w" sizes="(max-width: 720px) 116px, 40vw">
+        <img src="/assets/img/daniel-480.jpg" srcset="/assets/img/daniel-240.jpg 240w, /assets/img/daniel-480.jpg 480w, /assets/img/daniel-800.jpg 800w"
+             sizes="(max-width: 720px) 116px, 40vw" width="800" height="1000" alt="Daniel Olliver, standing outside at night" fetchpriority="high">
+      </picture>
+    </figure>
+  </div>
+</section>
+
+<section class="section" id="websites" aria-labelledby="websites-h">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="label"><b>01</b>What I do</p>
+        <h2 id="websites-h">Websites for small businesses</h2>
+      </div>
+      <p>I run Olliver Web, a one-person web studio in Auckland. You deal with me from the first email to the last fix, and I've been building for the web professionally for about four years.</p>
+    </div>
+    <div class="services">
+      <div class="service">
+        <h3>New sites</h3>
+        <p>New websites for small businesses, built to work well on a phone and easy for your customers to use.</p>
+      </div>
+      <div class="service">
+        <h3>Fixes</h3>
+        <p>Something broken or slow on your current site. I find the cause, fix it and tell you plainly what I changed.</p>
+      </div>
+      <div class="service">
+        <h3>Online stores</h3>
+        <p>Shops on WooCommerce and similar platforms, including speed work and moving to a better host.</p>
+      </div>
+    </div>
+    <div class="ow">
+      <p>More about <strong>Olliver Web</strong>, including a case study and Google reviews from clients, is at olliverweb.co.nz.</p>
+      <div class="links">
+        <a class="btn btn-solid" href="https://olliverweb.co.nz/">olliverweb.co.nz <span class="arr" aria-hidden="true">↗</span></a>
+        <a class="btn btn-line" href="https://olliverweb.co.nz/work/back-to-nature-tours">Case study</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work" aria-labelledby="work-h">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="label"><b>02</b>Selected work</p>
+        <h2 id="work-h">Client work</h2>
+      </div>
+      <p>Freelance since 2024, for clients in New Zealand, Australia and the UK.</p>
+    </div>
+    <ul class="work">
+      <li class="job">
+        <div>
+          <h3>Back to Nature Tours</h3>
+          <p class="where">Tour operator · Webflow</p>
+        </div>
+        <ul>
+          <li>Moved the site to Webflow CMS, so the owner can edit it.</li>
+          <li>Added FareHarbor online booking.</li>
+          <li>Carried out a full SEO migration.</li>
+        </ul>
+        <div class="go">
+          <a href="https://backtonaturetours.co.nz/">backtonaturetours.co.nz</a>
+          <a href="https://olliverweb.co.nz/work/back-to-nature-tours">Case study</a>
+        </div>
+      </li>
+      <li class="job">
+        <div>
+          <h3>Award Engravers</h3>
+          <p class="where">Online store · WooCommerce</p>
+        </div>
+        <ul>
+          <li>Looked after since August 2026.</li>
+          <li>Redesign, speed work and a move to a new host.</li>
+        </ul>
+        <div class="go">
+          <a href="https://awardengravers.co.nz/">awardengravers.co.nz</a>
+        </div>
+      </li>
+      <li class="job">
+        <div>
+          <h3>Patient-assessment platform</h3>
+          <p class="where">UK healthcare provider · React and Node</p>
+        </div>
+        <ul>
+          <li>A production patient-assessment platform.</li>
+          <li>Built with React on the front end and Node on the back end.</li>
+        </ul>
+        <div class="go">
+          <span class="note">Private client. Walkthrough on request.</span>
+        </div>
+      </li>
+    </ul>
+    <div class="earlier">
+      <h3>Earlier builds you can open</h3>
+      <ul>
+        <li><strong>Scenic</strong>Image-sharing app: React, Express, MongoDB. <a href="https://scenic-app.vercel.app/">Live</a> · <a href="https://github.com/dwatces/Scenic">Code</a></li>
+        <li><strong>NZ Camps</strong>Campground reviews: Express, EJS, MongoDB. <a href="https://nz-camps.vercel.app/">Live</a> · <a href="https://github.com/dwatces/NZCamps">Code</a></li>
+        <li><strong>Eon Candles</strong>Brand and shop site: Next.js. <a href="https://eon-ht82.vercel.app/">Live</a> · <a href="https://github.com/dwatces/Eon">Code</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section research" id="research" aria-labelledby="research-h">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="label"><b>03</b>Research</p>
+        <h2 id="research-h">Machine learning for quantum computing</h2>
+      </div>
+      <p>Independent research in quantum and geometric machine learning, 2025 to 2026. Every experiment was pre-registered and controlled, and no result was recorded before its run completed.</p>
+    </div>
+    <ul class="facts">
+      <li><strong>About 30</strong>pre-registered, controlled experiments</li>
+      <li><strong>3 IBM processors</strong>anyon braiding reproduced on each one</li>
+      <li><strong>Equivariant decoders</strong>neural decoders for quantum error correction</li>
+    </ul>
+    <div class="feature">
+      <article class="card big">
+        <div class="hex" aria-hidden="true"></div>
+        <div class="body">
+          <p class="kind">Public demo</p>
+          <h3><a href="/anyons/">Braid anyons in your browser</a></h3>
+          <p>An interactive toric-code board, backed by a stabilizer simulation that runs in the page. Drag anyons around each other.</p>
+        </div>
+      </article>
+      <article class="card big">
+        <div class="hex" aria-hidden="true"></div>
+        <div class="body">
+          <p class="kind">Playable</p>
+          <h3><a href="/anyons/decoder/">The error-hunting game</a></h3>
+          <p>Guess quantum-memory errors yourself, then race a neural decoder I trained against the classical gold standard.</p>
+        </div>
+      </article>
+      <article class="card big">
+        <div class="hex" aria-hidden="true"></div>
+        <div class="body">
+          <p class="kind">The whole story</p>
+          <h3><a href="/essay/">Read the essay</a></h3>
+          <p>The six-year research arc behind these results, verdicts one through five.</p>
+        </div>
+      </article>
+    </div>
+    <ul class="cards">
+      <li><article class="card">
+        <div class="fig"><img src="/assets/img/research/kitaev_topological_order.webp" alt="" width="720" height="221" loading="lazy" decoding="async"></div>
+        <div class="body"><p class="kind">Hardware</p>
+          <h3><a href="/research/braiding/">Anyon braiding on three quantum computers</a></h3>
+          <p>The −1 braiding sign on the Kitaev honeycomb, reproduced on ibm_marrakesh, ibm_kingston and ibm_fez, with error bars and a matched control.</p></div>
+      </article></li>
+      <li><article class="card">
+        <div class="fig"><img src="/assets/img/research/nonabelian_phase.webp" alt="" width="720" height="214" loading="lazy" decoding="async"></div>
+        <div class="body"><p class="kind">Theory</p>
+          <h3><a href="/research/nonabelian/">The non-Abelian phase, end to end</a></h3>
+          <p>Chern number ±1, a chiral Majorana edge mode and Majorana zero modes bound to vortices, then braided numerically.</p></div>
+      </article></li>
+      <li><article class="card">
+        <div class="fig dark"><img src="/assets/img/research/equiv_decoder.webp" alt="" width="720" height="472" loading="lazy" decoding="async"></div>
+        <div class="body"><p class="kind">Error correction</p>
+          <h3><a href="/research/decoder/">Symmetry-tied neural decoders</a></h3>
+          <p>At the same parameter count, about 4× more sample-efficient, and level with the matching decoder (0.9943 against 0.9948).</p></div>
+      </article></li>
+      <li><article class="card">
+        <div class="fig"><img src="/assets/img/research/hexlife_crossover_locking.webp" alt="" width="720" height="275" loading="lazy" decoding="async"></div>
+        <div class="body"><p class="kind">Geometry</p>
+          <h3><a href="/research/hexlife/">When the lattice owns the pattern</a></h3>
+          <p>Square against hexagonal lattices at matched density: no difference at normal scales, until below about 3 lattice constants. 11,946 patterns.</p></div>
+      </article></li>
+      <li><article class="card">
+        <div class="fig dark"><img src="/assets/img/research/coldstart_equivariance.webp" alt="" width="720" height="472" loading="lazy" decoding="async"></div>
+        <div class="body"><p class="kind">Real data</p>
+          <h3><a href="/research/coldstart/">The equivariance law on city data</a></h3>
+          <p>New-station demand forecasting in five cities over two seasons: the hex-equivariant model wins 10 of 10.</p></div>
+      </article></li>
+      <li><article class="card">
+        <div class="fig dark"><img src="/assets/img/research/qrc_equivariance.webp" alt="" width="720" height="472" loading="lazy" decoding="async"></div>
+        <div class="body"><p class="kind">Quantum ML</p>
+          <h3><a href="/research/qrc/">Equivariant readouts for quantum ML</a></h3>
+          <p>A quantum reservoir with an exactly symmetry-tied readout gains the most where data is scarce.</p></div>
+      </article></li>
+      <li><article class="card">
+        <div class="fig dark"><img src="/assets/img/research/haldane_chern.webp" alt="" width="720" height="472" loading="lazy" decoding="async"></div>
+        <div class="body"><p class="kind">Materials</p>
+          <h3><a href="/research/chern/">Match the symmetry, exactly</a></h3>
+          <p>Classifying Chern phases of the Haldane model: the matched C3 prior wins at every scarce size, and the too-large C6 group does worse.</p></div>
+      </article></li>
+      <li><article class="card">
+        <div class="hex" aria-hidden="true"></div>
+        <div class="body"><p class="kind">Index</p>
+          <h3><a href="/research/">All research results</a></h3>
+          <p>Every write-up in one place, each from a completed, logged run.</p></div>
+      </article></li>
+    </ul>
+    <p class="after">All the results are on the <a href="/research/">research index</a>, and the code and logs are on <a href="https://github.com/dwatces">GitHub</a>.</p>
+  </div>
+</section>
+
+<section class="section" id="experience" aria-labelledby="experience-h">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="label"><b>04</b>Experience and education</p>
+        <h2 id="experience-h">About four years of full-stack work</h2>
+      </div>
+      <p>From an internship to full-time work to my own clients, with research alongside.</p>
+    </div>
+    <div class="xp">
+      <ol class="timeline">
+        <li><span class="when">2024 to now</span><div><h3>Freelance developer, Olliver Web</h3><p>Websites, fixes and online stores for clients in New Zealand, Australia and the UK.</p></div></li>
+        <li><span class="when">2025 to 2026</span><div><h3>Independent researcher</h3><p>Quantum and geometric machine learning. Results on real IBM quantum hardware and a public demo at <a href="/anyons/">/anyons</a>.</p></div></li>
+        <li><span class="when">2024</span><div><h3>Graduate teaching assistant</h3><p>University of Auckland.</p></div></li>
+        <li><span class="when">2022 to 2024</span><div><h3>Developer, 3PM</h3><p>Auckland. Junior developer intern, then full-time.</p></div></li>
+        <li><span class="when">2021</span><div><h3>Intern, OutPace</h3></div></li>
+      </ol>
+      <div class="side">
+        <div class="block">
+          <h3>Education</h3>
+          <ul class="edu">
+            <li><strong>BSc in Computer Science</strong><span>AUT</span></li>
+            <li><strong>Postgraduate Certificate in AI</strong><span>University of Auckland</span></li>
+          </ul>
+        </div>
+        <div class="block">
+          <h3>Tools</h3>
+          <ul class="skills">
+            <li>React</li><li>Next.js</li><li>TypeScript</li><li>Node</li><li>Express</li><li>MongoDB</li><li>Supabase</li><li>Stripe</li>
+            <li>Firebase</li><li>Vercel</li><li>AWS</li><li>WordPress</li><li>Python</li><li>PyTorch</li><li>Qiskit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cv" aria-labelledby="cv-h">
+  <div class="wrap cv">
+    <div>
+      <p class="label"><b>05</b>CV</p>
+      <h2 id="cv-h">The one-page version</h2>
+      <p>My CV as a PDF, and a longer developer page with project detail.</p>
+    </div>
+    <div class="actions">
+      <a class="btn btn-solid" href="/resume.pdf">Download CV (PDF)</a>
+      <a class="btn btn-line" href="/dev/">Developer page</a>
+      <a class="btn btn-line" href="https://github.com/dwatces">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact" aria-labelledby="contact-h">
+  <div class="wrap contact-grid">
+    <div>
+      <p class="label"><b>06</b>Contact</p>
+      <h2 id="contact-h">Get in touch</h2>
+      <p class="intro">If I emailed you about your website, reply to that email or give me a call. Olliver Web is just me, so you'll be dealing with me directly.</p>
+    </div>
+    <ul class="ways">
+      <li><span class="k">Mobile</span><a href="tel:+64210699543">021 069 9543</a></li>
+      <li><span class="k">Email</span><a href="mailto:daniel@danielolliver.com">daniel@danielolliver.com</a></li>
+      <li><span class="k">Web studio</span><a href="https://olliverweb.co.nz/">olliverweb.co.nz</a></li>
+      <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/in/danielolliver">in/danielolliver</a></li>
+      <li><span class="k">GitHub</span><a href="https://github.com/dwatces">github.com/dwatces</a></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Daniel Olliver · Auckland, New Zealand</p>
+    <ul>
+      <li><a href="https://olliverweb.co.nz/">Websites and online stores: olliverweb.co.nz</a></li>
+      <li><a href="/dev/">Developer</a></li>
+      <li><a href="/ai/">Private AI</a></li>
+      <li><a href="/research/">Research</a></li>
+      <li><a href="/essay/">Essay</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  // Close the mobile menu after a jump link, on an outside click, or with Escape.
+  (function () {
+    var menu = document.querySelector(".menu");
+    if (!menu) return;
+    menu.querySelectorAll("nav a").forEach(function (link) {
+      link.addEventListener("click", function () { menu.open = false; });
+    });
+    document.addEventListener("click", function (event) {
+      if (menu.open && !menu.contains(event.target)) menu.open = false;
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && menu.open) {
+        menu.open = false;
+        menu.querySelector("summary").focus();
+      }
+    });
+  })();
+</script>
+</body>
 </html>
