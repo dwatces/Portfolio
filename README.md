@@ -107,4 +107,4 @@ docs/                design references and screenshots (not deployed)
 
 Built by Daniel Olliver, Auckland. Development work and CV: [danielolliver.com/dev](https://danielolliver.com/dev/) · [GitHub](https://github.com/dwatces) · [LinkedIn](https://www.linkedin.com/in/danielolliver)
 
-He also runs [Olliver Web](https://olliverweb.co.nz), web design and development for small businesses.
+He also runs [Olliver Web](https://olliverweb.co.nz), his web design and development service for small-business websites, online stores and web apps.
