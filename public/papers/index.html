@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Papers | Daniel Olliver</title>
+<meta name="description" content="Two preprints by Daniel Olliver on Zenodo: circuit-level equivariance in quantum error-correcting codes, and lattice geometry in neural cellular automata.">
+<link rel="canonical" href="https://danielolliver.com/papers/">
+<meta name="theme-color" content="#f7f5ef">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Daniel Olliver">
+<meta property="og:locale" content="en_NZ">
+<meta property="og:url" content="https://danielolliver.com/papers/">
+<meta property="og:title" content="Papers">
+<meta property="og:description" content="Two preprints by Daniel Olliver on Zenodo: circuit-level equivariance in quantum error-correcting codes, and lattice geometry in neural cellular automata.">
+<meta property="og:image" content="https://danielolliver.com/og-home-20261020.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Daniel Olliver: evidence-first AI research. Beside the name, a bar chart of anyon braiding on IBM quantum hardware: the logical observable reads +0.845 in the vacuum, −0.843 after the braid and +0.845 for the control loop">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="preload" href="/static/media/source-serif-4-latin-700-20261020.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://danielolliver.com/papers/#page",
+      "url": "https://danielolliver.com/papers/",
+      "name": "Papers",
+      "inLanguage": "en-NZ",
+      "isPartOf": {
+        "@id": "https://danielolliver.com/#website"
+      },
+      "author": {
+        "@id": "https://danielolliver.com/#daniel"
+      },
+      "hasPart": [
+        {
+          "@id": "https://doi.org/10.5281/zenodo.20715320"
+        },
+        {
+          "@id": "https://doi.org/10.5281/zenodo.21614035"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "danielolliver.com",
+          "item": "https://danielolliver.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Papers"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+@font-face { font-family:"Work Sans"; src:local("Work Sans"), url(/static/media/work-sans-20261020.woff2) format("woff2"), url(/static/media/font.e7663f1a.ttf) format("truetype");
+  font-weight:100 900; font-display:swap; }
+/* Source Serif 4 (Adobe), Latin subset from @fontsource/source-serif-4 5.3.1. Licence: SIL Open Font License 1.1 (OFL-1.1). */
+@font-face { font-family:"Source Serif 4"; src:url(/static/media/source-serif-4-latin-400-20261020.woff2) format("woff2");
+  font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:"Source Serif 4"; src:url(/static/media/source-serif-4-latin-700-20261020.woff2) format("woff2");
+  font-weight:700; font-style:normal; font-display:swap; }
+@font-face { font-family:"Source Serif 4"; src:url(/static/media/source-serif-4-latin-400-italic-20261020.woff2) format("woff2");
+  font-weight:400; font-style:italic; font-display:swap; }
+/* Metric-matched local fallbacks, so the swap to Source Serif 4 doesn't shift layout.
+   Georgia figures were measured on Gelasio and Times New Roman figures on Tinos (both metric-compatible),
+   then checked against this page's text. Serif max-widths below are in em, not ch, for the same reason. */
+@font-face { font-family:"Source Serif 4 Fallback"; src:local("Georgia"); font-weight:400;
+  size-adjust:108.41%; ascent-override:95.56%; descent-override:30.9%; line-gap-override:0%; }
+@font-face { font-family:"Source Serif 4 Fallback"; src:local("Georgia Bold"), local("Georgia-Bold"); font-weight:700;
+  size-adjust:95.8%; ascent-override:108.14%; descent-override:34.97%; line-gap-override:0%; }
+@font-face { font-family:"Source Serif 4 Fallback T"; src:local("Times New Roman"), local("TimesNewRomanPSMT"), local("Liberation Serif"), local("LiberationSerif"); font-weight:400;
+  size-adjust:120.5%; ascent-override:85.98%; descent-override:27.8%; line-gap-override:0%; }
+@font-face { font-family:"Source Serif 4 Fallback T"; src:local("Times New Roman Bold"), local("TimesNewRomanPS-BoldMT"), local("Liberation Serif Bold"), local("LiberationSerif-Bold"); font-weight:700;
+  size-adjust:115.12%; ascent-override:89.99%; descent-override:29.1%; line-gap-override:0%; }
+:root {
+  --paper:#f7f5ef; --band:#efebe1; --plate:#fffefa; --ink:#1a2025; --ink-2:#38434b;
+  --muted:#5b666e; --rule:#d8d2c4; --rule-2:#c7c0af;
+  --accent:#1d6680; --accent-ink:#164f63; --mark:#a8402b; --night:#0d111a;
+  --serif:"Source Serif 4","Source Serif 4 Fallback","Source Serif 4 Fallback T","Iowan Old Style","Charter","Bitstream Charter","Sitka Text",Cambria,Georgia,serif;
+  --sans:"Work Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:ui-monospace,"SFMono-Regular","SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --gut:16px; --max:1180px; --sec:52px;
+  --t-body:1rem; --t-cap:.88rem; --t-data:.8rem; --t-label:.75rem;
+}
+*,*::before,*::after { box-sizing:border-box; }
+* { margin:0; padding:0; }
+html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+@media (prefers-reduced-motion:no-preference) { html { scroll-behavior:smooth; } }
+body { background:var(--paper); color:var(--ink-2); font:16.5px/1.65 var(--sans);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+img { display:block; max-width:100%; height:auto; }
+a { color:var(--accent); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
+a:hover { color:var(--accent-ink); text-decoration-thickness:2px; }
+:focus-visible { outline:3px solid var(--accent); outline-offset:3px; border-radius:2px; }
+.skip { position:absolute; left:-999px; top:8px; background:var(--ink); color:#fff; padding:12px 16px; z-index:10; }
+.skip:focus { left:var(--gut); }
+.wrap { max-width:var(--max); margin:0 auto; padding:0 var(--gut); }
+.d { font-family:var(--mono); font-size:.88em; letter-spacing:-.01em; white-space:nowrap; color:var(--ink); }
+.kicker { font-family:var(--mono); font-size:var(--t-label); letter-spacing:.05em; text-transform:uppercase; color:var(--muted); line-height:1.5; }
+.nw { white-space:nowrap; }
+
+
+/* masthead */
+.mast { border-bottom:1px solid var(--rule); }
+.mast .wrap { display:flex; align-items:center; justify-content:space-between; gap:0 20px; min-height:60px; }
+.brand { font-family:var(--serif); font-size:1.12rem; font-weight:700; color:var(--ink); text-decoration:none;
+  display:inline-flex; align-items:center; min-height:44px; white-space:nowrap; }
+.brand:hover { color:var(--ink); text-decoration:none; }
+.mast nav { flex:0 1 auto; }
+.nav { display:flex; list-style:none; margin:0 -10px; }
+.nav a { display:inline-flex; align-items:center; justify-content:center; min-height:44px; min-width:44px; padding:0 10px;
+  color:var(--ink-2); text-decoration:none; font-size:.95rem; }
+.nav a:hover { color:var(--accent); text-decoration:underline; }
+@media (max-width:539px) {
+  .brand { display:none; }
+  .mast nav { flex:1 1 auto; }
+  .nav { justify-content:space-between; margin:0 -6px; }
+  .nav a { padding:0 6px; font-size:.92rem; }
+}
+
+/* links: one secondary style, one primary (DOI) style */
+.links { display:flex; flex-wrap:wrap; align-items:center; gap:0 22px; margin-top:14px; list-style:none; }
+.links a { display:inline-flex; align-items:center; min-height:44px; }
+.doi { display:inline-flex; flex-wrap:wrap; align-items:center; gap:6px 12px; min-height:52px; padding:9px 18px 9px 14px; max-width:100%;
+  background:var(--ink); color:#fff; border-radius:4px; text-decoration:none; }
+.doi:hover { background:var(--accent-ink); color:#fff; text-decoration:none; }
+.doi .k { font-family:var(--mono); font-size:.68rem; letter-spacing:.08em; padding:1px 6px; border:1px solid rgba(255,255,255,.5); border-radius:3px; }
+.doi .v { font-family:var(--mono); font-size:.88rem; overflow-wrap:anywhere; }
+.doi .hint { font-size:.92rem; font-weight:600; padding-left:12px; border-left:1px solid rgba(255,255,255,.35); }
+@media (max-width:479px) {
+  .doi { display:flex; width:100%; }
+  .doi .hint { flex-basis:100%; padding:6px 0 0; border-left:0; border-top:1px solid rgba(255,255,255,.25); }
+}
+@media (max-width:359px) { .doi .v { font-size:.82rem; } }
+/* paper pages */
+.paper { padding:28px 0 var(--sec); }
+.col { max-width:46rem; }
+.crumb { font-size:var(--t-cap); color:var(--muted); margin-bottom:14px; }
+h1 { font-family:var(--serif); font-weight:700; color:var(--ink); font-size:clamp(1.35rem,3vw,1.75rem); line-height:1.25; max-width:34em; margin:6px 0 10px; }
+.byline { color:var(--ink); }
+.paper h2 { font-family:var(--serif); font-size:1.3rem; line-height:1.25; color:var(--ink); font-weight:700;
+  margin-top:34px; padding-top:20px; border-top:1px solid var(--rule-2); }
+.paper .abs h2 { margin-top:18px; padding-top:14px; }
+.abs p { max-width:66ch; margin-top:10px; }
+.paper .doi { margin-top:16px; }
+.cite .kicker { margin-top:14px; }
+.cite p.box, .cite pre { font-family:var(--mono); font-size:var(--t-data); line-height:1.65; color:var(--ink-2); background:var(--plate);
+  border:1px solid var(--rule); border-radius:3px; padding:12px 14px; margin-top:6px; overflow-wrap:anywhere; }
+.cite pre { white-space:pre-wrap; }
+.related { list-style:none; margin-top:12px; border-top:1px solid var(--ink); }
+.related li { padding:8px 0 12px; border-bottom:1px solid var(--rule-2); }
+.related a { display:inline-flex; align-items:center; min-height:44px; font-family:var(--serif); font-weight:700; font-size:1.08rem; line-height:1.3; }
+.related .kicker { display:block; padding-top:6px; }
+.related .cap { display:block; color:var(--muted); font-size:var(--t-cap); line-height:1.45; }
+.back { margin-top:28px; }
+.back a { display:inline-flex; align-items:center; min-height:44px; }
+/* papers index */
+.paper h1.big { font-size:clamp(1.75rem,3.6vw,2.2rem); line-height:1.12; letter-spacing:-.01em; margin-bottom:8px; }
+.lede { color:var(--muted); }
+.refs { list-style:none; margin-top:26px; }
+.ref { padding:24px 0 22px; border-top:1px solid var(--rule-2); }
+.paper .ref h2 { font-size:clamp(1.22rem,2.4vw,1.45rem); line-height:1.3; margin:6px 0 12px; padding:0; border:0; max-width:26.2em; }
+.ref h2 a { color:var(--ink); text-decoration-color:var(--rule-2); }
+.ref h2 a:hover { color:var(--accent); text-decoration-color:currentColor; }
+.ref p { max-width:66ch; }
+
+footer { border-top:1px solid var(--rule); padding:18px 0 30px; font-size:var(--t-cap); color:var(--muted); }
+footer .wrap { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:2px 20px; }
+footer a { display:inline-flex; align-items:center; min-height:44px; color:var(--muted); }
+footer a:hover { color:var(--ink); }
+/* tablet and up */
+@media (min-width:700px) {
+  :root { --gut:32px; --sec:72px; }
+  .paper { padding-top:40px; }
+}
+@media (min-width:1000px) {
+  :root { --gut:48px; --sec:80px; }
+}
+@media (min-width:1700px) {
+  body { font-size:17.5px; }
+  :root { --max:1280px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { transition:none !important; animation:none !important; }
+}
+</style>
+<script defer src="/ga.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="mast">
+  <div class="wrap">
+    <a class="brand" href="/">Daniel Olliver</a>
+    <nav aria-label="Sections">
+      <ul class="nav">
+        <li><a href="/essay/">Essay</a></li>
+        <li><a href="/#play">Play</a></li>
+        <li><a href="/papers/" aria-current="page">Papers</a></li>
+        <li><a href="/#notes">Notes</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="paper">
+  <div class="wrap">
+    <div class="col">
+      <p class="crumb"><a href="/">danielolliver.com</a> / Papers</p>
+      <h1 class="big">Papers</h1>
+      <p class="lede">Two preprints on Zenodo. The DOI opens the full text.</p>
+      <ol class="refs">
+        <li class="ref">
+          <p class="kicker">Preprint · Zenodo · <span class="nw">16 June 2026</span></p>
+          <h2><a href="/papers/circuit-level-equivariance/">Circuit-level equivariance is code-dependent: obstruction in the surface code, exactness in the honeycomb Floquet code, and consequences for neural decoders</a></h2>
+          <p>Whether exact (twisted) equivariance survives at circuit level depends on the code. It is obstructed for surface-code extraction circuits and exact for the honeycomb Floquet code, whose C3 rotation mixes the logical qubits. Tying that symmetry into the decoder flips the honeycomb task from unlearnable to learned.</p>
+          <a class="doi" href="https://doi.org/10.5281/zenodo.20715320" aria-label="Read the preprint: DOI 10.5281/zenodo.20715320"><span class="k">DOI</span><span class="v">10.5281/zenodo.20715320</span><span class="hint">Read the preprint</span></a>
+        </li>
+        <li class="ref">
+          <p class="kicker">Preprint · Zenodo · <span class="nw">27 July 2026</span></p>
+          <h2><a href="/papers/lattice-teeth-nca/">The lattice's teeth: primitive reciprocal axes govern which Fourier components neural cellular automata can grow</a></h2>
+          <p>Neural cellular automata are trained on square grids by default; this paper treats the lattice as an experimental variable. An apparent advantage of hexagonal over square grids turned out to be a normalisation artefact in cross-lattice comparisons, and the paper documents and retracts it. The second result is a primitive-axis rule: a trained NCA grows only the Fourier components whose wavevectors lie on a primitive reciprocal-lattice axis of its grid. A pre-registered out-of-sample test partially refuted that rule as stated. What survives is the gate itself: growth stays direction-selective and no geometry-forbidden component grows, so the constraint is real and soft, not sharp.</p>
+          <a class="doi" href="https://doi.org/10.5281/zenodo.21614035" aria-label="Read the preprint: DOI 10.5281/zenodo.21614035"><span class="k">DOI</span><span class="v">10.5281/zenodo.21614035</span><span class="hint">Read the preprint</span></a>
+        </li>
+      </ol>
+      <p class="back"><a href="/research/">Research notes</a> · <a href="/">danielolliver.com</a></p>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><span class="nw">© 2026 Daniel Olliver</span> · <span class="nw">Auckland, New Zealand</span></span>
+    <a href="/dev/">Software development portfolio</a>
+  </div>
+</footer>
+</body>
+</html>

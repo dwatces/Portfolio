@@ -1,12 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-NZ">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#256f8f">
-<title>The non-Abelian phase, computed end to end — Daniel Olliver</title>
-<meta name="description" content="Kitaev + field, exactly: Chern number ±1 (analytic gap matched to 4 digits), one chiral Majorana edge mode, Majorana zero modes bound to vortices — then br">
-<link rel="icon" href="/favicon.png">
+<title>The Kitaev honeycomb non-Abelian phase, computed end to end | Daniel Olliver</title>
+<meta name="description" content="The Kitaev honeycomb's non-Abelian phase computed exactly: Chern number ±1, a chiral Majorana edge mode and vortex zero modes, then braided numerically.">
+<link rel="canonical" href="https://danielolliver.com/research/nonabelian/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Daniel Olliver">
+<meta property="og:locale" content="en_NZ">
+<meta property="og:url" content="https://danielolliver.com/research/nonabelian/">
+<meta property="og:title" content="The non-Abelian phase, computed end to end">
+<meta property="og:description" content="The Kitaev honeycomb's non-Abelian phase computed exactly: Chern number ±1, a chiral Majorana edge mode and vortex zero modes, then braided numerically.">
+<meta property="og:image" content="https://danielolliver.com/og-home-20261020.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Daniel Olliver: evidence-first AI research. Beside the name, a bar chart of anyon braiding on IBM quantum hardware: the logical observable reads +0.845 in the vacuum, −0.843 after the braid and +0.845 for the control loop">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://danielolliver.com/research/nonabelian/#article",
+      "headline": "The non-Abelian phase, computed end to end",
+      "description": "The Kitaev honeycomb's non-Abelian phase computed exactly: Chern number ±1, a chiral Majorana edge mode and vortex zero modes, then braided numerically.",
+      "url": "https://danielolliver.com/research/nonabelian/",
+      "mainEntityOfPage": "https://danielolliver.com/research/nonabelian/",
+      "image": "https://danielolliver.com/research/nonabelian_phase.png",
+      "inLanguage": "en-NZ",
+      "author": {
+        "@type": "Person",
+        "@id": "https://danielolliver.com/#daniel",
+        "name": "Daniel Olliver",
+        "url": "https://danielolliver.com/"
+      },
+      "isPartOf": {
+        "@id": "https://danielolliver.com/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "danielolliver.com",
+          "item": "https://danielolliver.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Research",
+          "item": "https://danielolliver.com/research/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "The non-Abelian phase, computed end to end"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <style>
   @font-face { font-family:"Work Sans"; src:local("Work Sans"),
     url(/static/media/font.e7663f1a.ttf) format("truetype"); font-display:swap; }
@@ -29,7 +91,7 @@
   .fig { background:var(--clr-bg-alt); border:1px solid var(--clr-border);
     border-radius:12px; overflow:hidden; margin-bottom:24px;
     box-shadow:rgba(17,24,39,.07) 0 12px 34px; }
-  .fig img { width:100%; display:block; background:#fff; }
+  .fig img { width:100%; height:auto; display:block; background:#fff; }
   .lead { font-size:1.12rem; line-height:1.6; color:var(--clr-fg); margin-bottom:24px; }
   .detail p { color:var(--clr-fg); margin-bottom:16px; }
   .detail em { color:var(--clr-accent); font-style:normal; font-weight:600; }
@@ -52,7 +114,7 @@
 <div class="wrap">
 <p class="crumb"><a href="/">danielolliver.com</a> / <a href="/research/">Research</a></p>
 <h1>The non-Abelian phase, computed end to end</h1>
-<div class="fig"><img src="/research/nonabelian_phase.png" alt="The non-Abelian phase, computed end to end"></div>
+<div class="fig"><img src="/research/nonabelian_phase.png" width="2325" height="690" fetchpriority="high" alt="Three panels: the field term gaps the phase into Chern number ±1; a cylinder spectrum with one chiral Majorana edge branch; Majorana zero modes bound to vortices"></div>
 <p class="lead">Kitaev + field, exactly: Chern number ±1 (analytic gap matched to 4 digits), one chiral Majorana edge mode, Majorana zero modes bound to vortices — then braided numerically. Exchanges sharing a vortex refuse to commute (Ivanov-pattern match 0.975); disjoint exchanges commute to 0.005.</p>
 <div class="detail">
 <p>Adding a field term to the Kitaev honeycomb opens its non-Abelian phase. The whole structure is computed exactly from the free-Majorana spectrum — Chern number ±1, a single chiral Majorana edge branch, and the Majorana zero modes bound to vortices.</p><p>Those zero modes are then braided numerically: exchanges that share a vortex refuse to commute (matching Ivanov’s prediction at 0.975) while disjoint exchanges commute to 0.005. Non-commuting exchanges with a near-exact null control are non-Abelian statistics, end to end.</p>
