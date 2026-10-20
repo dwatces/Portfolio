@@ -15,8 +15,9 @@
     font:16px/1.6 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
   .wrap { max-width:980px; margin:0 auto; padding:0 20px; }
   header { padding:20px 0 24px; }
-  .topnav { font-size:.85rem; color:var(--dim); padding:18px 0 26px; }
-  .topnav a { margin-right:14px; }
+  .topnav { font-size:.85rem; color:var(--dim); padding:7px 0 15px; }
+  .topnav a { margin-right:14px; display:inline-block; line-height:44px; min-width:44px;
+    text-align:center; }
   h1 { font-size:2.25rem; letter-spacing:-.5px; line-height:1.2; }
   h1 .gold { color:var(--gold); }
   .sub { color:var(--dim); margin-top:10px; max-width:700px; }
@@ -28,12 +29,15 @@
   h2 .step { color:var(--gold); font-size:.85rem; letter-spacing:1.5px; display:block; }
   .lead { color:var(--dim); font-size:.95rem; margin-bottom:18px; max-width:760px; }
   .boardrow { display:flex; gap:24px; flex-wrap:wrap; align-items:flex-start; }
-  canvas { background:#0d111a; border:1px solid var(--line); border-radius:10px; }
-  .side { min-width:260px; flex:1; }
+  canvas { background:#0d111a; border:1px solid var(--line); border-radius:10px;
+    max-width:100%; height:auto; }
+  /* 480px of board inside a 1px border; shrinks to fit narrow screens */
+  #board { width:482px; }
+  .side { min-width:min(260px,100%); flex:1; }
   .answers { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
   .answers button { padding:14px 10px; font-size:.95rem; border-radius:10px; }
   button { background:#1b2230; color:var(--text); border:1px solid var(--line);
-    padding:9px 16px; border-radius:8px; font-size:.92rem; cursor:pointer; }
+    padding:9px 16px; border-radius:8px; font-size:.92rem; cursor:pointer; min-height:44px; }
   button:hover { border-color:var(--dim); }
   button:disabled { opacity:.45; cursor:default; }
   button.primary { border-color:var(--gold); color:var(--gold); }
@@ -59,11 +63,12 @@
   .fill.plain { background:linear-gradient(90deg,#9d4452,var(--bad)); }
   .fill.sym { background:linear-gradient(90deg,#2f9e6e,var(--good)); }
   .ctrls { display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin:10px 0 4px; }
-  input[type=range] { width:240px; accent-color:var(--gold); }
+  input[type=range] { width:240px; max-width:100%; height:44px; vertical-align:middle;
+    accent-color:var(--gold); }
   .mono { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.85rem; }
   .note { color:var(--dim); font-size:.86rem; margin-top:12px; max-width:760px; }
   .twins { display:flex; gap:14px; margin:12px 0; flex-wrap:wrap; }
-  .twin { flex:1; min-width:250px; border:1px solid var(--line); border-radius:12px;
+  .twin { flex:1; min-width:min(250px,100%); border:1px solid var(--line); border-radius:12px;
     padding:16px; background:#0d111a; }
   .twin h3 { font-size:1rem; margin-bottom:4px; }
   .twin .big { font-size:2.1rem; font-weight:700; font-variant-numeric:tabular-nums; }
@@ -76,10 +81,20 @@
   th { color:var(--dim); font-weight:600; }
   td.win { color:var(--good); font-weight:600; }
   a { color:var(--cold); text-decoration:none; }
-  .links { display:flex; gap:18px; flex-wrap:wrap; font-size:.92rem; }
+  .links { display:flex; gap:0 18px; flex-wrap:wrap; font-size:.92rem; }
+  .links a { display:inline-flex; align-items:center; min-height:44px; }
   footer { padding:30px 0 60px; color:var(--dim); font-size:.85rem; }
   #ladderval { color:var(--gold); font-weight:700; font-size:1.05rem; }
   .loading { color:var(--gold); }
+  @media (max-width:420px) {
+    table { font-size:.8rem; }
+    th,td { padding:6px 4px; }
+    th { font-size:.74rem; }
+  }
+  @media (max-width:360px) {
+    .wrap { padding:0 16px; }
+    section { padding:22px 16px; }
+  }
 </style>
   <script defer src="/ga.js"></script>
   </head>
@@ -211,7 +226,8 @@
   standard remains unbeaten and we claim no exception. Technical readers: the symmetry is an exact
   p3 space group of the detector error model with a GL(2,F₂) twist that mixes the logical qubits —
   solved, verified and shipped via <a href="https://pypi.org/project/demsym/">demsym</a>
-  (<span class="mono">pip install demsym</span>); preprint in preparation.</p>
+  (<span class="mono">pip install demsym</span>); preprint:
+  <a href="https://doi.org/10.5281/zenodo.20715320">doi.org/10.5281/zenodo.20715320</a>.</p>
 </section>
 
 <section>
